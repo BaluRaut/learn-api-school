@@ -1,16 +1,15 @@
 <!DOCTYPE html>
-
-<html lang="mr">
+<html lang="en">
 <head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1" name="viewport"/>
-<title data-en="Before &amp;amp; trade-offs — Learn API School">आधी &amp; फायदे-तोटे — Learn API School</title>
-<meta content="For every big API idea: what came before, merits and demerits, and where to use it vs where not." name="description"/>
-<meta content="Before &amp; trade-offs — Learn API School" property="og:title"/>
-<meta content="For every big API idea: what came before, merits and demerits, and where to use it vs where not." property="og:description"/>
-<meta content="https://baluraut.github.io/learn-api-school/images/big-picture-4k.png" property="og:image"/>
-<meta content="website" property="og:type"/>
-<meta content="summary_large_image" name="twitter:card"/>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Before & trade-offs — Learn API School</title>
+<meta name="description" content="For every big API idea: what came before, merits and demerits, and where to use it vs where not.">
+<meta property="og:title" content="Before & trade-offs — Learn API School">
+<meta property="og:description" content="For every big API idea: what came before, merits and demerits, and where to use it vs where not.">
+<meta property="og:image" content="https://baluraut.github.io/learn-api-school/images/big-picture-4k.png">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
 <style>
   :root { --bg:#f8fafc; --card:#fff; --ink:#0f172a; --muted:#475569; --line:#e2e8f0; --accent:#0e7490; --ok:#16a34a; --blue:#2563eb; --bad:#dc2626; }
   @media (prefers-color-scheme: dark) { :root { --bg:#0b1220; --card:#131c2e; --ink:#e2e8f0; --muted:#94a3b8; --line:#253349; } }
@@ -53,112 +52,90 @@
   .toc a { border:1px solid var(--line); background:var(--card); border-radius:999px; padding:5px 12px; font-size:.82rem; color:var(--muted); text-decoration:none; }
   .toc a:hover { color:var(--ink); border-color:var(--muted); }
 </style>
+</head>
+<body>
 
-<style id="i18n-css">
-#lang-pick{position:fixed;top:10px;right:10px;z-index:9999;font:600 .85rem -apple-system,"Segoe UI",Helvetica,Arial,sans-serif;background:var(--card,#fff);color:var(--ink,#0f172a);border:1px solid var(--line,#e2e8f0);border-radius:999px;padding:6px 12px;box-shadow:0 2px 10px rgba(0,0,0,.08);cursor:pointer}
-html[lang="mr"] body{font-family:"Noto Sans Devanagari","Mukta","Devanagari Sangam MN","Nirmala UI",-apple-system,"Segoe UI",Helvetica,Arial,sans-serif}
-html[lang="mr"] svg text{font-family:"Noto Sans Devanagari","Mukta","Devanagari Sangam MN","Nirmala UI",sans-serif}
-@media print{#lang-pick{display:none}}
-</style></head>
-<body><select aria-label="Language / भाषा" id="lang-pick" onchange="schoolSetLang(this.value)">
-<option value="mr">🇮🇳 मराठी</option><option value="en">🇬🇧 English</option></select>
 <div class="wrap">
 <header>
-<p data-en='&lt;a href="index.html"&gt;← Back to the course home&lt;/a&gt;'><a href="index.html">← कोर्सच्या मुख्य पानाकडे परत</a></p>
-<h1 data-en="⏮️ Before &amp;amp; trade-offs">⏮️ आधी काय होते &amp; फायदे-तोटे</h1>
-<p class="sub" data-en="Every tool replaced something worse — and is itself the wrong tool somewhere. For each big idea: what life was like &lt;b&gt;before&lt;/b&gt;, honest &lt;b&gt;merits ✅ / demerits ❌&lt;/b&gt;, and &lt;b&gt;where to use it 👍 vs not 👎&lt;/b&gt;.">प्रत्येक साधनाने काहीतरी वाईट गोष्ट बदलली — आणि तेच साधन कुठेतरी चुकीचे ठरते. प्रत्येक मोठ्या कल्पनेसाठी: <b>आधी</b> जीवन कसे होते, प्रामाणिक <b>फायदे ✅ / तोटे ❌</b>, आणि <b>कुठे वापरावी 👍 विरुद्ध कुठे नाही 👎</b>.</p>
-<nav class="toc" data-en='&lt;a href="#rest"&gt;🗄️ REST vs GraphQL vs gRPC&lt;/a&gt;&lt;a href="#auth"&gt;🪪 API keys vs tokens vs OAuth&lt;/a&gt;&lt;a href="#pages"&gt;📚 Cursor vs offset&lt;/a&gt;&lt;a href="#version"&gt;🔢 Path vs header versioning&lt;/a&gt;&lt;a href="#limits"&gt;⏱️ Rate limiting&lt;/a&gt;&lt;a href="#hooks"&gt;📣 Webhooks vs polling&lt;/a&gt;&lt;a href="#gateway"&gt;🚪 API gateway&lt;/a&gt;'><a href="#rest">🗄️ REST विरुद्ध GraphQL विरुद्ध gRPC</a><a href="#auth">🪪 API keys विरुद्ध tokens विरुद्ध OAuth</a><a href="#pages">📚 Cursor विरुद्ध offset</a><a href="#version">🔢 Path विरुद्ध header versioning</a><a href="#limits">⏱️ Rate limiting</a><a href="#hooks">📣 Webhooks विरुद्ध polling</a><a href="#gateway">🚪 API gateway</a></nav>
+  <p><a href="index.html">← Back to the course home</a></p>
+  <h1>⏮️ Before &amp; trade-offs</h1>
+  <p class="sub">Every tool replaced something worse — and is itself the wrong tool somewhere. For each big idea: what life was like <b>before</b>, honest <b>merits ✅ / demerits ❌</b>, and <b>where to use it 👍 vs not 👎</b>.</p>
+  <nav class="toc"><a href="#rest">🗄️ REST vs GraphQL vs gRPC</a><a href="#auth">🪪 API keys vs tokens vs OAuth</a><a href="#pages">📚 Cursor vs offset</a><a href="#version">🔢 Path vs header versioning</a><a href="#limits">⏱️ Rate limiting</a><a href="#hooks">📣 Webhooks vs polling</a><a href="#gateway">🚪 API gateway</a></nav>
 </header>
+
 <section class="term" id="rest" style="--c:#0e7490">
-<h2 data-en="🗄️ REST (vs GraphQL, gRPC) — lessons 03, 11">🗄️ REST (विरुद्ध GraphQL, gRPC) — धडे 03, 11</h2>
-<div class="hist"><b data-en="⏮️ Before REST won (2000s)">⏮️ REST जिंकण्याआधी (2000 चे दशक)</b><p data-en="Every service invented its own remote-call style: SOAP envelopes, custom XML, RPC verbs like getStudentById in the URL. Caches could not help, every client needed a special library, and 'the API' was a 40-page PDF.">प्रत्येक service ने स्वतःची remote-call शैली शोधली: SOAP envelopes, custom XML, URL मध्ये getStudentById सारखी RPC क्रियापदे. Caches मदत करू शकत नव्हते, प्रत्येक client ला खास library लागायची, आणि 'API' म्हणजे 40 पानांचे PDF.</p></div>
-<div class="quad">
-<div class="q merit"><h4 data-en="✅ Merits">✅ फायदे</h4><ul><li data-en="nouns + standard verbs: any HTTP client works, caches understand it">नामे + प्रमाणित क्रियापदे: कोणताही HTTP client चालतो, caches समजतात</li><li data-en="status codes and headers already mean things">status codes आणि headers ला आधीच अर्थ आहे</li><li data-en="easy to document (OpenAPI) and to mock">document करायला (OpenAPI) आणि mock करायला सोपे</li></ul></div>
-<div class="q demerit"><h4 data-en="❌ Demerits">❌ तोटे</h4><ul><li data-en="many round trips for a screen that needs five resources">पाच resources लागणाऱ्या screen साठी अनेक फेऱ्या</li><li data-en="over-fetching: the whole drawer when you wanted one field">over-fetching: एका field साठी अख्खा ड्रॉवर</li><li data-en="'RESTful' is a spectrum — teams argue about purity">'RESTful' ही एक श्रेणी आहे — टीम्स शुद्धतेवर वाद घालतात</li></ul></div>
-<div class="q use"><h4 data-en="👍 Use when">👍 वापरा जेव्हा</h4><ul><li data-en="public and partner APIs, anything cacheable">सार्वजनिक आणि भागीदार API, cache होणारे काहीही</li><li data-en="CRUD over clear resources">स्पष्ट resources वरचे CRUD</li></ul></div>
-<div class="q avoid"><h4 data-en="👎 Think twice when">👎 दोनदा विचार करा जेव्हा</h4><ul><li data-en="one UI needs many shapes of the same data → GraphQL">एका UI ला त्याच data चे अनेक आकार लागतात → GraphQL</li><li data-en="chatty, typed, internal service-to-service → gRPC">बडबडे, typed, अंतर्गत service-ते-service → gRPC</li></ul></div>
-</div>
+  <h2>🗄️ REST (vs GraphQL, gRPC) — lessons 03, 11</h2>
+  <div class="hist"><b>⏮️ Before REST won (2000s)</b><p>Every service invented its own remote-call style: SOAP envelopes, custom XML, RPC verbs like getStudentById in the URL. Caches could not help, every client needed a special library, and 'the API' was a 40-page PDF.</p></div>
+  <div class="quad">
+    <div class="q merit"><h4>✅ Merits</h4><ul><li>nouns + standard verbs: any HTTP client works, caches understand it</li><li>status codes and headers already mean things</li><li>easy to document (OpenAPI) and to mock</li></ul></div>
+    <div class="q demerit"><h4>❌ Demerits</h4><ul><li>many round trips for a screen that needs five resources</li><li>over-fetching: the whole drawer when you wanted one field</li><li>'RESTful' is a spectrum — teams argue about purity</li></ul></div>
+    <div class="q use"><h4>👍 Use when</h4><ul><li>public and partner APIs, anything cacheable</li><li>CRUD over clear resources</li></ul></div>
+    <div class="q avoid"><h4>👎 Think twice when</h4><ul><li>one UI needs many shapes of the same data → GraphQL</li><li>chatty, typed, internal service-to-service → gRPC</li></ul></div>
+  </div>
 </section>
 <section class="term" id="auth" style="--c:#0e7490">
-<h2 data-en="🪪 API keys vs bearer tokens vs OAuth — lesson 06">🪪 API keys विरुद्ध bearer tokens विरुद्ध OAuth — धडा 06</h2>
-<div class="hist"><b data-en="⏮️ Before standard passes">⏮️ प्रमाणित पास येण्याआधी</b><p data-en="Passwords in query strings, shared 'admin' secrets pasted into every script, and no way to revoke one client without breaking all of them.">query strings मध्ये passwords, प्रत्येक script मध्ये चिकटवलेली सामायिक 'admin' गुपिते, आणि सगळ्यांना न मोडता एका client ला रद्द करण्याचा मार्ग नाही.</p></div>
-<div class="quad">
-<div class="q merit"><h4 data-en="✅ Merits">✅ फायदे</h4><ul><li data-en="API key: simplest machine pass, per-app, revocable">API key: सर्वात सोपा मशीन-पास, प्रत्येक ॲपला, रद्द करता येणारा</li><li data-en="JWT: self-contained, expiring, signed — no lookup per request">JWT: स्वयंपूर्ण, संपणारा, स्वाक्षरीत — प्रत्येक विनंतीला lookup नाही</li><li data-en="OAuth/OIDC: users grant scoped access without sharing passwords">OAuth/OIDC: वापरकर्ते password न देता मर्यादित प्रवेश देतात</li></ul></div>
-<div class="q demerit"><h4 data-en="❌ Demerits">❌ तोटे</h4><ul><li data-en="keys leak (logs, URLs, repos) and never expire on their own">keys गळतात (logs, URLs, repos) आणि स्वतःहून कधीच संपत नाहीत</li><li data-en="JWTs cannot be un-issued before expiry without a deny-list">deny-list शिवाय JWT मुदतीआधी रद्द करता येत नाहीत</li><li data-en="OAuth flows are real engineering; easy to misconfigure redirects">OAuth flows म्हणजे खरे engineering; redirects चुकीचे लावणे सोपे</li></ul></div>
-<div class="q use"><h4 data-en="👍 Use when">👍 वापरा जेव्हा</h4><ul><li data-en="keys for server-to-server, scoped and rotated">server-ते-server साठी keys, मर्यादित आणि फिरवलेल्या</li><li data-en="tokens for user sessions; OAuth when a third app acts for a user">user sessions साठी tokens; तिसरे ॲप वापरकर्त्यासाठी काम करते तेव्हा OAuth</li></ul></div>
-<div class="q avoid"><h4 data-en="👎 Think twice when">👎 दोनदा विचार करा जेव्हा</h4><ul><li data-en="a key in a browser app — it is public the moment it ships">browser ॲपमध्ये key — पाठवल्या क्षणी ती सार्वजनिक</li><li data-en="hand-rolled crypto or session logic — use the standard">स्वतः रचलेले crypto किंवा session logic — मानक वापरा</li></ul></div>
-</div>
+  <h2>🪪 API keys vs bearer tokens vs OAuth — lesson 06</h2>
+  <div class="hist"><b>⏮️ Before standard passes</b><p>Passwords in query strings, shared 'admin' secrets pasted into every script, and no way to revoke one client without breaking all of them.</p></div>
+  <div class="quad">
+    <div class="q merit"><h4>✅ Merits</h4><ul><li>API key: simplest machine pass, per-app, revocable</li><li>JWT: self-contained, expiring, signed — no lookup per request</li><li>OAuth/OIDC: users grant scoped access without sharing passwords</li></ul></div>
+    <div class="q demerit"><h4>❌ Demerits</h4><ul><li>keys leak (logs, URLs, repos) and never expire on their own</li><li>JWTs cannot be un-issued before expiry without a deny-list</li><li>OAuth flows are real engineering; easy to misconfigure redirects</li></ul></div>
+    <div class="q use"><h4>👍 Use when</h4><ul><li>keys for server-to-server, scoped and rotated</li><li>tokens for user sessions; OAuth when a third app acts for a user</li></ul></div>
+    <div class="q avoid"><h4>👎 Think twice when</h4><ul><li>a key in a browser app — it is public the moment it ships</li><li>hand-rolled crypto or session logic — use the standard</li></ul></div>
+  </div>
 </section>
 <section class="term" id="pages" style="--c:#c2410c">
-<h2 data-en="📚 Cursor vs offset pagination — lesson 08">📚 Cursor विरुद्ध offset pagination — धडा 08</h2>
-<div class="hist"><b data-en="⏮️ Before pagination">⏮️ Pagination आधी</b><p data-en="'Return everything' — fine for 50 rows, fatal at 50,000: timeouts, memory, and clients that show a spinner forever.">'सगळे परत द्या' — 50 rows ला ठीक, 50,000 ला घातक: timeouts, memory, आणि कायम spinner दाखवणारे clients.</p></div>
-<div class="quad">
-<div class="q merit"><h4 data-en="✅ Merits">✅ फायदे</h4><ul><li data-en="cursor: stable under inserts, fast with an index, the modern default">cursor: inserts असूनही स्थिर, index सह वेगवान, आधुनिक default</li><li data-en="offset: trivial to implement, jump to page N">offset: अंमलात आणायला क्षुल्लक, पान N वर उडी</li></ul></div>
-<div class="q demerit"><h4 data-en="❌ Demerits">❌ तोटे</h4><ul><li data-en="cursor: no 'page 7 of 40', opaque tokens to explain">cursor: '40 पैकी पान 7' नाही, समजावायला अपारदर्शक tokens</li><li data-en="offset: skips/duplicates when rows change; deep pages get slow">offset: rows बदलल्या की गळती/दुप्पट; खोल पाने हळू होतात</li></ul></div>
-<div class="q use"><h4 data-en="👍 Use when">👍 वापरा जेव्हा</h4><ul><li data-en="cursor for feeds, logs, anything that grows">feeds, logs, वाढणाऱ्या कशासाठीही cursor</li><li data-en="offset for small admin tables with a page picker">पान-निवडक असलेल्या छोट्या admin तक्त्यांसाठी offset</li></ul></div>
-<div class="q avoid"><h4 data-en="👎 Think twice when">👎 दोनदा विचार करा जेव्हा</h4><ul><li data-en="offset on a table that grows while people scroll">लोक scroll करत असताना वाढणाऱ्या तक्त्यावर offset</li><li data-en="cursor when the product genuinely needs 'jump to page 12'">उत्पादनाला खरोखर 'पान 12 वर उडी' लागते तेव्हा cursor</li></ul></div>
-</div>
+  <h2>📚 Cursor vs offset pagination — lesson 08</h2>
+  <div class="hist"><b>⏮️ Before pagination</b><p>'Return everything' — fine for 50 rows, fatal at 50,000: timeouts, memory, and clients that show a spinner forever.</p></div>
+  <div class="quad">
+    <div class="q merit"><h4>✅ Merits</h4><ul><li>cursor: stable under inserts, fast with an index, the modern default</li><li>offset: trivial to implement, jump to page N</li></ul></div>
+    <div class="q demerit"><h4>❌ Demerits</h4><ul><li>cursor: no 'page 7 of 40', opaque tokens to explain</li><li>offset: skips/duplicates when rows change; deep pages get slow</li></ul></div>
+    <div class="q use"><h4>👍 Use when</h4><ul><li>cursor for feeds, logs, anything that grows</li><li>offset for small admin tables with a page picker</li></ul></div>
+    <div class="q avoid"><h4>👎 Think twice when</h4><ul><li>offset on a table that grows while people scroll</li><li>cursor when the product genuinely needs 'jump to page 12'</li></ul></div>
+  </div>
 </section>
 <section class="term" id="version" style="--c:#c2410c">
-<h2 data-en="🔢 Versioning in the path vs headers — lesson 09">🔢 Path मधले विरुद्ध headers मधले versioning — धडा 09</h2>
-<div class="hist"><b data-en="⏮️ Before versioning">⏮️ Versioning आधी</b><p data-en="Changing a field renamed broke every client at once — or nothing ever changed because nobody dared.">एका field चे नाव बदलले की प्रत्येक client एकदम मोडायचा — किंवा कोणी धाडस केले नाही म्हणून काहीच कधी बदलले नाही.</p></div>
-<div class="quad">
-<div class="q merit"><h4 data-en="✅ Merits">✅ फायदे</h4><ul><li data-en="/v1 in the path: visible, cacheable, easy to route at the gate">path मध्ये /v1: दिसणारे, cache होणारे, गेटवर route करायला सोपे</li><li data-en="header/media-type versions: one URL, cleaner resources">header/media-type आवृत्त्या: एक URL, स्वच्छ resources</li></ul></div>
-<div class="q demerit"><h4 data-en="❌ Demerits">❌ तोटे</h4><ul><li data-en="path versions multiply URLs and tempt big-bang rewrites">path आवृत्त्या URL वाढवतात आणि मोठ्या पुनर्लेखनाचा मोह घालतात</li><li data-en="header versions are invisible in logs and links">header आवृत्त्या logs आणि links मध्ये अदृश्य</li><li data-en="every version you keep is a version you must test">ठेवलेली प्रत्येक आवृत्ती म्हणजे test करावी लागणारी आवृत्ती</li></ul></div>
-<div class="q use"><h4 data-en="👍 Use when">👍 वापरा जेव्हा</h4><ul><li data-en="path versions for public APIs; additive changes on the same version">सार्वजनिक API साठी path आवृत्त्या; त्याच आवृत्तीवर additive बदल</li><li data-en="a written deprecation policy with dates and metrics">तारखा आणि आकड्यांसह लिहिलेले deprecation धोरण</li></ul></div>
-<div class="q avoid"><h4 data-en="👎 Think twice when">👎 दोनदा विचार करा जेव्हा</h4><ul><li data-en="versioning per field or per endpoint — chaos">प्रत्येक field किंवा endpoint चे वेगळे versioning — गोंधळ</li><li data-en="breaking clients silently 'because it's cleaner'">'स्वच्छ दिसते म्हणून' clients गुपचूप मोडणे</li></ul></div>
-</div>
+  <h2>🔢 Versioning in the path vs headers — lesson 09</h2>
+  <div class="hist"><b>⏮️ Before versioning</b><p>Changing a field renamed broke every client at once — or nothing ever changed because nobody dared.</p></div>
+  <div class="quad">
+    <div class="q merit"><h4>✅ Merits</h4><ul><li>/v1 in the path: visible, cacheable, easy to route at the gate</li><li>header/media-type versions: one URL, cleaner resources</li></ul></div>
+    <div class="q demerit"><h4>❌ Demerits</h4><ul><li>path versions multiply URLs and tempt big-bang rewrites</li><li>header versions are invisible in logs and links</li><li>every version you keep is a version you must test</li></ul></div>
+    <div class="q use"><h4>👍 Use when</h4><ul><li>path versions for public APIs; additive changes on the same version</li><li>a written deprecation policy with dates and metrics</li></ul></div>
+    <div class="q avoid"><h4>👎 Think twice when</h4><ul><li>versioning per field or per endpoint — chaos</li><li>breaking clients silently 'because it's cleaner'</li></ul></div>
+  </div>
 </section>
 <section class="term" id="limits" style="--c:#c2410c">
-<h2 data-en="⏱️ Rate limiting — lesson 10">⏱️ Rate limiting — धडा 10</h2>
-<div class="hist"><b data-en="⏮️ Before limits">⏮️ मर्यादांआधी</b><p data-en="One runaway script could empty the office: every visitor waited, and the fix was a phone call.">एक बेलगाम script अख्खे ऑफिस रिकामे करू शकायची: प्रत्येक पाहुणा थांबायचा, आणि उपाय म्हणजे फोन कॉल.</p></div>
-<div class="quad">
-<div class="q merit"><h4 data-en="✅ Merits">✅ फायदे</h4><ul><li data-en="fairness: one noisy client cannot starve the rest">न्याय: एक गोंगाटी client बाकीच्यांना उपाशी ठेवू शकत नाही</li><li data-en="a clear signal (429 + Retry-After) clients can obey">clients पाळू शकतील असा स्पष्ट संकेत (429 + Retry-After)</li><li data-en="protects the record room and your bill">रेकॉर्ड रूम आणि तुमचे बिल वाचवते</li></ul></div>
-<div class="q demerit"><h4 data-en="❌ Demerits">❌ तोटे</h4><ul><li data-en="honest bursts get refused too — size the bucket for real use">प्रामाणिक bursts ही नाकारले जातात — खऱ्या वापरानुसार bucket ठरवा</li><li data-en="limits per IP punish everyone behind one NAT">IP नुसार मर्यादा एका NAT मागच्या सगळ्यांना शिक्षा देतात</li><li data-en="needs shared state across servers (the gateway's job)">servers मध्ये सामायिक state लागते (gateway चे काम)</li></ul></div>
-<div class="q use"><h4 data-en="👍 Use when">👍 वापरा जेव्हा</h4><ul><li data-en="any public endpoint; anything a bug could hammer">कोणतेही सार्वजनिक endpoint; bug हातोडा मारू शकेल असे काहीही</li><li data-en="per-key limits tied to plans">योजनांशी जोडलेल्या प्रत्येक key च्या मर्यादा</li></ul></div>
-<div class="q avoid"><h4 data-en="👎 Think twice when">👎 दोनदा विचार करा जेव्हा</h4><ul><li data-en="internal calls between your own services with no budget problem">budget ची समस्या नसलेल्या तुमच्याच services मधले अंतर्गत कॉल</li><li data-en="as a substitute for fixing an N+1 loop in the client">client मधला N+1 loop दुरुस्त करण्याला पर्याय म्हणून</li></ul></div>
-</div>
+  <h2>⏱️ Rate limiting — lesson 10</h2>
+  <div class="hist"><b>⏮️ Before limits</b><p>One runaway script could empty the office: every visitor waited, and the fix was a phone call.</p></div>
+  <div class="quad">
+    <div class="q merit"><h4>✅ Merits</h4><ul><li>fairness: one noisy client cannot starve the rest</li><li>a clear signal (429 + Retry-After) clients can obey</li><li>protects the record room and your bill</li></ul></div>
+    <div class="q demerit"><h4>❌ Demerits</h4><ul><li>honest bursts get refused too — size the bucket for real use</li><li>limits per IP punish everyone behind one NAT</li><li>needs shared state across servers (the gateway's job)</li></ul></div>
+    <div class="q use"><h4>👍 Use when</h4><ul><li>any public endpoint; anything a bug could hammer</li><li>per-key limits tied to plans</li></ul></div>
+    <div class="q avoid"><h4>👎 Think twice when</h4><ul><li>internal calls between your own services with no budget problem</li><li>as a substitute for fixing an N+1 loop in the client</li></ul></div>
+  </div>
 </section>
 <section class="term" id="hooks" style="--c:#c2410c">
-<h2 data-en="📣 Webhooks vs polling — lesson 11">📣 Webhooks विरुद्ध polling — धडा 11</h2>
-<div class="hist"><b data-en="⏮️ Before webhooks">⏮️ Webhooks आधी</b><p data-en="Clients asked 'anything new?' every few seconds — thousands of empty answers, and still late.">clients दर काही सेकंदांनी 'काही नवे?' विचारायचे — हजारो रिकामी उत्तरे, आणि तरी उशीर.</p></div>
-<div class="quad">
-<div class="q merit"><h4 data-en="✅ Merits">✅ फायदे</h4><ul><li data-en="events arrive when they happen; zero wasted slips">events घडतात तेव्हाच येतात; एकही चिठ्ठी वाया नाही</li><li data-en="one registration replaces a polling loop">एक नोंदणी polling loop ची जागा घेते</li></ul></div>
-<div class="q demerit"><h4 data-en="❌ Demerits">❌ तोटे</h4><ul><li data-en="you must run a reachable receiver (and secure it)">तुम्हाला पोहोचता येणारा receiver चालवावा (आणि सुरक्षित ठेवावा) लागतो</li><li data-en="delivery can fail: retries, ordering and duplicates are your problem">delivery फसू शकते: retries, क्रम आणि duplicates तुमची समस्या</li><li data-en="debugging means two systems' logs">debugging म्हणजे दोन systems चे logs</li></ul></div>
-<div class="q use"><h4 data-en="👍 Use when">👍 वापरा जेव्हा</h4><ul><li data-en="'tell me when' relationships: payments, CI results, enrolments">'झाले की सांग' नाती: payments, CI निकाल, प्रवेश</li><li data-en="integrations with partners who cannot poll you at scale">तुम्हाला मोठ्या प्रमाणात poll करू न शकणाऱ्या भागीदारांशी integrations</li></ul></div>
-<div class="q avoid"><h4 data-en="👎 Think twice when">👎 दोनदा विचार करा जेव्हा</h4><ul><li data-en="your consumer cannot expose a URL — use a queue or long polling">तुमचा consumer URL उघडू शकत नाही — queue किंवा long polling वापरा</li><li data-en="strict ordering or exactly-once — use an event log">कडक क्रम किंवा exactly-once — event log वापरा</li></ul></div>
-</div>
+  <h2>📣 Webhooks vs polling — lesson 11</h2>
+  <div class="hist"><b>⏮️ Before webhooks</b><p>Clients asked 'anything new?' every few seconds — thousands of empty answers, and still late.</p></div>
+  <div class="quad">
+    <div class="q merit"><h4>✅ Merits</h4><ul><li>events arrive when they happen; zero wasted slips</li><li>one registration replaces a polling loop</li></ul></div>
+    <div class="q demerit"><h4>❌ Demerits</h4><ul><li>you must run a reachable receiver (and secure it)</li><li>delivery can fail: retries, ordering and duplicates are your problem</li><li>debugging means two systems' logs</li></ul></div>
+    <div class="q use"><h4>👍 Use when</h4><ul><li>'tell me when' relationships: payments, CI results, enrolments</li><li>integrations with partners who cannot poll you at scale</li></ul></div>
+    <div class="q avoid"><h4>👎 Think twice when</h4><ul><li>your consumer cannot expose a URL — use a queue or long polling</li><li>strict ordering or exactly-once — use an event log</li></ul></div>
+  </div>
 </section>
 <section class="term" id="gateway" style="--c:#c2410c">
-<h2 data-en="🚪 API gateway — lesson 12">🚪 API gateway — धडा 12</h2>
-<div class="hist"><b data-en="⏮️ Before gateways">⏮️ Gateways आधी</b><p data-en="Every API re-implemented auth, rate limits, TLS, logging and routing — five copies, five bugs.">प्रत्येक API ने auth, rate limits, TLS, logging आणि routing पुन्हा लिहिले — पाच प्रती, पाच bugs.</p></div>
-<div class="quad">
-<div class="q merit"><h4 data-en="✅ Merits">✅ फायदे</h4><ul><li data-en="one place for auth, limits, routing, TLS, logs, WAF">auth, limits, routing, TLS, logs, WAF साठी एकच जागा</li><li data-en="APIs stay small; policies change without redeploys">API छोटे राहतात; redeploy न करता धोरणे बदलतात</li><li data-en="managed versions exist (AWS API Gateway, Kubernetes Ingress + plugins)">managed आवृत्त्या आहेत (AWS API Gateway, Kubernetes Ingress + plugins)</li></ul></div>
-<div class="q demerit"><h4 data-en="❌ Demerits">❌ तोटे</h4><ul><li data-en="another hop, another thing to run and pay for">आणखी एक hop, चालवायची आणि पैसे द्यायची आणखी एक गोष्ट</li><li data-en="config sprawl; a gateway outage is everyone's outage">config चा पसारा; gateway बंद = सगळ्यांचे बंद</li><li data-en="easy to hide business logic where it doesn't belong">business logic नको तिथे लपवणे सोपे</li></ul></div>
-<div class="q use"><h4 data-en="👍 Use when">👍 वापरा जेव्हा</h4><ul><li data-en="more than one API, any public exposure, per-client plans">एकापेक्षा जास्त API, कोणतेही सार्वजनिक exposure, प्रत्येक client च्या योजना</li><li data-en="you need central auth/limits/observability">केंद्रीय auth/limits/observability हवी</li></ul></div>
-<div class="q avoid"><h4 data-en="👎 Think twice when">👎 दोनदा विचार करा जेव्हा</h4><ul><li data-en="one internal service behind a VPN — a library may do">VPN मागची एक अंतर्गत service — एक library पुरेल</li><li data-en="putting transformations and business rules in the gate">रूपांतरे आणि business नियम गेटमध्ये ठेवणे</li></ul></div>
-</div>
+  <h2>🚪 API gateway — lesson 12</h2>
+  <div class="hist"><b>⏮️ Before gateways</b><p>Every API re-implemented auth, rate limits, TLS, logging and routing — five copies, five bugs.</p></div>
+  <div class="quad">
+    <div class="q merit"><h4>✅ Merits</h4><ul><li>one place for auth, limits, routing, TLS, logs, WAF</li><li>APIs stay small; policies change without redeploys</li><li>managed versions exist (AWS API Gateway, Kubernetes Ingress + plugins)</li></ul></div>
+    <div class="q demerit"><h4>❌ Demerits</h4><ul><li>another hop, another thing to run and pay for</li><li>config sprawl; a gateway outage is everyone's outage</li><li>easy to hide business logic where it doesn't belong</li></ul></div>
+    <div class="q use"><h4>👍 Use when</h4><ul><li>more than one API, any public exposure, per-client plans</li><li>you need central auth/limits/observability</li></ul></div>
+    <div class="q avoid"><h4>👎 Think twice when</h4><ul><li>one internal service behind a VPN — a library may do</li><li>putting transformations and business rules in the gate</li></ul></div>
+  </div>
 </section>
-<footer data-en='
-  Learn API School · the counter is in the repo · &lt;a href="index.html"&gt;Course home&lt;/a&gt; · &lt;a href="lesson-diagrams.html"&gt;Lesson diagrams&lt;/a&gt; · &lt;a href="https://github.com/BaluRaut/learn-api-school"&gt;GitHub&lt;/a&gt; · &lt;a href="https://baluraut.github.io/school/dictionary.html"&gt;📖 the Dictionary&lt;/a&gt; · &lt;a href="https://baluraut.github.io/school/"&gt;🏫 all schools&lt;/a&gt; · &lt;a href="https://github.com/BaluRaut/learn-api-school/issues"&gt;🐛 found a mistake?&lt;/a&gt;
-'>Learn API School · काउंटर रेपोच्या आत आहे · <a href="index.html">कोर्स मुख्य पान</a> · <a href="lesson-diagrams.html">धड्यांच्या आकृत्या</a> · <a href="https://github.com/BaluRaut/learn-api-school">GitHub</a> · <a href="https://baluraut.github.io/school/dictionary.html">📖 शब्दकोश</a> · <a href="https://baluraut.github.io/school/">🏫 सर्व शाळा</a> · <a href="https://github.com/BaluRaut/learn-api-school/issues">🐛 चूक सापडली?</a></footer>
+<footer>
+  Learn API School · the counter is in the repo · <a href="index.html">Course home</a> · <a href="lesson-diagrams.html">Lesson diagrams</a> · <a href="https://github.com/BaluRaut/learn-api-school">GitHub</a> · <a href="https://baluraut.github.io/school/dictionary.html">📖 the Dictionary</a> · <a href="https://baluraut.github.io/school/">🏫 all schools</a> · <a href="https://github.com/BaluRaut/learn-api-school/issues">🐛 found a mistake?</a>
+</footer>
 </div>
-
-<script id="i18n-js">
-function schoolSetLang(l){
-  try{localStorage.setItem('school-lang',l)}catch(e){}
-  document.documentElement.setAttribute('lang',l);
-  document.querySelectorAll('[data-en]').forEach(function(el){
-    if(!el.hasAttribute('data-mr')) el.setAttribute('data-mr', el.innerHTML);
-    el.innerHTML = (l==='en') ? el.getAttribute('data-en') : el.getAttribute('data-mr');
-  });
-  document.querySelectorAll('[data-en-ph]').forEach(function(el){
-    if(!el.hasAttribute('data-mr-ph')) el.setAttribute('data-mr-ph', el.getAttribute('placeholder'));
-    el.setAttribute('placeholder', (l==='en') ? el.getAttribute('data-en-ph') : el.getAttribute('data-mr-ph'));
-  });
-  var p=document.getElementById('lang-pick'); if(p) p.value=l;
-}
-(function(){ var l='mr'; try{ l=localStorage.getItem('school-lang')||'mr'; }catch(e){}
-  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',function(){schoolSetLang(l)}); else schoolSetLang(l); })();
-</script></body>
+</body>
 </html>
