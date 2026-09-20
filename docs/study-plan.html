@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Study plan — Learn API School</title>
+<meta name="description" content="A 4-week study plan for the 12-lesson API course: sequence, time estimates, weekly milestones — progress saved in your browser.">
+<meta property="og:title" content="Study plan — Learn API School">
+<meta property="og:description" content="A 4-week study plan for the 12-lesson API course: sequence, time estimates, weekly milestones — progress saved in your browser.">
+<meta property="og:image" content="https://baluraut.github.io/learn-api-school/images/big-picture-4k.png">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<style>
+  :root { --bg:#f8fafc; --card:#fff; --ink:#0f172a; --muted:#475569; --line:#e2e8f0; --accent:#0e7490; --ok:#16a34a; --blue:#2563eb; --bad:#dc2626; }
+  @media (prefers-color-scheme: dark) { :root { --bg:#0b1220; --card:#131c2e; --ink:#e2e8f0; --muted:#94a3b8; --line:#253349; } }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:var(--bg); color:var(--ink); font-family:-apple-system,"Segoe UI",Helvetica,Arial,sans-serif; line-height:1.6; }
+  .wrap { max-width:1280px; margin:0 auto; padding:28px 20px 60px; }
+  @media (min-width: 1660px) { .wrap { max-width: 1580px; } }
+  a { color:var(--blue); } h1 { font-size:2rem; line-height:1.25; } h2 { font-size:1.4rem; margin:44px 0 6px; }
+  .sub { color:var(--muted); max-width:74ch; }
+  .chips { display:flex; flex-wrap:wrap; gap:8px; margin:16px 0 8px; }
+  .chip { border:1px solid var(--line); background:var(--card); border-radius:999px; padding:6px 14px; font-size:.85rem; color:var(--muted); }
+  .grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(240px,1fr)); gap:14px; margin-top:16px; }
+  .lesson { background:var(--card); border:1px solid var(--line); border-top:5px solid var(--c,var(--accent)); border-radius:14px; padding:16px; display:flex; flex-direction:column; gap:6px; }
+  .lesson .top { display:flex; align-items:center; gap:10px; }
+  .lesson .num { flex:none; width:30px; height:30px; border-radius:50%; background:var(--c,var(--accent)); color:#fff; display:inline-flex; align-items:center; justify-content:center; font-weight:800; font-size:.9rem; }
+  .lesson h3 { font-size:1.02rem; line-height:1.3; } .lesson .ana { color:var(--muted); font-size:.9rem; }
+  .lesson code { font-size:.78rem; background:var(--bg); border:1px solid var(--line); border-radius:6px; padding:1px 6px; }
+  .lesson a.go { margin-top:auto; font-weight:600; font-size:.9rem; text-decoration:none; } .lesson a.go+a.go { margin-top:0; } .lesson a.go:hover { text-decoration:underline; }
+  .callout { background:var(--card); border:1px solid var(--line); border-left:6px solid var(--ok); border-radius:14px; padding:18px 20px; margin-top:16px; }
+  pre { background:var(--card); border:1px solid var(--line); border-radius:12px; padding:14px 16px; overflow-x:auto; font-size:.88rem; margin-top:12px; }
+  .btn { display:inline-block; background:var(--accent); color:#fff; border-radius:10px; padding:10px 18px; text-decoration:none; font-weight:700; margin:14px 10px 0 0; }
+  .btn.alt { background:transparent; color:var(--ink); border:1px solid var(--line); }
+  .vs { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:14px; margin-top:16px; }
+  .vcol { background:var(--card); border:1px solid var(--line); border-radius:14px; padding:18px; } .vcol h3 { margin-bottom:8px; }
+  .vcol ul { margin-left:18px; color:var(--muted); font-size:.93rem; }
+  .tbl{overflow-x:auto;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:10px 14px;margin-top:12px} .tbl table{border-collapse:collapse;width:100%;font-size:.9rem} .tbl th,.tbl td{border:1px solid var(--line);padding:7px 10px;text-align:left;vertical-align:top} .tbl th{background:var(--bg)}
+  footer { margin-top:56px; border-top:1px solid var(--line); padding-top:18px; color:var(--muted); font-size:.88rem; }
+
+  .paces { display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:12px; margin:18px 0 8px; }
+  .pace { background:var(--card); border:1px solid var(--line); border-radius:14px; padding:14px 16px; font-size:.93rem; color:var(--muted); }
+  .pace b { color:var(--ink); }
+  .progress-box { position:sticky; top:0; z-index:10; background:var(--bg); padding:12px 0; }
+  .progress-inner { background:var(--card); border:1px solid var(--line); border-radius:14px; padding:12px 18px; display:flex; align-items:center; gap:16px; }
+  .bar { flex:1; height:12px; background:var(--line); border-radius:999px; overflow:hidden; }
+  .bar > div { height:100%; width:0%; background:var(--ok); border-radius:999px; transition:width .3s; }
+  #ptext { font-weight:700; white-space:nowrap; }
+  .week { background:var(--card); border:1px solid var(--line); border-left:6px solid var(--c,var(--accent)); border-radius:16px; padding:20px 22px; margin-top:22px; }
+  .week h2 { font-size:1.15rem; display:flex; align-items:baseline; gap:10px; flex-wrap:wrap; margin:0; }
+  .week h2 .wk { flex:none; font-size:.8rem; font-weight:800; color:#fff; background:var(--c,var(--accent)); border-radius:999px; padding:3px 12px; }
+  .week .goal { color:var(--muted); font-size:.93rem; margin:6px 0 12px; }
+  .lesson-row { display:flex; align-items:baseline; gap:10px; padding:7px 0; border-top:1px dashed var(--line); font-size:.95rem; }
+  .lesson-row input { transform:scale(1.25); accent-color:var(--ok); flex:none; position:relative; top:2px; }
+  .lesson-row .time { margin-left:auto; color:var(--muted); font-size:.85rem; white-space:nowrap; }
+  .lesson-row a { text-decoration:none; font-weight:600; } .lesson-row a:hover { text-decoration:underline; }
+  .milestone { margin-top:12px; background:var(--bg); border-left:4px solid var(--ok); border-radius:8px; padding:10px 14px; font-size:.92rem; }
+  .milestone b { color:var(--ok); }
+  #done { display:none; text-align:center; background:var(--card); border:2px solid var(--ok); border-radius:20px; padding:32px 24px; margin-top:26px; }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+<header>
+  <p><a href="index.html">← Back to the course home</a></p>
+  <h1>🗓️ The study plan — 12 lessons, 4 weeks</h1>
+  <p class="sub">~<b>3 sessions a week</b>: read the lesson (~15 min) + do its lab (~25 min) with the API running. Tick lessons off — <b>progress is saved in this browser</b>.</p>
+  <div class="paces"><div class="pace">🐢 <b>Steady:</b> 3 sessions/week → done in 4 weeks.</div><div class="pace">🐇 <b>Fast track:</b> one weekend per part → done in 2 weekends.</div><div class="pace">💰 <b>Cost:</b> zero. Python 3 + curl on your laptop.</div></div>
+</header>
+<div class="progress-box"><div class="progress-inner"><span id="ptext">0 / 12</span><div class="bar"><div id="pbar"></div></div></div></div>
+<section class="week" style="--c:#0e7490">
+  <h2><span class="wk">WEEK 1</span> 🏢 The counter — HTTP and REST</h2>
+  <p class="goal">Why a counter, the slip and the stamp, nouns in cabinets. Lab: run the API, read every status code the smoke test prints.</p>
+  <div class="lesson-row"><input type="checkbox" data-l="l01" id="sl01"><label for="sl01"><a href="https://github.com/BaluRaut/learn-api-school/blob/lesson-01-why-apis/lessons/01-why-apis/README.md">01 · 🏢 Why APIs</a></label><span class="time">~35 min</span></div>
+  <div class="lesson-row"><input type="checkbox" data-l="l02" id="sl02"><label for="sl02"><a href="https://github.com/BaluRaut/learn-api-school/blob/lesson-02-http-anatomy/lessons/02-http-anatomy/README.md">02 · 📨 HTTP anatomy</a></label><span class="time">~40 min</span></div>
+  <div class="lesson-row"><input type="checkbox" data-l="l03" id="sl03"><label for="sl03"><a href="https://github.com/BaluRaut/learn-api-school/blob/lesson-03-rest-resources/lessons/03-rest-resources/README.md">03 · 🗄️ REST resources</a></label><span class="time">~40 min</span></div>
+  <div class="milestone">🏁 <b>Checkpoint:</b> you can name the method, path, headers, status and body of any request in the smoke test — and say which verbs are safe to repeat.</div>
+</section>
+<section class="week" style="--c:#0e7490">
+  <h2><span class="wk">WEEK 2</span> 📋 Forms and passes — schemas, the build, auth</h2>
+  <p class="goal">The standard form, the four parts of the server, the hall pass. Lab: add a field with validation; add a second key.</p>
+  <div class="lesson-row"><input type="checkbox" data-l="l04" id="sl04"><label for="sl04"><a href="https://github.com/BaluRaut/learn-api-school/blob/lesson-04-json-and-schemas/lessons/04-json-and-schemas/README.md">04 · 📋 JSON &amp; schemas</a></label><span class="time">~40 min</span></div>
+  <div class="lesson-row"><input type="checkbox" data-l="l05" id="sl05"><label for="sl05"><a href="https://github.com/BaluRaut/learn-api-school/blob/lesson-05-build-an-api/lessons/05-build-an-api/README.md">05 · 🔬 Build an API</a></label><span class="time">~45 min</span></div>
+  <div class="lesson-row"><input type="checkbox" data-l="l06" id="sl06"><label for="sl06"><a href="https://github.com/BaluRaut/learn-api-school/blob/lesson-06-auth/lessons/06-auth/README.md">06 · 🪪 Auth</a></label><span class="time">~40 min</span></div>
+  <div class="milestone">🏁 <b>Checkpoint:</b> a bad form gets a 400 with a problems list you wrote; a write without a pass gets a 401; you can point at all four parts in school_api.py.</div>
+</section>
+<section class="week" style="--c:#c2410c">
+  <h2><span class="wk">WEEK 3</span> ⚠️ Running it — errors, pages, versions</h2>
+  <p class="goal">Receipt numbers, cursors, additive changes. Lab: retry a POST with the same key; page through with cursor; add a field without breaking v1.</p>
+  <div class="lesson-row"><input type="checkbox" data-l="l07" id="sl07"><label for="sl07"><a href="https://github.com/BaluRaut/learn-api-school/blob/lesson-07-errors-idempotency/lessons/07-errors-idempotency/README.md">07 · ⚠️ Errors &amp; idempotency</a></label><span class="time">~40 min</span></div>
+  <div class="lesson-row"><input type="checkbox" data-l="l08" id="sl08"><label for="sl08"><a href="https://github.com/BaluRaut/learn-api-school/blob/lesson-08-pagination-filtering/lessons/08-pagination-filtering/README.md">08 · 📚 Pagination &amp; filtering</a></label><span class="time">~35 min</span></div>
+  <div class="lesson-row"><input type="checkbox" data-l="l09" id="sl09"><label for="sl09"><a href="https://github.com/BaluRaut/learn-api-school/blob/lesson-09-versioning/lessons/09-versioning/README.md">09 · 🔢 Versioning</a></label><span class="time">~35 min</span></div>
+  <div class="milestone">🏁 <b>Checkpoint:</b> the same Idempotency-Key twice files one student; you paged to the end with cursors; you wrote a one-paragraph deprecation note for a v2.</div>
+</section>
+<section class="week" style="--c:#c2410c">
+  <h2><span class="wk">WEEK 4</span> 🚪 The queue, the callback, the gate</h2>
+  <p class="goal">Limits, caching, webhooks, contract tests and the gateway. Lab: trigger 429 and back off; register a webhook; run the smoke test as a CI check.</p>
+  <div class="lesson-row"><input type="checkbox" data-l="l10" id="sl10"><label for="sl10"><a href="https://github.com/BaluRaut/learn-api-school/blob/lesson-10-rate-limits-caching/lessons/10-rate-limits-caching/README.md">10 · ⏱️ Rate limits &amp; caching</a></label><span class="time">~45 min</span></div>
+  <div class="lesson-row"><input type="checkbox" data-l="l11" id="sl11"><label for="sl11"><a href="https://github.com/BaluRaut/learn-api-school/blob/lesson-11-beyond-rest/lessons/11-beyond-rest/README.md">11 · 🔀 Beyond REST</a></label><span class="time">~40 min</span></div>
+  <div class="lesson-row"><input type="checkbox" data-l="l12" id="sl12"><label for="sl12"><a href="https://github.com/BaluRaut/learn-api-school/blob/lesson-12-testing-docs-gateway/lessons/12-testing-docs-gateway/README.md">12 · 🚪 Testing, docs &amp; the gateway</a></label><span class="time">~45 min</span></div>
+  <div class="milestone">🏁 <b>Checkpoint:</b> 🏆 <b>Capstone:</b> add one resource of your own (homework) with schema, auth, pagination, ETag and a smoke test — and explain the whole request path out loud, gate to record room.</div>
+</section>
+<div id="done">
+  <h2>🎓 12 / 12 — the counter is yours!</h2>
+  <p class="sub" style="margin:10px auto 0">Next: the <a href="https://baluraut.github.io/learn-database-school/">Database school</a> makes the record room durable, the <a href="https://baluraut.github.io/learn-ui-school/">UI school</a> builds the notice board that calls this API, and the <a href="https://baluraut.github.io/school/">School portal</a> has the rest.</p>
+</div>
+<footer>
+  Learn API School · the counter is in the repo · <a href="index.html">Course home</a> · <a href="lesson-diagrams.html">Lesson diagrams</a> · <a href="https://github.com/BaluRaut/learn-api-school">GitHub</a> · <a href="https://baluraut.github.io/school/dictionary.html">📖 the Dictionary</a> · <a href="https://baluraut.github.io/school/">🏫 all schools</a> · <a href="https://github.com/BaluRaut/learn-api-school/issues">🐛 found a mistake?</a>
+</footer>
+</div>
+<script>
+(function(){
+  var KEY='plan-learn-api-school', state={};
+  try{state=JSON.parse(localStorage.getItem(KEY)||'{}')}catch(e){}
+  var boxes=[].slice.call(document.querySelectorAll('input[data-l]'));
+  function render(){
+    var done=boxes.filter(function(b){return b.checked}).length;
+    document.getElementById('ptext').textContent=done+' / '+boxes.length;
+    document.getElementById('pbar').style.width=(100*done/boxes.length)+'%';
+    document.getElementById('done').style.display=done===boxes.length?'block':'none';
+  }
+  boxes.forEach(function(b){
+    b.checked=!!state[b.dataset.l];
+    b.addEventListener('change',function(){state[b.dataset.l]=b.checked;
+      localStorage.setItem(KEY,JSON.stringify(state));render();});
+  });
+  render();
+})();
+</script>
+</body>
+</html>

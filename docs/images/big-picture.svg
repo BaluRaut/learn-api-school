@@ -1,0 +1,100 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1160" font-family="-apple-system, 'Segoe UI', Helvetica, Arial, sans-serif">
+  <defs><marker id="arw" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#64748b"/></marker></defs>
+  <style>
+    .band1 { fill: #fff; stroke: #0e7490; stroke-width: 3; } .band2 { fill: #fff; stroke: #c2410c; stroke-width: 3; }
+    .bx { fill: #f8fafc; stroke: #94a3b8; stroke-width: 2; } .bxp { fill: #fff; stroke: #0e7490; stroke-width: 2.5; } .bxo { fill: #fff; stroke: #c2410c; stroke-width: 2.5; }
+    .warn { fill: #fef2f2; stroke: #dc2626; stroke-width: 1.5; stroke-dasharray: 7 6; } .tip { fill: #ecfeff; stroke: #0e7490; stroke-width: 1.5; } .win { fill: #fff7ed; stroke: #c2410c; stroke-width: 1.5; }
+    .title { font-size: 36px; font-weight: 800; fill: #0f172a; } .bandt { font-size: 26px; font-weight: 800; }
+    .t { font-size: 19px; font-weight: 600; fill: #0f172a; } .s { font-size: 15px; fill: #475569; } .m { text-anchor: middle; }
+    .arr { stroke: #64748b; stroke-width: 2.5; fill: none; marker-end: url(#arw); } .ntb { font-size: 15px; font-weight: 700; fill: #fff; text-anchor: middle; }
+  </style>
+  <rect x="0" y="0" width="1920" height="1160" fill="#ffffff"/>
+  <text class="title m" x="960" y="52">The Big Picture — APIs: the front office · the counter is in the repo</text>
+
+  <rect class="band1" x="40" y="80" width="1840" height="470" rx="20"/>
+  <text class="bandt" x="70" y="122" fill="#0e7490">📨 PART 1 — THE COUNTER (lessons 1–6)</text>
+
+  <rect class="bxp" x="70" y="170" width="330" height="130" rx="14"/>
+  <text class="t m" x="235" y="203">🏢 why a counter</text>
+  <text class="s m" x="235" y="231">nobody wanders into the archive —</text>
+  <text class="s m" x="235" y="255">a standard slip, a clerk, a stamped</text>
+  <text class="s m" x="235" y="279">answer: a CONTRACT for any visitor</text>
+  <g transform="translate(70,170)"><circle r="13" fill="#0e7490"/><text class="ntb" dy="5">1</text></g>
+
+  <rect class="bxp" x="460" y="170" width="400" height="130" rx="14"/>
+  <text class="t m" x="660" y="203">📨 the slip and the stamp — HTTP</text>
+  <text class="s m" x="660" y="231">method + path + headers + body →</text>
+  <text class="s m" x="660" y="255">status + headers + body · 2xx done ·</text>
+  <text class="s m" x="660" y="279">4xx your slip · 5xx our office</text>
+  <g transform="translate(460,170)"><circle r="13" fill="#0e7490"/><text class="ntb" dy="5">2</text></g>
+
+  <rect class="bxp" x="920" y="170" width="400" height="130" rx="14"/>
+  <text class="t m" x="1120" y="203">🗄️ nouns in cabinets — REST + JSON</text>
+  <text class="s m" x="1120" y="231">/students · /students/2 · GET PUT DELETE</text>
+  <text class="s m" x="1120" y="255">safe to repeat; POST is not · one standard</text>
+  <text class="s m" x="1120" y="279">form, validated; OpenAPI = the catalogue</text>
+  <g transform="translate(920,170)"><circle r="13" fill="#0e7490"/><text class="ntb" dy="5">3</text></g>
+
+  <rect class="bxp" x="1380" y="170" width="470" height="130" rx="14"/>
+  <text class="t m" x="1615" y="203">🪪 the hall pass — auth</text>
+  <text class="s m" x="1615" y="231">reads open · writes need X-API-Key ·</text>
+  <text class="s m" x="1615" y="255">401 no pass · 403 wrong pass · keys for</text>
+  <text class="s m" x="1615" y="279">machines, tokens for users, OAuth to delegate</text>
+  <g transform="translate(1380,170)"><circle r="13" fill="#0e7490"/><text class="ntb" dy="5">4</text></g>
+
+  <rect class="tip" x="70" y="400" width="880" height="110" rx="14"/>
+  <text class="t m" x="510" y="438">🔬 api/school_api.py — ~235 lines, zero dependencies</text>
+  <text class="s m" x="510" y="466">routes (nouns → handlers) · validation + auth · storage (a dict) · plumbing (status, headers, request id, log line)</text>
+  <text class="s m" x="510" y="490">frameworks automate exactly these four parts — read the parts first</text>
+
+  <rect class="warn" x="990" y="400" width="860" height="110" rx="14"/>
+  <text class="t m" x="1420" y="438">⚠️ the two mistakes every first API makes</text>
+  <text class="s m" x="1420" y="466">verbs in URLs (/getStudent) and a different error shape per endpoint —</text>
+  <text class="s m" x="1420" y="490">nouns + methods, and ONE error shape {code, message, hint, problems}</text>
+
+  <text class="t m" x="960" y="590">python3 api/school_api.py · bash api/smoke_test.sh — the whole course, in curl, in 60 seconds</text>
+
+  <rect class="band2" x="40" y="620" width="1840" height="500" rx="20"/>
+  <text class="bandt" x="70" y="662" fill="#c2410c">🏃 PART 2 — RUNNING THE COUNTER (lessons 7–12)</text>
+
+  <rect class="bxo" x="70" y="700" width="420" height="200" rx="14"/>
+  <text class="t m" x="280" y="733">⚠️🧾 refusals + receipts (7)</text>
+  <text class="s m" x="280" y="761">one error shape · retry 429/5xx with backoff,</text>
+  <text class="s m" x="280" y="785">never a 4xx · Idempotency-Key: the same</text>
+  <text class="s m" x="280" y="809">POST twice files ONCE (Idempotent-Replay)</text>
+  <text class="s m" x="280" y="845">📚 pages (8): filter → sort → cursor;</text>
+  <text class="s m" x="280" y="869">offsets skip and duplicate on growing lists</text>
+  <g transform="translate(70,700)"><circle r="13" fill="#c2410c"/><text class="ntb" dy="5">1</text></g>
+
+  <rect class="bxo" x="540" y="700" width="420" height="200" rx="14"/>
+  <text class="t m" x="750" y="733">🔢⏱️ versions, queues, copies (9–10)</text>
+  <text class="s m" x="750" y="761">additive = same version · breaking = /v2 +</text>
+  <text class="s m" x="750" y="785">Deprecation + Sunset · 20 per 10 s → 429 +</text>
+  <text class="s m" x="750" y="809">Retry-After · the polite client: timeout,</text>
+  <text class="s m" x="750" y="833">backoff + jitter, give up · ETag / If-None-Match</text>
+  <text class="s m" x="750" y="857">→ 304 · Cache-Control: max-age</text>
+  <g transform="translate(540,700)"><circle r="13" fill="#c2410c"/><text class="ntb" dy="5">2</text></g>
+
+  <rect class="bxo" x="1010" y="700" width="400" height="200" rx="14"/>
+  <text class="t m" x="1210" y="733">🔀 beyond REST (11)</text>
+  <text class="s m" x="1210" y="761">GraphQL: ask for exactly the fields ·</text>
+  <text class="s m" x="1210" y="785">gRPC: typed, binary, service ↔ service ·</text>
+  <text class="s m" x="1210" y="809">webhooks: the counter calls YOU back ·</text>
+  <text class="s m" x="1210" y="833">events / queues: 'tell me when'</text>
+  <text class="s m" x="1210" y="869">shape follows the caller, not fashion</text>
+  <g transform="translate(1010,700)"><circle r="13" fill="#c2410c"/><text class="ntb" dy="5">3</text></g>
+
+  <rect class="bxo" x="1460" y="700" width="390" height="200" rx="14"/>
+  <text class="t m" x="1655" y="733">🚪 tests, docs, the gate (12)</text>
+  <text class="s m" x="1655" y="761">smoke_test.sh vs openapi.yaml in CI ·</text>
+  <text class="s m" x="1655" y="785">docs + clients generated from the catalogue ·</text>
+  <text class="s m" x="1655" y="809">API gateway in front: auth, limits, routing,</text>
+  <text class="s m" x="1655" y="833">logs · X-Request-Id on every answer</text>
+  <text class="s m" x="1655" y="869">(AWS API Gateway · Kubernetes Ingress)</text>
+  <g transform="translate(1460,700)"><circle r="13" fill="#c2410c"/><text class="ntb" dy="5">4</text></g>
+
+  <rect class="win" x="70" y="950" width="1780" height="140" rx="14"/>
+  <text class="t m" x="960" y="990">🧭 read one counter, read them all: slip → clerk → stamp · nouns + safe verbs · one form, one error shape · a pass for writes</text>
+  <text class="s m" x="960" y="1020">receipts for retries · cursors for pages · additive changes · a fair queue and a cached copy · a callback when it matters · a gate in front</text>
+  <text class="s m" x="960" y="1050">siblings: the Database school is the record room behind this counter · the UI school is the notice board that fills in these slips · AWS L25 rents the gate</text>
+</svg>

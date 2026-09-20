@@ -1,0 +1,110 @@
+# The printed catalogue of forms — every slip the front office accepts. (Lesson 04 & 12)
+openapi: 3.0.3
+info:
+  title: School API (the front office)
+  version: "1.0"
+  description: A tiny, honest HTTP/JSON API used by Learn API School. Writes need the X-API-Key hall pass.
+servers:
+  - url: http://127.0.0.1:8080/v1
+paths:
+  /health:
+    get:
+      summary: Is the office open?
+      responses:
+        "200": { description: ok }
+  /students:
+    get:
+      summary: List students (filter, sort, cursor pagination)
+      parameters:
+        - { name: class, in: query, schema: { type: string, enum: [3A, 3B] } }
+        - { name: sort, in: query, schema: { type: string, enum: [id, name, grade], default: id } }
+        - { name: limit, in: query, schema: { type: integer, default: 2, maximum: 100 } }
+        - { name: cursor, in: query, schema: { type: integer }, description: the last id you saw }
+      responses:
+        "200":
+          description: a page
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  items: { type: array, items: { $ref: "#/components/schemas/Student" } }
+                  next_cursor: { type: integer, nullable: true }
+                  total: { type: integer }
+    post:
+      summary: Enrol a student (needs the hall pass; send Idempotency-Key to make retries safe)
+      security: [ { apiKey: [] } ]
+      parameters:
+        - { name: Idempotency-Key, in: header, schema: { type: string } }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: "#/components/schemas/StudentInput" }
+      responses:
+        "201": { description: created, headers: { Location: { schema: { type: string } } } }
+        "400": { $ref: "#/components/responses/Error" }
+        "401": { $ref: "#/components/responses/Error" }
+        "403": { $ref: "#/components/responses/Error" }
+  /students/{id}:
+    parameters:
+      - { name: id, in: path, required: true, schema: { type: integer } }
+    get:
+      summary: One student (ETag + If-None-Match supported)
+      responses:
+        "200": { description: the student, content: { application/json: { schema: { $ref: "#/components/schemas/Student" } } } }
+        "304": { description: your copy is still good }
+        "404": { $ref: "#/components/responses/Error" }
+    put:
+      summary: Replace a student (idempotent)
+      security: [ { apiKey: [] } ]
+      requestBody: { required: true, content: { application/json: { schema: { $ref: "#/components/schemas/StudentInput" } } } }
+      responses:
+        "200": { description: replaced }
+        "400": { $ref: "#/components/responses/Error" }
+        "404": { $ref: "#/components/responses/Error" }
+    delete:
+      summary: Remove a student (idempotent — deleting twice is still 204)
+      security: [ { apiKey: [] } ]
+      responses:
+        "204": { description: gone (or already gone) }
+  /classes/{name}/students:
+    get:
+      summary: Students of one class
+      parameters: [ { name: name, in: path, required: true, schema: { type: string } } ]
+      responses: { "200": { description: list } }
+  /webhooks:
+    post:
+      summary: Register a URL to be called back on student.created
+      requestBody: { required: true, content: { application/json: { schema: { type: object, properties: { url: { type: string } }, required: [url] } } } }
+      responses: { "201": { description: registered } }
+components:
+  securitySchemes:
+    apiKey: { type: apiKey, in: header, name: X-API-Key }
+  schemas:
+    StudentInput:
+      type: object
+      required: [name, class]
+      properties:
+        name: { type: string, minLength: 1 }
+        class: { type: string, enum: [3A, 3B] }
+        grade: { type: string, enum: [A+, A, B+, B, C], default: C }
+    Student:
+      allOf:
+        - { $ref: "#/components/schemas/StudentInput" }
+        - { type: object, properties: { id: { type: integer } } }
+    Error:
+      type: object
+      properties:
+        error:
+          type: object
+          required: [code, message]
+          properties:
+            code: { type: string }
+            message: { type: string }
+            hint: { type: string }
+            problems: { type: array, items: { type: object } }
+  responses:
+    Error:
+      description: one error shape, always
+      content: { application/json: { schema: { $ref: "#/components/schemas/Error" } } }

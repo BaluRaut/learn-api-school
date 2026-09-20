@@ -1,0 +1,34 @@
+
+── L02 · GET a student (200 + ETag)
+HTTP/1.0 200 OK
+ETag: "…etag…"
+{"id": 2, "name": "Sita", "class": "3A", "grade": "A+"}
+── L02 · unknown id (404, one error shape)
+{"error": {"code": "not_found", "message": "No student with id 99."}}
+── L03 · the collection
+{"items": [{"id": 1, "name": "Aarav", "class": "3A", "grade": "A"}, {"id": 2, "name": "Sita", "class": "3A", "grade": "A+"}, {"id": 3, "name": "Kabir", "class": "3A", "grade": "B+"}], "next_cursor": 3, "total": 5}
+── L06 · write without a hall pass (401)
+{"error": {"code": "unauthenticated", "message": "Writes need an X-API-Key header.", "hint": "the hall pass is missing"}}
+── L04 · bad form (400 with field problems)
+{"error": {"code": "validation_failed", "message": "The form has problems.", "problems": [{"field": "name", "problem": "required, non-empty string"}, {"field": "class", "problem": "must be one of ['3A', '3B']"}]}}
+── L07 · create with an Idempotency-Key (201)
+HTTP/1.0 201 Created
+Location: /v1/students/6
+{"id": 6, "name": "Zoya", "class": "3B", "grade": "A"}
+── L07 · same key again → same answer, no double-file
+HTTP/1.0 201 Created
+Idempotent-Replay: true
+
+── L08 · page 1 then page 2 (cursor)
+{"items": [{"id": 1, "name": "Aarav", "class": "3A", "grade": "A"}, {"id": 2, "name": "Sita", "class": "3A", "grade": "A+"}], "next_cursor": 2, "total": 6}
+{"items": [{"id": 3, "name": "Kabir", "class": "3A", "grade": "B+"}, {"id": 4, "name": "Meera", "class": "3B", "grade": "A"}], "next_cursor": 4, "total": 6}
+── L08 · filter + sort
+{"items": [{"id": 1, "name": "Aarav", "class": "3A", "grade": "A"}, {"id": 3, "name": "Kabir", "class": "3A", "grade": "B+"}, {"id": 2, "name": "Sita", "class": "3A", "grade": "A+"}], "next_cursor": null, "total": 3}
+── L10 · conditional GET with If-None-Match (304)
+HTTP/1.0 304 Not Modified
+
+── L03 · DELETE twice — idempotent (204, 204)
+204 204
+
+── L10 · 40 quick requests → the queue says 429
+200 200 200 200 200 200 429 429 429 429 429 429 429 429 429 429 429 429 429 429 429 429 429 429 429 429 429 429 429 429 429 429 429 429 429 429 429 429 429 429 

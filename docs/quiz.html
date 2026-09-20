@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Quiz — Learn API School</title>
+<meta name="description" content="Self-test quiz for Learn API School — 15 questions with explanations.">
+<meta property="og:title" content="Quiz — Learn API School">
+<meta property="og:description" content="Self-test quiz for Learn API School — 15 questions with explanations.">
+<meta property="og:image" content="https://baluraut.github.io/learn-api-school/images/big-picture-4k.png">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<style>
+  :root { --bg:#f8fafc; --card:#fff; --ink:#0f172a; --muted:#475569; --line:#e2e8f0; --accent:#0e7490; --ok:#16a34a; --blue:#2563eb; --bad:#dc2626; }
+  @media (prefers-color-scheme: dark) { :root { --bg:#0b1220; --card:#131c2e; --ink:#e2e8f0; --muted:#94a3b8; --line:#253349; } }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:var(--bg); color:var(--ink); font-family:-apple-system,"Segoe UI",Helvetica,Arial,sans-serif; line-height:1.6; }
+  .wrap { max-width:1280px; margin:0 auto; padding:28px 20px 60px; }
+  @media (min-width: 1660px) { .wrap { max-width: 1580px; } }
+  a { color:var(--blue); } h1 { font-size:2rem; line-height:1.25; } h2 { font-size:1.4rem; margin:44px 0 6px; }
+  .sub { color:var(--muted); max-width:74ch; }
+  .chips { display:flex; flex-wrap:wrap; gap:8px; margin:16px 0 8px; }
+  .chip { border:1px solid var(--line); background:var(--card); border-radius:999px; padding:6px 14px; font-size:.85rem; color:var(--muted); }
+  .grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(240px,1fr)); gap:14px; margin-top:16px; }
+  .lesson { background:var(--card); border:1px solid var(--line); border-top:5px solid var(--c,var(--accent)); border-radius:14px; padding:16px; display:flex; flex-direction:column; gap:6px; }
+  .lesson .top { display:flex; align-items:center; gap:10px; }
+  .lesson .num { flex:none; width:30px; height:30px; border-radius:50%; background:var(--c,var(--accent)); color:#fff; display:inline-flex; align-items:center; justify-content:center; font-weight:800; font-size:.9rem; }
+  .lesson h3 { font-size:1.02rem; line-height:1.3; } .lesson .ana { color:var(--muted); font-size:.9rem; }
+  .lesson code { font-size:.78rem; background:var(--bg); border:1px solid var(--line); border-radius:6px; padding:1px 6px; }
+  .lesson a.go { margin-top:auto; font-weight:600; font-size:.9rem; text-decoration:none; } .lesson a.go+a.go { margin-top:0; } .lesson a.go:hover { text-decoration:underline; }
+  .callout { background:var(--card); border:1px solid var(--line); border-left:6px solid var(--ok); border-radius:14px; padding:18px 20px; margin-top:16px; }
+  pre { background:var(--card); border:1px solid var(--line); border-radius:12px; padding:14px 16px; overflow-x:auto; font-size:.88rem; margin-top:12px; }
+  .btn { display:inline-block; background:var(--accent); color:#fff; border-radius:10px; padding:10px 18px; text-decoration:none; font-weight:700; margin:14px 10px 0 0; }
+  .btn.alt { background:transparent; color:var(--ink); border:1px solid var(--line); }
+  .vs { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:14px; margin-top:16px; }
+  .vcol { background:var(--card); border:1px solid var(--line); border-radius:14px; padding:18px; } .vcol h3 { margin-bottom:8px; }
+  .vcol ul { margin-left:18px; color:var(--muted); font-size:.93rem; }
+  .tbl{overflow-x:auto;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:10px 14px;margin-top:12px} .tbl table{border-collapse:collapse;width:100%;font-size:.9rem} .tbl th,.tbl td{border:1px solid var(--line);padding:7px 10px;text-align:left;vertical-align:top} .tbl th{background:var(--bg)}
+  footer { margin-top:56px; border-top:1px solid var(--line); padding-top:18px; color:var(--muted); font-size:.88rem; }
+
+.wrap { max-width:900px; margin:0 auto; padding:28px 20px 60px; }
+.scorebox { position:sticky; top:0; background:var(--bg); padding:10px 0; z-index:5; }
+.score { background:var(--card); border:1px solid var(--line); border-radius:14px; padding:10px 16px; font-weight:700; }
+.qcard { background:var(--card); border:1px solid var(--line); border-left:6px solid var(--accent); border-radius:14px; padding:18px 20px; margin-top:16px; }
+.qcard h3 { font-size:1.02rem; margin-bottom:10px; }
+.opt { display:block; width:100%; text-align:left; margin-top:8px; padding:10px 14px; border:1px solid var(--line); border-radius:10px; background:var(--bg); color:var(--ink); font:inherit; cursor:pointer; }
+.opt:hover { border-color:var(--accent); }
+.opt.right { border-color:var(--ok); background:color-mix(in srgb, var(--ok) 12%, var(--bg)); }
+.opt.wrong { border-color:var(--bad); background:color-mix(in srgb, var(--bad) 12%, var(--bg)); }
+.why { display:none; margin-top:10px; color:var(--muted); font-size:.92rem; border-top:1px dashed var(--line); padding-top:8px; }
+.reset { margin-top:20px; background:var(--accent); color:#fff; border:none; border-radius:10px; padding:10px 18px; font:inherit; font-weight:700; cursor:pointer; }
+.parts{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0 4px} .pbtn{border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:999px;padding:6px 14px;font:inherit;font-size:.88rem;cursor:pointer} .pbtn.on{background:var(--accent);color:#fff;border-color:var(--accent)}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+<p><a href="index.html">← Back to the course home</a></p>
+<h1>🧪 The 🏢 API quiz</h1>
+<p class="sub">15 questions — pick an answer, get the why. Filter by Part below. One attempt per question (until reset). Your best score is saved in this browser.</p>
+<div class="scorebox"><div class="score" id="score">0 / 15 · best: —</div></div>
+<div class="parts" id="parts"><button class="pbtn on" onclick="setPart(0)">All 15</button><button class="pbtn" onclick="setPart(1)">📨 Part 1 counter</button><button class="pbtn" onclick="setPart(2)">🏃 Part 2 running it</button></div>
+<div id="quiz"></div>
+<button class="reset" onclick="reset()">↺ Reset &amp; retake</button>
+<footer>Part of <a href="https://baluraut.github.io/school/">🏫 The School</a> · <a href="index.html">course home</a> · <a href="https://github.com/BaluRaut/learn-api-school/issues">🐛 found a mistake?</a></footer>
+</div>
+<script>
+var QS = [{"q": "What is an API, in school words?", "o": ["The archive itself", "The front office counter: a standard slip in, a stamped answer out — a contract any visitor can rely on", "A database"], "c": 1, "w": "L01: nobody wanders into the archive; the counter is the contract.", "p": 1}, {"q": "A response comes back 404. Whose fault?", "o": ["The office is broken (5xx)", "The slip: the thing asked for isn't there — a 4xx means fix the request", "The network"], "c": 1, "w": "L02: 4xx = your slip, 5xx = our office.", "p": 1}, {"q": "Which verb is NOT idempotent on its own?", "o": ["PUT", "DELETE", "POST — twice can file twice, hence lesson 07's receipt number"], "c": 2, "w": "L03: twice = once for PUT/DELETE; POST needs an Idempotency-Key.", "p": 1}, {"q": "Good REST URL for one student?", "o": ["/getStudent?id=2", "/v1/students/2 — a noun, an id, no verb", "/v1/student/get/2"], "c": 1, "w": "L03: nouns in cabinets; the verb is the HTTP method.", "p": 1}, {"q": "A POST body has class '9Z'. The right answer is…", "o": ["500", "400 validation_failed with a problems list naming the field", "201 and fix it later"], "c": 1, "w": "L04: validate before touching storage; say exactly what's wrong.", "p": 1}, {"q": "What is OpenAPI?", "o": ["A framework", "The printed catalogue of every form: paths, parameters, schemas, errors — docs, clients and tests come from it", "A database format"], "c": 1, "w": "L04/L12.", "p": 1}, {"q": "Missing X-API-Key on a write →", "o": ["403", "401 unauthenticated (no pass); a wrong pass is 403", "404"], "c": 1, "w": "L06: 401 = who are you; 403 = you may not.", "p": 1}, {"q": "Which pass suits a browser app?", "o": ["A long-lived API key embedded in the JS", "A short-lived user token (JWT / session) — keys shipped to browsers are public", "The admin key"], "c": 1, "w": "L06: keys are for machines; users get expiring tokens.", "p": 1}, {"q": "A client sends POST with Idempotency-Key 'enrol-1' twice. The server…", "o": ["Creates two students", "Returns the same 201 the second time, files once, marks it Idempotent-Replay", "Returns 409"], "c": 1, "w": "L07: the receipt number makes retries safe.", "p": 2}, {"q": "Should a client retry a 400?", "o": ["Yes, with backoff", "No — the slip is wrong; retry 429/5xx/timeouts only, with backoff and jitter", "Only three times"], "c": 1, "w": "L07/L10.", "p": 2}, {"q": "Why prefer cursor pagination for a growing list?", "o": ["It shows page numbers", "It stays stable when rows are inserted and stays fast with an index; offsets skip or duplicate", "It compresses better"], "c": 1, "w": "L08.", "p": 2}, {"q": "Which change forces /v2?", "o": ["Adding an optional field", "Renaming or removing a field, or changing a type — clients would break", "Adding a new endpoint"], "c": 1, "w": "L09: additive is safe; breaking gets a new version and a sunset date.", "p": 2}, {"q": "429 with Retry-After: 10 arrives. The polite client…", "o": ["Retries immediately", "Waits ~10 s (plus jitter), retries, and gives up after a few attempts", "Switches to POST"], "c": 1, "w": "L10: the queue at the counter.", "p": 2}, {"q": "When is a webhook the right shape?", "o": ["When the client wants data on demand", "When the server should tell the client that something happened — instead of polling every 5 s", "For all public APIs"], "c": 1, "w": "L11: the counter calls you back.", "p": 2}, {"q": "Three jobs an API gateway takes off your API?", "o": ["Business logic, storage, UI", "Auth, rate limiting and routing/logging — in front of every counter", "Testing, docs, versioning"], "c": 1, "w": "L12: the school gate.", "p": 2}];
+var KEY='quiz-learn-api-school', answered={}, score=0, PART=0, SEL=QS;
+function setPart(p){PART=p;SEL=p?QS.filter(function(q){return q.p===p}):QS;[].slice.call(document.querySelectorAll('.pbtn')).forEach(function(b,i){b.classList.toggle('on',i===p)});reset();}
+var best = parseInt(localStorage.getItem(KEY)||'-1');
+function render() {
+  var el = document.getElementById('quiz'); el.innerHTML='';
+  SEL.forEach(function(q,i) {
+    var card=document.createElement('div'); card.className='qcard';
+    card.innerHTML='<h3>'+(i+1)+'. '+q.q+'</h3>';
+    q.o.forEach(function(opt,j) {
+      var b=document.createElement('button'); b.className='opt'; b.textContent=opt;
+      b.onclick=function() {
+        if (answered[i]!==undefined) return;
+        answered[i]=j;
+        if (j===q.c) { b.classList.add('right'); score++; }
+        else { b.classList.add('wrong'); card.querySelectorAll('.opt')[q.c].classList.add('right'); }
+        card.querySelector('.why').style.display='block';
+        update();
+      };
+      card.appendChild(b);
+    });
+    var why=document.createElement('div'); why.className='why'; why.textContent='💡 '+q.w;
+    card.appendChild(why);
+    el.appendChild(card);
+  });
+}
+function update() {
+  var done=Object.keys(answered).length;
+  if (PART===0 && done===QS.length && score>best) { best=score; localStorage.setItem(KEY,best); }
+  document.getElementById('score').textContent=score+' / '+SEL.length+(done===SEL.length?' — done! 🎓':'')+' · best (all 15): '+(best<0?'—':best+'/'+QS.length);
+}
+function reset() { answered={}; score=0; render(); update(); }
+render(); update();
+</script>
+</body>
+</html>

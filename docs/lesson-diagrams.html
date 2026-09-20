@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lesson diagrams — Learn API School</title>
+<meta name="description" content="All 12 API lessons as numbered diagrams — HTTP, REST, schemas, auth, errors, pagination, versioning, rate limits, beyond REST, testing — on one page.">
+<meta property="og:title" content="Lesson diagrams — Learn API School">
+<meta property="og:description" content="All 12 API lessons as numbered diagrams — HTTP, REST, schemas, auth, errors, pagination, versioning, rate limits, beyond REST, testing — on one page.">
+<meta property="og:image" content="https://baluraut.github.io/learn-api-school/images/big-picture-4k.png">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<style>
+  :root { --bg:#f8fafc; --card:#fff; --ink:#0f172a; --muted:#475569; --line:#e2e8f0; --accent:#0e7490; --ok:#16a34a; --blue:#2563eb; --bad:#dc2626; }
+  @media (prefers-color-scheme: dark) { :root { --bg:#0b1220; --card:#131c2e; --ink:#e2e8f0; --muted:#94a3b8; --line:#253349; } }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:var(--bg); color:var(--ink); font-family:-apple-system,"Segoe UI",Helvetica,Arial,sans-serif; line-height:1.6; }
+  .wrap { max-width:1280px; margin:0 auto; padding:28px 20px 60px; }
+  @media (min-width: 1660px) { .wrap { max-width: 1580px; } }
+  a { color:var(--blue); } h1 { font-size:2rem; line-height:1.25; } h2 { font-size:1.4rem; margin:44px 0 6px; }
+  .sub { color:var(--muted); max-width:74ch; }
+  .chips { display:flex; flex-wrap:wrap; gap:8px; margin:16px 0 8px; }
+  .chip { border:1px solid var(--line); background:var(--card); border-radius:999px; padding:6px 14px; font-size:.85rem; color:var(--muted); }
+  .grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(240px,1fr)); gap:14px; margin-top:16px; }
+  .lesson { background:var(--card); border:1px solid var(--line); border-top:5px solid var(--c,var(--accent)); border-radius:14px; padding:16px; display:flex; flex-direction:column; gap:6px; }
+  .lesson .top { display:flex; align-items:center; gap:10px; }
+  .lesson .num { flex:none; width:30px; height:30px; border-radius:50%; background:var(--c,var(--accent)); color:#fff; display:inline-flex; align-items:center; justify-content:center; font-weight:800; font-size:.9rem; }
+  .lesson h3 { font-size:1.02rem; line-height:1.3; } .lesson .ana { color:var(--muted); font-size:.9rem; }
+  .lesson code { font-size:.78rem; background:var(--bg); border:1px solid var(--line); border-radius:6px; padding:1px 6px; }
+  .lesson a.go { margin-top:auto; font-weight:600; font-size:.9rem; text-decoration:none; } .lesson a.go+a.go { margin-top:0; } .lesson a.go:hover { text-decoration:underline; }
+  .callout { background:var(--card); border:1px solid var(--line); border-left:6px solid var(--ok); border-radius:14px; padding:18px 20px; margin-top:16px; }
+  pre { background:var(--card); border:1px solid var(--line); border-radius:12px; padding:14px 16px; overflow-x:auto; font-size:.88rem; margin-top:12px; }
+  .btn { display:inline-block; background:var(--accent); color:#fff; border-radius:10px; padding:10px 18px; text-decoration:none; font-weight:700; margin:14px 10px 0 0; }
+  .btn.alt { background:transparent; color:var(--ink); border:1px solid var(--line); }
+  .vs { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:14px; margin-top:16px; }
+  .vcol { background:var(--card); border:1px solid var(--line); border-radius:14px; padding:18px; } .vcol h3 { margin-bottom:8px; }
+  .vcol ul { margin-left:18px; color:var(--muted); font-size:.93rem; }
+  .tbl{overflow-x:auto;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:10px 14px;margin-top:12px} .tbl table{border-collapse:collapse;width:100%;font-size:.9rem} .tbl th,.tbl td{border:1px solid var(--line);padding:7px 10px;text-align:left;vertical-align:top} .tbl th{background:var(--bg)}
+  footer { margin-top:56px; border-top:1px solid var(--line); padding-top:18px; color:var(--muted); font-size:.88rem; }
+
+  .dsec { background:var(--card); border:1px solid var(--line); border-top:6px solid var(--c,var(--accent)); border-radius:16px; padding:22px 22px 16px; margin-top:26px; scroll-margin-top:16px; }
+  .dsec h2 { font-size:1.25rem; display:flex; align-items:center; gap:10px; }
+  .dsec h2 .ln { flex:none; width:32px; height:32px; border-radius:50%; background:var(--c,var(--accent)); color:#fff; display:inline-flex; align-items:center; justify-content:center; font-size:.95rem; font-weight:800; }
+  .dsec p.d { color:var(--muted); font-size:.95rem; margin:6px 0 4px; }
+  .dsec svg { width:100%; height:auto; display:block; margin-top:10px; } .dsec .foot { margin-top:8px; font-size:.92rem; }
+  .box { fill:var(--card); stroke:var(--c,var(--accent)); stroke-width:2; }
+  .soft { fill:var(--bg); stroke:var(--line); stroke-width:1.5; }
+  .dead { fill:var(--bg); stroke:var(--muted); stroke-width:1.5; stroke-dasharray:6 5; }
+  .t { font:600 14px -apple-system,"Segoe UI",sans-serif; fill:var(--ink); }
+  .s { font:12px -apple-system,"Segoe UI",sans-serif; fill:var(--muted); } .m { text-anchor:middle; }
+  .arr { stroke:#64748b; stroke-width:2; fill:none; marker-end:url(#arw); } .dash { stroke-dasharray:6 5; }
+  .nc { fill:var(--c,var(--accent)); } .nt { font:700 12px -apple-system,sans-serif; fill:#fff; text-anchor:middle; }
+  @media print { .btn, footer { display:none; } .dsec { break-inside:avoid; } }
+
+  .toc { display:flex; flex-wrap:wrap; gap:8px; margin:18px 0 6px; }
+  .toc a { border:1px solid var(--line); background:var(--card); border-radius:999px; padding:5px 12px; font-size:.82rem; color:var(--muted); text-decoration:none; }
+  .toc a:hover { color:var(--ink); border-color:var(--muted); }
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute"><defs><marker id="arw" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#64748b"/></marker></defs></svg>
+<div class="wrap">
+<header>
+  <p><a href="index.html">← Back to the course home</a></p>
+  <h1>📐 The 12 lessons as diagrams</h1>
+  <p class="sub">Part 1: the counter (teal, 1–6) · Part 2: running it (orange, 7–12). Follow the circled numbers <b>1 → 2 → 3</b>.</p>
+  <nav class="toc"><a href="#l01">1 Why APIs</a><a href="#l02">2 HTTP</a><a href="#l03">3 REST</a><a href="#l04">4 JSON & schemas</a><a href="#l05">5 Build</a><a href="#l06">6 Auth</a><a href="#l07">7 Errors</a><a href="#l08">8 Pagination</a><a href="#l09">9 Versioning</a><a href="#l10">10 Limits & caching</a><a href="#l11">11 Beyond REST</a><a href="#l12">12 Tests & gateway</a></nav>
+</header>
+
+<!-- 01 -->
+<section class="dsec" id="l01" style="--c:#0e7490">
+  <h2><span class="ln">1</span> 🏢 Why APIs</h2>
+  <p class="d">The front office — nobody wanders into the archive; you ask at the counter, on a standard slip.</p>
+  <svg viewBox="0 0 940 305" role="img"><rect class="dead" x="40" y="60" width="330" height="170" rx="14"/><text class="t m" x="205" y="92">🚪 walking into the archive</text><text class="s m" x="205" y="120">every visitor opens the drawers themselves;</text><text class="s m" x="205" y="142">two apps, two formats, no record of who</text><text class="s m" x="205" y="164">took what — and the drawers get rearranged</text><text class="s m" x="205" y="196">= every integration hand-built, fragile</text><g transform="translate(40,60)"><circle r="11" class="nc"/><text class="nt" dy="4">1</text></g><rect class="box" x="440" y="40" width="460" height="220" rx="14"/><text class="t m" x="670" y="72">🏢 the front office — an API</text><rect class="soft" x="465" y="95" width="200" height="55" rx="10"/><text class="s m" x="565" y="118">1 fill in a slip</text><text class="s m" x="565" y="138">(the request)</text><rect class="soft" x="690" y="95" width="185" height="55" rx="10"/><text class="s m" x="782" y="118">2 the clerk checks,</text><text class="s m" x="782" y="138">fetches, stamps</text><rect class="soft" x="560" y="175" width="230" height="55" rx="10"/><text class="s m" x="675" y="198">3 a stamped answer</text><text class="s m" x="675" y="218">(the response)</text><line class="arr" x1="665" y1="122" x2="686" y2="122"/><line class="arr" x1="782" y1="150" x2="700" y2="171"/><g transform="translate(440,40)"><circle r="11" class="nc"/><text class="nt" dy="4">2</text></g><text class="s m" x="470" y="290">a CONTRACT: the same slip always gets the same kind of answer — from any app, in any language 📜</text><g transform="translate(40,290)"><circle r="11" class="nc"/><text class="nt" dy="4">3</text></g>
+  </svg>
+  <p class="foot"><a href="https://github.com/BaluRaut/learn-api-school/blob/lesson-01-why-apis/lessons/01-why-apis/README.md">Read full lesson 01 →</a></p>
+</section>
+
+<!-- 02 -->
+<section class="dsec" id="l02" style="--c:#0e7490">
+  <h2><span class="ln">2</span> 📨 HTTP anatomy</h2>
+  <p class="d">The request slip and the clerk's stamp — method, path, headers, body, status code.</p>
+  <svg viewBox="0 0 940 305" role="img"><rect class="box" x="40" y="50" width="300" height="200" rx="14"/><text class="t m" x="190" y="80">📨 the request slip</text><text class="s m" x="190" y="108">GET /v1/students/2  ← method + path</text><text class="s m" x="190" y="130">Host · Accept: application/json  ← headers</text><text class="s m" x="190" y="152">X-API-Key: …  ← who is asking</text><text class="s m" x="190" y="174">(body: only for POST/PUT — the form)</text><g transform="translate(40,50)"><circle r="11" class="nc"/><text class="nt" dy="4">1</text></g><rect class="box" x="390" y="95" width="160" height="110" rx="14"/><text class="t m" x="470" y="135">🧑‍💼 the clerk</text><text class="s m" x="470" y="160">reads, checks,</text><text class="s m" x="470" y="180">fetches</text><rect class="box" x="600" y="50" width="310" height="200" rx="14"/><text class="t m" x="755" y="80">📮 the stamped answer</text><text class="s m" x="755" y="108">200 OK  ← the stamp (status)</text><text class="s m" x="755" y="130">ETag · Cache-Control  ← headers</text><text class="s m" x="755" y="152">{&quot;id&quot;: 2, &quot;name&quot;: &quot;Sita&quot;, …}  ← body</text><text class="s m" x="755" y="174">one line in the log: 200 · 1 ms · id</text><g transform="translate(600,50)"><circle r="11" class="nc"/><text class="nt" dy="4">3</text></g><line class="arr" x1="340" y1="150" x2="386" y2="150"/><line class="arr" x1="550" y1="150" x2="596" y2="150"/><g transform="translate(575,133)"><circle r="11" class="nc"/><text class="nt" dy="4">2</text></g><rect class="soft" x="60" y="268" width="820" height="30" rx="8"/><text class="s m" x="470" y="288">stamps: 2xx done · 3xx go there instead · 4xx YOUR slip is wrong · 5xx OUR office is broken</text>
+  </svg>
+  <p class="foot"><a href="https://github.com/BaluRaut/learn-api-school/blob/lesson-02-http-anatomy/lessons/02-http-anatomy/README.md">Read full lesson 02 →</a></p>
+</section>
+
+<!-- 03 -->
+<section class="dsec" id="l03" style="--c:#0e7490">
+  <h2><span class="ln">3</span> 🗄️ REST resources</h2>
+  <p class="d">Nouns in filing cabinets — collections, ids, and the verbs that are safe to repeat.</p>
+  <svg viewBox="0 0 940 305" role="img"><rect class="box" x="40" y="40" width="270" height="110" rx="14"/><text class="t m" x="175" y="70">🗄️ /students</text><text class="s m" x="175" y="96">the cabinet — a COLLECTION</text><text class="s m" x="175" y="118">GET lists it · POST adds a drawer</text><g transform="translate(40,40)"><circle r="11" class="nc"/><text class="nt" dy="4">1</text></g><rect class="box" x="360" y="40" width="270" height="110" rx="14"/><text class="t m" x="495" y="70">📁 /students/2</text><text class="s m" x="495" y="96">one drawer — a RESOURCE</text><text class="s m" x="495" y="118">GET · PUT replaces · DELETE removes</text><g transform="translate(360,40)"><circle r="11" class="nc"/><text class="nt" dy="4">2</text></g><rect class="box" x="680" y="40" width="230" height="110" rx="14"/><text class="t m" x="795" y="70">🧭 /classes/3A/students</text><text class="s m" x="795" y="96">nouns nest — no verbs</text><text class="s m" x="795" y="118">in URLs (not /getStudent)</text><g transform="translate(680,40)"><circle r="11" class="nc"/><text class="nt" dy="4">3</text></g><line class="arr" x1="310" y1="95" x2="356" y2="95"/><rect class="soft" x="40" y="185" width="870" height="100" rx="14"/><text class="t m" x="475" y="212">🔁 safe to repeat? the verb tells you</text><text class="s m" x="475" y="238">GET: safe, changes nothing · PUT / DELETE: idempotent — twice = once (204, 204) · POST: NOT idempotent by itself</text><text class="s m" x="475" y="262">— which is why lesson 07 hands POST a receipt number (Idempotency-Key)</text><g transform="translate(40,185)"><circle r="11" class="nc"/><text class="nt" dy="4">4</text></g>
+  </svg>
+  <p class="foot"><a href="https://github.com/BaluRaut/learn-api-school/blob/lesson-03-rest-resources/lessons/03-rest-resources/README.md">Read full lesson 03 →</a></p>
+</section>
+
+<!-- 04 -->
+<section class="dsec" id="l04" style="--c:#0e7490">
+  <h2><span class="ln">4</span> 📋 JSON &amp; schemas</h2>
+  <p class="d">The standard form — one shape for every slip, printed in the OpenAPI catalogue.</p>
+  <svg viewBox="0 0 940 305" role="img"><rect class="box" x="40" y="45" width="300" height="130" rx="14"/><text class="t m" x="190" y="75">📋 the standard form (JSON)</text><text class="s m" x="190" y="101">{&quot;name&quot;: &quot;Zoya&quot;,</text><text class="s m" x="190" y="121">&quot;class&quot;: &quot;3B&quot;,   ← enum: 3A | 3B</text><text class="s m" x="190" y="141">&quot;grade&quot;: &quot;A&quot;}     ← optional, default C</text><g transform="translate(40,45)"><circle r="11" class="nc"/><text class="nt" dy="4">1</text></g><rect class="box" x="400" y="45" width="220" height="130" rx="14"/><text class="t m" x="510" y="75">✅ validate()</text><text class="s m" x="510" y="101">required? right type?</text><text class="s m" x="510" y="121">allowed value?</text><text class="s m" x="510" y="141">— BEFORE touching storage</text><g transform="translate(400,45)"><circle r="11" class="nc"/><text class="nt" dy="4">2</text></g><rect class="dead" x="680" y="45" width="230" height="130" rx="14"/><text class="t m" x="795" y="75">❌ 400 validation_failed</text><text class="s m" x="795" y="101">problems: [</text><text class="s m" x="795" y="121">{field: name, problem: …},</text><text class="s m" x="795" y="141">{field: class, problem: …}]</text><g transform="translate(680,45)"><circle r="11" class="nc"/><text class="nt" dy="4">3</text></g><line class="arr" x1="340" y1="110" x2="396" y2="110"/><line class="arr dash" x1="620" y1="110" x2="676" y2="110"/><rect class="soft" x="40" y="205" width="870" height="80" rx="14"/><text class="t m" x="475" y="232">📚 OpenAPI = the printed catalogue of every form</text><text class="s m" x="475" y="258">api/openapi.yaml: paths · parameters · schemas · error shape — humans read it, tools generate clients and tests from it</text><g transform="translate(40,205)"><circle r="11" class="nc"/><text class="nt" dy="4">4</text></g>
+  </svg>
+  <p class="foot"><a href="https://github.com/BaluRaut/learn-api-school/blob/lesson-04-json-and-schemas/lessons/04-json-and-schemas/README.md">Read full lesson 04 →</a></p>
+</section>
+
+<!-- 05 -->
+<section class="dsec" id="l05" style="--c:#0e7490">
+  <h2><span class="ln">5</span> 🔬 Build an API</h2>
+  <p class="d">The counter in ~235 honest lines of Python — routes, validation, storage, plumbing.</p>
+  <svg viewBox="0 0 940 305" role="img"><rect class="box" x="40" y="40" width="420" height="100" rx="12"/><text class="t m" x="250" y="70">1 🧭 routes — nouns → handlers</text><text class="s m" x="250" y="96">/v1/students, /v1/students/{id}: do_GET / do_POST …</text><text class="s m" x="250" y="118">the clerk&#39;s desk map</text><g transform="translate(40,40)"><circle r="11" class="nc"/><text class="nt" dy="4">1</text></g><rect class="box" x="490" y="40" width="420" height="100" rx="12"/><text class="t m" x="700" y="70">2 ✅ validation + auth</text><text class="s m" x="700" y="96">validate_student() · authorized()</text><text class="s m" x="700" y="118">refuse politely before doing any work</text><g transform="translate(490,40)"><circle r="11" class="nc"/><text class="nt" dy="4">2</text></g><rect class="box" x="40" y="165" width="420" height="100" rx="12"/><text class="t m" x="250" y="195">3 🗄️ storage</text><text class="s m" x="250" y="221">a dict today — the Database school</text><text class="s m" x="250" y="243">makes it durable tomorrow</text><g transform="translate(40,165)"><circle r="11" class="nc"/><text class="nt" dy="4">3</text></g><rect class="box" x="490" y="165" width="420" height="100" rx="12"/><text class="t m" x="700" y="195">4 🔧 plumbing</text><text class="s m" x="700" y="221">send(status, body, headers) · one error shape ·</text><text class="s m" x="700" y="243">request id + log line · ETag · rate bucket</text><g transform="translate(490,165)"><circle r="11" class="nc"/><text class="nt" dy="4">4</text></g><text class="s m" x="475" y="292">api/school_api.py — ~235 lines, zero dependencies · frameworks (FastAPI, Express, Spring) automate exactly these four</text>
+  </svg>
+  <p class="foot"><a href="https://github.com/BaluRaut/learn-api-school/blob/lesson-05-build-an-api/lessons/05-build-an-api/README.md">Read full lesson 05 →</a></p>
+</section>
+
+<!-- 06 -->
+<section class="dsec" id="l06" style="--c:#0e7490">
+  <h2><span class="ln">6</span> 🪪 Auth</h2>
+  <p class="d">Hall passes at the counter — API keys, bearer tokens, OAuth, and who may write.</p>
+  <svg viewBox="0 0 940 305" role="img"><rect class="box" x="40" y="40" width="270" height="110" rx="14"/><text class="t m" x="175" y="70">🔓 reads: open counter</text><text class="s m" x="175" y="96">GET needs no pass here —</text><text class="s m" x="175" y="118">public data, rate-limited</text><g transform="translate(40,40)"><circle r="11" class="nc"/><text class="nt" dy="4">1</text></g><rect class="box" x="360" y="40" width="270" height="110" rx="14"/><text class="t m" x="495" y="70">🪪 writes: show the pass</text><text class="s m" x="495" y="96">X-API-Key: hall-pass-123</text><text class="s m" x="495" y="118">no pass → 401 · wrong pass → 403</text><g transform="translate(360,40)"><circle r="11" class="nc"/><text class="nt" dy="4">2</text></g><rect class="box" x="680" y="40" width="230" height="110" rx="14"/><text class="t m" x="795" y="70">🎯 least privilege</text><text class="s m" x="795" y="96">a key per app, scoped to</text><text class="s m" x="795" y="118">what it must do; rotate it</text><g transform="translate(680,40)"><circle r="11" class="nc"/><text class="nt" dy="4">3</text></g><line class="arr" x1="310" y1="95" x2="356" y2="95"/><line class="arr" x1="630" y1="95" x2="676" y2="95"/><rect class="soft" x="40" y="185" width="280" height="100" rx="12"/><text class="s m" x="180" y="210">🔑 API key</text><text class="s m" x="180" y="232">machine → machine, long-lived,</text><text class="s m" x="180" y="254">simplest; keep it out of URLs</text><rect class="soft" x="340" y="185" width="280" height="100" rx="12"/><text class="s m" x="480" y="210">🎫 bearer token / JWT</text><text class="s m" x="480" y="232">a user&#39;s signed pass, expires;</text><text class="s m" x="480" y="254">Authorization: Bearer …</text><rect class="soft" x="640" y="185" width="270" height="100" rx="12"/><text class="s m" x="775" y="210">🤝 OAuth 2 / OIDC</text><text class="s m" x="775" y="232">delegated: &#39;this app may read my</text><text class="s m" x="775" y="254">calendar&#39; — the AWS/CI/CD badge</text>
+  </svg>
+  <p class="foot"><a href="https://github.com/BaluRaut/learn-api-school/blob/lesson-06-auth/lessons/06-auth/README.md">Read full lesson 06 →</a></p>
+</section>
+
+<!-- 07 -->
+<section class="dsec" id="l07" style="--c:#c2410c">
+  <h2><span class="ln">7</span> ⚠️ Errors &amp; idempotency</h2>
+  <p class="d">Polite refusals with a reason — and a receipt number so retries never double-file.</p>
+  <svg viewBox="0 0 940 305" role="img"><rect class="box" x="40" y="40" width="420" height="110" rx="14"/><text class="t m" x="250" y="68">⚠️ one error shape, always</text><text class="s m" x="250" y="94">{error: {code, message, hint, problems[]}}</text><text class="s m" x="250" y="116">code for machines · message for humans</text><text class="s m" x="250" y="138">4xx = fix your slip · 5xx = our fault, retry later</text><g transform="translate(40,40)"><circle r="11" class="nc"/><text class="nt" dy="4">1</text></g><rect class="box" x="490" y="40" width="420" height="110" rx="14"/><text class="t m" x="700" y="68">🧾 Idempotency-Key = the receipt number</text><text class="s m" x="700" y="94">POST + same key twice → the SAME 201, once filed</text><text class="s m" x="700" y="116">the network dropped the reply? retry safely</text><text class="s m" x="700" y="138">Idempotent-Replay: true tells you it was a rerun</text><g transform="translate(490,40)"><circle r="11" class="nc"/><text class="nt" dy="4">2</text></g><rect class="soft" x="40" y="185" width="870" height="100" rx="14"/><text class="t m" x="475" y="212">🔁 retry rules of thumb</text><text class="s m" x="475" y="238">retry: 429, 502/503/504, timeouts — with backoff + jitter · never blindly retry a 4xx (the slip is wrong) ·</text><text class="s m" x="475" y="262">POST only with a receipt number · make DELETE/PUT naturally idempotent · log the request id both sides</text><g transform="translate(40,185)"><circle r="11" class="nc"/><text class="nt" dy="4">3</text></g>
+  </svg>
+  <p class="foot"><a href="https://github.com/BaluRaut/learn-api-school/blob/lesson-07-errors-idempotency/lessons/07-errors-idempotency/README.md">Read full lesson 07 →</a></p>
+</section>
+
+<!-- 08 -->
+<section class="dsec" id="l08" style="--c:#c2410c">
+  <h2><span class="ln">8</span> 📚 Pagination &amp; filtering</h2>
+  <p class="d">'The next 20, please' — cursors, filters and sorting without losing anyone.</p>
+  <svg viewBox="0 0 940 305" role="img"><rect class="box" x="40" y="40" width="270" height="110" rx="14"/><text class="t m" x="175" y="70">❓ ?limit=2</text><text class="s m" x="175" y="96">&#39;the next two, please&#39;</text><text class="s m" x="175" y="118">→ items[2] + next_cursor: 2</text><g transform="translate(40,40)"><circle r="11" class="nc"/><text class="nt" dy="4">1</text></g><rect class="box" x="360" y="40" width="270" height="110" rx="14"/><text class="t m" x="495" y="70">➡️ ?limit=2&amp;cursor=2</text><text class="s m" x="495" y="96">&#39;after the last one I saw&#39;</text><text class="s m" x="495" y="118">→ items[2] + next_cursor: 4 … null</text><g transform="translate(360,40)"><circle r="11" class="nc"/><text class="nt" dy="4">2</text></g><rect class="box" x="680" y="40" width="230" height="110" rx="14"/><text class="t m" x="795" y="70">🧭 ?class=3A&amp;sort=name</text><text class="s m" x="795" y="96">filter, then sort, THEN</text><text class="s m" x="795" y="118">paginate — always that order</text><g transform="translate(680,40)"><circle r="11" class="nc"/><text class="nt" dy="4">3</text></g><line class="arr" x1="310" y1="95" x2="356" y2="95"/><rect class="soft" x="40" y="185" width="420" height="100" rx="12"/><text class="t m" x="250" y="212">📄 offset (&#39;page 7&#39;)</text><text class="s m" x="250" y="238">simple; skips/duplicates when rows are</text><text class="s m" x="250" y="260">inserted mid-scroll; slow on deep pages</text><rect class="soft" x="490" y="185" width="420" height="100" rx="12"/><text class="t m" x="700" y="212">🔖 cursor (&#39;after id 2&#39;)</text><text class="s m" x="700" y="238">stable under inserts; fast (index on id);</text><text class="s m" x="700" y="260">opaque token in real APIs — the default</text><g transform="translate(490,185)"><circle r="11" class="nc"/><text class="nt" dy="4">4</text></g>
+  </svg>
+  <p class="foot"><a href="https://github.com/BaluRaut/learn-api-school/blob/lesson-08-pagination-filtering/lessons/08-pagination-filtering/README.md">Read full lesson 08 →</a></p>
+</section>
+
+<!-- 09 -->
+<section class="dsec" id="l09" style="--c:#c2410c">
+  <h2><span class="ln">9</span> 🔢 Versioning</h2>
+  <p class="d">New forms without throwing the old ones away — additive changes, deprecation, sunset.</p>
+  <svg viewBox="0 0 940 305" role="img"><rect class="box" x="40" y="40" width="270" height="110" rx="14"/><text class="t m" x="175" y="70">🔢 /v1/students</text><text class="s m" x="175" y="96">the form everyone already fills</text><text class="s m" x="175" y="118">— promised to keep working</text><g transform="translate(40,40)"><circle r="11" class="nc"/><text class="nt" dy="4">1</text></g><rect class="box" x="360" y="40" width="270" height="110" rx="14"/><text class="t m" x="495" y="70">➕ additive = safe</text><text class="s m" x="495" y="96">add a field, add an endpoint,</text><text class="s m" x="495" y="118">add an enum value clients ignore</text><g transform="translate(360,40)"><circle r="11" class="nc"/><text class="nt" dy="4">2</text></g><rect class="dead" x="680" y="40" width="230" height="110" rx="14"/><text class="t m" x="795" y="70">💥 breaking → /v2</text><text class="s m" x="795" y="96">rename/remove a field, change</text><text class="s m" x="795" y="118">a type, tighten a rule</text><g transform="translate(680,40)"><circle r="11" class="nc"/><text class="nt" dy="4">3</text></g><line class="arr" x1="310" y1="95" x2="356" y2="95"/><line class="arr dash" x1="630" y1="95" x2="676" y2="95"/><rect class="soft" x="40" y="185" width="870" height="100" rx="14"/><text class="t m" x="475" y="212">🗓️ the polite way to retire a form</text><text class="s m" x="475" y="238">Deprecation + Sunset headers · a date, a migration note, usage metrics per version ·</text><text class="s m" x="475" y="262">run v1 and v2 side by side · remove v1 only when the counter sees no more v1 slips</text><g transform="translate(40,185)"><circle r="11" class="nc"/><text class="nt" dy="4">4</text></g>
+  </svg>
+  <p class="foot"><a href="https://github.com/BaluRaut/learn-api-school/blob/lesson-09-versioning/lessons/09-versioning/README.md">Read full lesson 09 →</a></p>
+</section>
+
+<!-- 10 -->
+<section class="dsec" id="l10" style="--c:#c2410c">
+  <h2><span class="ln">10</span> ⏱️ Rate limits &amp; caching</h2>
+  <p class="d">The queue at the counter — 429, Retry-After, ETags, timeouts and backoff.</p>
+  <svg viewBox="0 0 940 305" role="img"><rect class="box" x="40" y="40" width="280" height="110" rx="14"/><text class="t m" x="180" y="70">⏱️ the queue: 20 per 10 s</text><text class="s m" x="180" y="96">request 21 → 429 rate_limited</text><text class="s m" x="180" y="118">+ Retry-After: 10</text><g transform="translate(40,40)"><circle r="11" class="nc"/><text class="nt" dy="4">1</text></g><rect class="box" x="350" y="40" width="280" height="110" rx="14"/><text class="t m" x="490" y="70">😌 the polite client</text><text class="s m" x="490" y="96">timeout=3s · retry on 429/5xx ·</text><text class="s m" x="490" y="118">backoff 1,2,4 s + jitter · then give up</text><g transform="translate(350,40)"><circle r="11" class="nc"/><text class="nt" dy="4">2</text></g><rect class="box" x="660" y="40" width="250" height="110" rx="14"/><text class="t m" x="785" y="70">🧾 ETag: &quot;0e9a…&quot;</text><text class="s m" x="785" y="96">If-None-Match → 304</text><text class="s m" x="785" y="118">&#39;your copy is still good&#39;</text><g transform="translate(660,40)"><circle r="11" class="nc"/><text class="nt" dy="4">3</text></g><line class="arr" x1="320" y1="95" x2="346" y2="95"/><line class="arr" x1="630" y1="95" x2="656" y2="95"/><rect class="soft" x="40" y="185" width="870" height="100" rx="14"/><text class="t m" x="475" y="212">🧊 Cache-Control: private, max-age=30</text><text class="s m" x="475" y="238">the client may skip the counter for 30 s · shared caches (CDN, gateway) obey the same header ·</text><text class="s m" x="475" y="262">caching = fewer slips; rate limits = fair queue; timeouts = nobody waits forever — all three, always</text><g transform="translate(40,185)"><circle r="11" class="nc"/><text class="nt" dy="4">4</text></g>
+  </svg>
+  <p class="foot"><a href="https://github.com/BaluRaut/learn-api-school/blob/lesson-10-rate-limits-caching/lessons/10-rate-limits-caching/README.md">Read full lesson 10 →</a></p>
+</section>
+
+<!-- 11 -->
+<section class="dsec" id="l11" style="--c:#c2410c">
+  <h2><span class="ln">11</span> 🔀 Beyond REST</h2>
+  <p class="d">GraphQL, gRPC, webhooks and events — when the counter calls you back.</p>
+  <svg viewBox="0 0 940 305" role="img"><rect class="box" x="40" y="40" width="200" height="120" rx="14"/><text class="t m" x="140" y="70">🗄️ REST</text><text class="s m" x="140" y="96">nouns + verbs, JSON,</text><text class="s m" x="140" y="118">cacheable, everywhere</text><text class="s m" x="140" y="140">→ this course</text><g transform="translate(40,40)"><circle r="11" class="nc"/><text class="nt" dy="4">1</text></g><rect class="box" x="270" y="40" width="200" height="120" rx="14"/><text class="t m" x="370" y="70">🧩 GraphQL</text><text class="s m" x="370" y="96">one endpoint; ask for</text><text class="s m" x="370" y="118">exactly the fields you</text><text class="s m" x="370" y="140">need — many screens</text><g transform="translate(270,40)"><circle r="11" class="nc"/><text class="nt" dy="4">2</text></g><rect class="box" x="500" y="40" width="200" height="120" rx="14"/><text class="t m" x="600" y="70">⚡ gRPC</text><text class="s m" x="600" y="96">typed contracts (proto),</text><text class="s m" x="600" y="118">binary, streaming — fast</text><text class="s m" x="600" y="140">service ↔ service</text><g transform="translate(500,40)"><circle r="11" class="nc"/><text class="nt" dy="4">3</text></g><rect class="box" x="730" y="40" width="180" height="120" rx="14"/><text class="t m" x="820" y="70">📣 webhooks</text><text class="s m" x="820" y="96">the counter calls</text><text class="s m" x="820" y="118">YOU back: POST to</text><text class="s m" x="820" y="140">your URL on events</text><g transform="translate(730,40)"><circle r="11" class="nc"/><text class="nt" dy="4">4</text></g><rect class="soft" x="40" y="195" width="870" height="90" rx="14"/><text class="t m" x="475" y="222">🧭 picking: shape follows the caller</text><text class="s m" x="475" y="248">public + cacheable → REST · one UI, many shapes → GraphQL · internal, chatty, typed → gRPC · &#39;tell me when&#39; → webhooks / events (queues, SSE)</text><text class="s m" x="475" y="270">polling every 5 s is the thing webhooks replace — the receiver in api/webhook_receiver.py is 15 lines</text>
+  </svg>
+  <p class="foot"><a href="https://github.com/BaluRaut/learn-api-school/blob/lesson-11-beyond-rest/lessons/11-beyond-rest/README.md">Read full lesson 11 →</a></p>
+</section>
+
+<!-- 12 -->
+<section class="dsec" id="l12" style="--c:#c2410c">
+  <h2><span class="ln">12</span> 🚪 Testing, docs &amp; the gateway</h2>
+  <p class="d">Contract tests, the printed catalogue, and the school gate in front of every counter.</p>
+  <svg viewBox="0 0 940 305" role="img"><rect class="box" x="40" y="40" width="270" height="110" rx="14"/><text class="t m" x="175" y="70">🧪 contract tests</text><text class="s m" x="175" y="96">smoke_test.sh vs openapi.yaml:</text><text class="s m" x="175" y="118">every slip, every stamp, in CI</text><g transform="translate(40,40)"><circle r="11" class="nc"/><text class="nt" dy="4">1</text></g><rect class="box" x="360" y="40" width="270" height="110" rx="14"/><text class="t m" x="495" y="70">📚 docs from the catalogue</text><text class="s m" x="495" y="96">OpenAPI → rendered docs,</text><text class="s m" x="495" y="118">generated clients, mocks</text><g transform="translate(360,40)"><circle r="11" class="nc"/><text class="nt" dy="4">2</text></g><rect class="box" x="680" y="40" width="230" height="110" rx="14"/><text class="t m" x="795" y="70">🚪 the school gate</text><text class="s m" x="795" y="96">API gateway: auth, rate limit,</text><text class="s m" x="795" y="118">routing, logs — in FRONT</text><g transform="translate(680,40)"><circle r="11" class="nc"/><text class="nt" dy="4">3</text></g><line class="arr" x1="310" y1="95" x2="356" y2="95"/><line class="arr" x1="630" y1="95" x2="676" y2="95"/><rect class="soft" x="40" y="185" width="870" height="100" rx="14"/><text class="t m" x="475" y="212">👀 observability: every slip leaves a trace</text><text class="s m" x="475" y="238">X-Request-Id on every response · one log line per request (method, path, status, ms, id) · latency histograms, error rate per route ·</text><text class="s m" x="475" y="262">the AWS school&#39;s API Gateway (L25) and the Kubernetes Ingress (L10) are this gate, rented</text><g transform="translate(40,185)"><circle r="11" class="nc"/><text class="nt" dy="4">4</text></g>
+  </svg>
+  <p class="foot"><a href="https://github.com/BaluRaut/learn-api-school/blob/lesson-12-testing-docs-gateway/lessons/12-testing-docs-gateway/README.md">Read full lesson 12 →</a></p>
+</section>
+
+<footer>
+  Learn API School · the counter is in the repo · <a href="index.html">Course home</a> · <a href="lesson-diagrams.html">Lesson diagrams</a> · <a href="https://github.com/BaluRaut/learn-api-school">GitHub</a> · <a href="https://baluraut.github.io/school/dictionary.html">📖 the Dictionary</a> · <a href="https://baluraut.github.io/school/">🏫 all schools</a> · <a href="https://github.com/BaluRaut/learn-api-school/issues">🐛 found a mistake?</a>
+</footer>
+</div>
+</body>
+</html>

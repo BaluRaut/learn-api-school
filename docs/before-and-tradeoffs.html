@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Before & trade-offs — Learn API School</title>
+<meta name="description" content="For every big API idea: what came before, merits and demerits, and where to use it vs where not.">
+<meta property="og:title" content="Before & trade-offs — Learn API School">
+<meta property="og:description" content="For every big API idea: what came before, merits and demerits, and where to use it vs where not.">
+<meta property="og:image" content="https://baluraut.github.io/learn-api-school/images/big-picture-4k.png">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<style>
+  :root { --bg:#f8fafc; --card:#fff; --ink:#0f172a; --muted:#475569; --line:#e2e8f0; --accent:#0e7490; --ok:#16a34a; --blue:#2563eb; --bad:#dc2626; }
+  @media (prefers-color-scheme: dark) { :root { --bg:#0b1220; --card:#131c2e; --ink:#e2e8f0; --muted:#94a3b8; --line:#253349; } }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:var(--bg); color:var(--ink); font-family:-apple-system,"Segoe UI",Helvetica,Arial,sans-serif; line-height:1.6; }
+  .wrap { max-width:1280px; margin:0 auto; padding:28px 20px 60px; }
+  @media (min-width: 1660px) { .wrap { max-width: 1580px; } }
+  a { color:var(--blue); } h1 { font-size:2rem; line-height:1.25; } h2 { font-size:1.4rem; margin:44px 0 6px; }
+  .sub { color:var(--muted); max-width:74ch; }
+  .chips { display:flex; flex-wrap:wrap; gap:8px; margin:16px 0 8px; }
+  .chip { border:1px solid var(--line); background:var(--card); border-radius:999px; padding:6px 14px; font-size:.85rem; color:var(--muted); }
+  .grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(240px,1fr)); gap:14px; margin-top:16px; }
+  .lesson { background:var(--card); border:1px solid var(--line); border-top:5px solid var(--c,var(--accent)); border-radius:14px; padding:16px; display:flex; flex-direction:column; gap:6px; }
+  .lesson .top { display:flex; align-items:center; gap:10px; }
+  .lesson .num { flex:none; width:30px; height:30px; border-radius:50%; background:var(--c,var(--accent)); color:#fff; display:inline-flex; align-items:center; justify-content:center; font-weight:800; font-size:.9rem; }
+  .lesson h3 { font-size:1.02rem; line-height:1.3; } .lesson .ana { color:var(--muted); font-size:.9rem; }
+  .lesson code { font-size:.78rem; background:var(--bg); border:1px solid var(--line); border-radius:6px; padding:1px 6px; }
+  .lesson a.go { margin-top:auto; font-weight:600; font-size:.9rem; text-decoration:none; } .lesson a.go+a.go { margin-top:0; } .lesson a.go:hover { text-decoration:underline; }
+  .callout { background:var(--card); border:1px solid var(--line); border-left:6px solid var(--ok); border-radius:14px; padding:18px 20px; margin-top:16px; }
+  pre { background:var(--card); border:1px solid var(--line); border-radius:12px; padding:14px 16px; overflow-x:auto; font-size:.88rem; margin-top:12px; }
+  .btn { display:inline-block; background:var(--accent); color:#fff; border-radius:10px; padding:10px 18px; text-decoration:none; font-weight:700; margin:14px 10px 0 0; }
+  .btn.alt { background:transparent; color:var(--ink); border:1px solid var(--line); }
+  .vs { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:14px; margin-top:16px; }
+  .vcol { background:var(--card); border:1px solid var(--line); border-radius:14px; padding:18px; } .vcol h3 { margin-bottom:8px; }
+  .vcol ul { margin-left:18px; color:var(--muted); font-size:.93rem; }
+  .tbl{overflow-x:auto;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:10px 14px;margin-top:12px} .tbl table{border-collapse:collapse;width:100%;font-size:.9rem} .tbl th,.tbl td{border:1px solid var(--line);padding:7px 10px;text-align:left;vertical-align:top} .tbl th{background:var(--bg)}
+  footer { margin-top:56px; border-top:1px solid var(--line); padding-top:18px; color:var(--muted); font-size:.88rem; }
+
+  .term { background:var(--card); border:1px solid var(--line); border-top:6px solid var(--c,var(--accent)); border-radius:16px; padding:22px; margin-top:26px; scroll-margin-top:16px; }
+  .term h2 { font-size:1.3rem; margin-bottom:10px; }
+  .hist { background:var(--bg); border-left:5px solid var(--c,var(--accent)); border-radius:10px; padding:14px 16px; margin:10px 0 14px; }
+  .hist b { display:block; margin-bottom:4px; } .hist p { color:var(--muted); font-size:.95rem; }
+  .quad { display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:12px; }
+  .q { border:1px solid var(--line); border-radius:12px; padding:14px; }
+  .q h4 { margin-bottom:6px; font-size:.98rem; } .q ul { margin-left:18px; color:var(--muted); font-size:.92rem; }
+  .q.merit { border-top:4px solid var(--ok); } .q.demerit { border-top:4px solid var(--bad); }
+  .q.use { border-top:4px solid var(--blue); } .q.avoid { border-top:4px solid #f59e0b; }
+
+  .toc { display:flex; flex-wrap:wrap; gap:8px; margin:18px 0 6px; }
+  .toc a { border:1px solid var(--line); background:var(--card); border-radius:999px; padding:5px 12px; font-size:.82rem; color:var(--muted); text-decoration:none; }
+  .toc a:hover { color:var(--ink); border-color:var(--muted); }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+<header>
+  <p><a href="index.html">← Back to the course home</a></p>
+  <h1>⏮️ Before &amp; trade-offs</h1>
+  <p class="sub">Every tool replaced something worse — and is itself the wrong tool somewhere. For each big idea: what life was like <b>before</b>, honest <b>merits ✅ / demerits ❌</b>, and <b>where to use it 👍 vs not 👎</b>.</p>
+  <nav class="toc"><a href="#rest">🗄️ REST vs GraphQL vs gRPC</a><a href="#auth">🪪 API keys vs tokens vs OAuth</a><a href="#pages">📚 Cursor vs offset</a><a href="#version">🔢 Path vs header versioning</a><a href="#limits">⏱️ Rate limiting</a><a href="#hooks">📣 Webhooks vs polling</a><a href="#gateway">🚪 API gateway</a></nav>
+</header>
+
+<section class="term" id="rest" style="--c:#0e7490">
+  <h2>🗄️ REST (vs GraphQL, gRPC) — lessons 03, 11</h2>
+  <div class="hist"><b>⏮️ Before REST won (2000s)</b><p>Every service invented its own remote-call style: SOAP envelopes, custom XML, RPC verbs like getStudentById in the URL. Caches could not help, every client needed a special library, and 'the API' was a 40-page PDF.</p></div>
+  <div class="quad">
+    <div class="q merit"><h4>✅ Merits</h4><ul><li>nouns + standard verbs: any HTTP client works, caches understand it</li><li>status codes and headers already mean things</li><li>easy to document (OpenAPI) and to mock</li></ul></div>
+    <div class="q demerit"><h4>❌ Demerits</h4><ul><li>many round trips for a screen that needs five resources</li><li>over-fetching: the whole drawer when you wanted one field</li><li>'RESTful' is a spectrum — teams argue about purity</li></ul></div>
+    <div class="q use"><h4>👍 Use when</h4><ul><li>public and partner APIs, anything cacheable</li><li>CRUD over clear resources</li></ul></div>
+    <div class="q avoid"><h4>👎 Think twice when</h4><ul><li>one UI needs many shapes of the same data → GraphQL</li><li>chatty, typed, internal service-to-service → gRPC</li></ul></div>
+  </div>
+</section>
+<section class="term" id="auth" style="--c:#0e7490">
+  <h2>🪪 API keys vs bearer tokens vs OAuth — lesson 06</h2>
+  <div class="hist"><b>⏮️ Before standard passes</b><p>Passwords in query strings, shared 'admin' secrets pasted into every script, and no way to revoke one client without breaking all of them.</p></div>
+  <div class="quad">
+    <div class="q merit"><h4>✅ Merits</h4><ul><li>API key: simplest machine pass, per-app, revocable</li><li>JWT: self-contained, expiring, signed — no lookup per request</li><li>OAuth/OIDC: users grant scoped access without sharing passwords</li></ul></div>
+    <div class="q demerit"><h4>❌ Demerits</h4><ul><li>keys leak (logs, URLs, repos) and never expire on their own</li><li>JWTs cannot be un-issued before expiry without a deny-list</li><li>OAuth flows are real engineering; easy to misconfigure redirects</li></ul></div>
+    <div class="q use"><h4>👍 Use when</h4><ul><li>keys for server-to-server, scoped and rotated</li><li>tokens for user sessions; OAuth when a third app acts for a user</li></ul></div>
+    <div class="q avoid"><h4>👎 Think twice when</h4><ul><li>a key in a browser app — it is public the moment it ships</li><li>hand-rolled crypto or session logic — use the standard</li></ul></div>
+  </div>
+</section>
+<section class="term" id="pages" style="--c:#c2410c">
+  <h2>📚 Cursor vs offset pagination — lesson 08</h2>
+  <div class="hist"><b>⏮️ Before pagination</b><p>'Return everything' — fine for 50 rows, fatal at 50,000: timeouts, memory, and clients that show a spinner forever.</p></div>
+  <div class="quad">
+    <div class="q merit"><h4>✅ Merits</h4><ul><li>cursor: stable under inserts, fast with an index, the modern default</li><li>offset: trivial to implement, jump to page N</li></ul></div>
+    <div class="q demerit"><h4>❌ Demerits</h4><ul><li>cursor: no 'page 7 of 40', opaque tokens to explain</li><li>offset: skips/duplicates when rows change; deep pages get slow</li></ul></div>
+    <div class="q use"><h4>👍 Use when</h4><ul><li>cursor for feeds, logs, anything that grows</li><li>offset for small admin tables with a page picker</li></ul></div>
+    <div class="q avoid"><h4>👎 Think twice when</h4><ul><li>offset on a table that grows while people scroll</li><li>cursor when the product genuinely needs 'jump to page 12'</li></ul></div>
+  </div>
+</section>
+<section class="term" id="version" style="--c:#c2410c">
+  <h2>🔢 Versioning in the path vs headers — lesson 09</h2>
+  <div class="hist"><b>⏮️ Before versioning</b><p>Changing a field renamed broke every client at once — or nothing ever changed because nobody dared.</p></div>
+  <div class="quad">
+    <div class="q merit"><h4>✅ Merits</h4><ul><li>/v1 in the path: visible, cacheable, easy to route at the gate</li><li>header/media-type versions: one URL, cleaner resources</li></ul></div>
+    <div class="q demerit"><h4>❌ Demerits</h4><ul><li>path versions multiply URLs and tempt big-bang rewrites</li><li>header versions are invisible in logs and links</li><li>every version you keep is a version you must test</li></ul></div>
+    <div class="q use"><h4>👍 Use when</h4><ul><li>path versions for public APIs; additive changes on the same version</li><li>a written deprecation policy with dates and metrics</li></ul></div>
+    <div class="q avoid"><h4>👎 Think twice when</h4><ul><li>versioning per field or per endpoint — chaos</li><li>breaking clients silently 'because it's cleaner'</li></ul></div>
+  </div>
+</section>
+<section class="term" id="limits" style="--c:#c2410c">
+  <h2>⏱️ Rate limiting — lesson 10</h2>
+  <div class="hist"><b>⏮️ Before limits</b><p>One runaway script could empty the office: every visitor waited, and the fix was a phone call.</p></div>
+  <div class="quad">
+    <div class="q merit"><h4>✅ Merits</h4><ul><li>fairness: one noisy client cannot starve the rest</li><li>a clear signal (429 + Retry-After) clients can obey</li><li>protects the record room and your bill</li></ul></div>
+    <div class="q demerit"><h4>❌ Demerits</h4><ul><li>honest bursts get refused too — size the bucket for real use</li><li>limits per IP punish everyone behind one NAT</li><li>needs shared state across servers (the gateway's job)</li></ul></div>
+    <div class="q use"><h4>👍 Use when</h4><ul><li>any public endpoint; anything a bug could hammer</li><li>per-key limits tied to plans</li></ul></div>
+    <div class="q avoid"><h4>👎 Think twice when</h4><ul><li>internal calls between your own services with no budget problem</li><li>as a substitute for fixing an N+1 loop in the client</li></ul></div>
+  </div>
+</section>
+<section class="term" id="hooks" style="--c:#c2410c">
+  <h2>📣 Webhooks vs polling — lesson 11</h2>
+  <div class="hist"><b>⏮️ Before webhooks</b><p>Clients asked 'anything new?' every few seconds — thousands of empty answers, and still late.</p></div>
+  <div class="quad">
+    <div class="q merit"><h4>✅ Merits</h4><ul><li>events arrive when they happen; zero wasted slips</li><li>one registration replaces a polling loop</li></ul></div>
+    <div class="q demerit"><h4>❌ Demerits</h4><ul><li>you must run a reachable receiver (and secure it)</li><li>delivery can fail: retries, ordering and duplicates are your problem</li><li>debugging means two systems' logs</li></ul></div>
+    <div class="q use"><h4>👍 Use when</h4><ul><li>'tell me when' relationships: payments, CI results, enrolments</li><li>integrations with partners who cannot poll you at scale</li></ul></div>
+    <div class="q avoid"><h4>👎 Think twice when</h4><ul><li>your consumer cannot expose a URL — use a queue or long polling</li><li>strict ordering or exactly-once — use an event log</li></ul></div>
+  </div>
+</section>
+<section class="term" id="gateway" style="--c:#c2410c">
+  <h2>🚪 API gateway — lesson 12</h2>
+  <div class="hist"><b>⏮️ Before gateways</b><p>Every API re-implemented auth, rate limits, TLS, logging and routing — five copies, five bugs.</p></div>
+  <div class="quad">
+    <div class="q merit"><h4>✅ Merits</h4><ul><li>one place for auth, limits, routing, TLS, logs, WAF</li><li>APIs stay small; policies change without redeploys</li><li>managed versions exist (AWS API Gateway, Kubernetes Ingress + plugins)</li></ul></div>
+    <div class="q demerit"><h4>❌ Demerits</h4><ul><li>another hop, another thing to run and pay for</li><li>config sprawl; a gateway outage is everyone's outage</li><li>easy to hide business logic where it doesn't belong</li></ul></div>
+    <div class="q use"><h4>👍 Use when</h4><ul><li>more than one API, any public exposure, per-client plans</li><li>you need central auth/limits/observability</li></ul></div>
+    <div class="q avoid"><h4>👎 Think twice when</h4><ul><li>one internal service behind a VPN — a library may do</li><li>putting transformations and business rules in the gate</li></ul></div>
+  </div>
+</section>
+<footer>
+  Learn API School · the counter is in the repo · <a href="index.html">Course home</a> · <a href="lesson-diagrams.html">Lesson diagrams</a> · <a href="https://github.com/BaluRaut/learn-api-school">GitHub</a> · <a href="https://baluraut.github.io/school/dictionary.html">📖 the Dictionary</a> · <a href="https://baluraut.github.io/school/">🏫 all schools</a> · <a href="https://github.com/BaluRaut/learn-api-school/issues">🐛 found a mistake?</a>
+</footer>
+</div>
+</body>
+</html>
