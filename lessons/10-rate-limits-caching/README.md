@@ -11,7 +11,7 @@ Lessons 01–09, **plus** what happens when everyone arrives at once:
 `If-None-Match`, `Cache-Control`), **timeouts** and **backoff with
 jitter** — and a polite client that does all of it. Real file:
 
-- [api/client.py](../../api/client.py) — the polite client, ~45 lines
+- [api/client.py](../../api/client.py) — the polite client, under 40 lines
 
 ## 🧒 Explain like I'm 5
 
