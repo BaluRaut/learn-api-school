@@ -10,7 +10,7 @@ Lessons 01–10, **plus** the other shapes a counter can take — **GraphQL**,
 **gRPC**, **webhooks**, **events** — and the rule for picking one. Real
 file:
 
-- [api/webhook_receiver.py](../../api/webhook_receiver.py) — where the counter calls *you* back, 15 lines
+- [api/webhook_receiver.py](../../api/webhook_receiver.py) — where the counter calls *you* back, barely a dozen lines
 
 ## 🧒 Explain like I'm 5
 
