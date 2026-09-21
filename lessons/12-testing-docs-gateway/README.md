@@ -62,6 +62,12 @@ flowchart LR
 - What stays *in* the API: validation, business rules, the error shape,
   idempotency. Gates enforce policy; counters enforce meaning.
 
+> 🧪 **The full testing map:** this lesson builds the smoke test and the contract
+> test. The other seven kinds — functional, integration, regression, load, stress,
+> security, fuzz — and the UI kind are drawn one per row on the course's
+> [**nine ways to test a counter**](https://baluraut.github.io/learn-api-school/api-types.html#testing)
+> gallery, each with how you would run it against this counter.
+
 ## 🤔 Why
 
 Because a counter without tests breaks silently, a counter without docs
