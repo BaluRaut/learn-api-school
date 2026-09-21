@@ -15,7 +15,11 @@ it and extend it in every lesson.
 
 🌐 **Interactive site:** **<https://baluraut.github.io/learn-api-school/>** —
 lesson cards, every lesson as a numbered diagram, the big-picture 4K, a quiz, a
-study plan and the before-and-trade-offs page.
+study plan, the before-and-trade-offs page, and
+**[every API type](https://baluraut.github.io/learn-api-school/api-types.html)** —
+REST, JSON-RPC, SOAP, GraphQL, gRPC, tRPC, OData, long polling, SSE, WebSocket,
+WebRTC, webhooks, queues, event streams, batch files, libraries, system calls and
+database drivers, on one page.
 
 > 🎒 **Prerequisites:** Python 3 and curl. Nothing else. Good neighbours: the
 > [Database school](https://github.com/BaluRaut/learn-database-school) (the record
@@ -82,11 +86,30 @@ learn-api-school/
 │   ├── openapi.yaml          # the printed catalogue of every form
 │   ├── client.py             # the polite client: timeouts, backoff + jitter, ETag cache
 │   ├── webhook_receiver.py   # where the counter calls you back
+│   ├── api_types.py          # the SAME five students as REST · JSON-RPC · GraphQL · long polling · SSE · WebSocket
+│   ├── types_client.py       # one client that exercises all six and prints every byte
 │   └── expected-output.txt   # what a healthy run prints
 └── docs/                     # the GitHub Pages site
 ```
 
 Everything runs on your laptop. **Cost: zero.**
+
+## 🔀 Every API type
+
+This course builds **one** API — a REST counter. The
+[every API type](https://baluraut.github.io/learn-api-school/api-types.html) page is the
+map of all the other shapes, in four families: **ask & answer** (REST, JSON-RPC, SOAP,
+GraphQL, gRPC, tRPC, OData), **stay on the line** (long polling, SSE, WebSocket, WebRTC),
+**leave a message** (webhooks, queues, event streams, batch files) and **no network at all**
+(libraries, system calls, database drivers, device APIs) — with a master table, a decision
+guide, and the mistakes that pick the wrong one.
+
+Six of them run right here, against the same five students:
+
+```bash
+python3 api/api_types.py        # terminal 1 — :8081
+python3 api/types_client.py     # terminal 2 — REST · JSON-RPC · GraphQL · long polling · SSE · WebSocket
+```
 
 ## 📜 License
 
