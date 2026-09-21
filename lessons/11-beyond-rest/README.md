@@ -7,10 +7,18 @@
 ## 📦 What's in this branch
 
 Lessons 01–10, **plus** the other shapes a counter can take — **GraphQL**,
-**gRPC**, **webhooks**, **events** — and the rule for picking one. Real
-file:
+**gRPC**, **webhooks**, **events** — and the rule for picking one. Real files:
 
 - [api/webhook_receiver.py](../../api/webhook_receiver.py) — where the counter calls *you* back, barely a dozen lines
+- [api/api_types.py](../../api/api_types.py) — the same five students served as REST, JSON-RPC, GraphQL, long polling, SSE **and a real WebSocket**
+- [api/types_client.py](../../api/types_client.py) — one client that exercises all six and prints every byte
+
+> 🔀 **The full map:** this lesson teaches the four shapes you meet most. Every
+> other type — SOAP, tRPC, OData, WebRTC, queues, event streams, batch files,
+> and the APIs that never touch a network (libraries, system calls, database
+> drivers) — is on the course's
+> [**every API type**](https://baluraut.github.io/learn-api-school/api-types.html)
+> page: one master table, four families, and a decision guide.
 
 ## 🧒 Explain like I'm 5
 
@@ -62,7 +70,19 @@ flowchart LR
   their pace, with ordering and replay. Server-sent events (SSE) and
   WebSockets stream to browsers.
 - **Polling** is what all of these replace: "anything new?" every N
-  seconds — thousands of empty answers, and still late.
+  seconds — thousands of empty answers, and still late. **Long polling**
+  is the honest middle: one request the server *holds* until there is news.
+- **SSE** (`text/event-stream`) is the one-way stream: the server sends
+  `id`/`event`/`data` frames down one open connection, and browsers
+  reconnect by themselves with `Last-Event-ID`. **WebSocket** upgrades an
+  HTTP request (`101 Switching Protocols`) into one socket *both* sides may
+  use — chat, cursors, live dashboards.
+- **Also in the family** (see the [every API type](https://baluraut.github.io/learn-api-school/api-types.html)
+  page): **SOAP/XML-RPC** — the notarised envelope you will meet in banking;
+  **tRPC** — typed calls inside one TypeScript codebase; **OData** — REST
+  with a query language; **WebRTC** — peer to peer for media; **batch file
+  drops** (SFTP, CSV) — still how payroll and banking move millions of rows;
+  and the non-network APIs: libraries/SDKs, system calls, database drivers.
 
 ## 🤔 Why
 
@@ -82,6 +102,12 @@ other side: a 15-line server that prints what arrives.
 ## 🧪 Try it
 
 ```bash
+# A) six shapes, one dataset — REST · JSON-RPC · GraphQL · long polling · SSE · WebSocket
+python3 api/api_types.py &                                           # :8081
+python3 api/types_client.py                                          # every byte of all six, printed
+# read the differences: whole resource vs chosen fields vs an error inside a 200 vs a held request vs a stream vs a socket
+
+# B) the webhook, from both sides:
 python3 api/webhook_receiver.py &                                    # terminal 3: your phone rings here on :9090
 B=http://127.0.0.1:8080/v1; K='X-API-Key: hall-pass-123'; J='Content-Type: application/json'
 curl -s -X POST $B/webhooks -H "$J" -d '{"url":"http://127.0.0.1:9090/hook"}'
@@ -92,6 +118,8 @@ curl -s -X POST $B/students -H "$K" -H "$J" -d '{"name":"Yash","class":"3A"}' | 
 ```
 
 ## ✅ Verify — what you should see
+
+`types_client.py` prints six labelled sections and ends with `✅ six shapes, one dataset`: REST returns whole resources, JSON-RPC returns `error` **inside a 200**, GraphQL returns only the fields you named, long polling answers ~0.4 s late with one event, SSE prints `id:`/`event:`/`data:` frames (and replays history when you send `Last-Event-ID: 0`), and the WebSocket shows `101 Switching Protocols` before echoing both ways.
 
 The receiver prints one `📣 webhook received` line with the new student; after you kill it, the next enrolment still returns `201` and the server's log shows `webhook … failed` — a failing callback never breaks the counter.
 
