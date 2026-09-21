@@ -12,6 +12,7 @@ Real files you will use all the way through:
 
 - [api/school_api.py](../../api/school_api.py) — the front office: a real HTTP/JSON API, ~235 lines, zero dependencies
 - [api/smoke_test.sh](../../api/smoke_test.sh) — the whole course as a curl script
+- [api/api_types.py](../../api/api_types.py) — the same data as six API shapes (see the [every API type](https://baluraut.github.io/learn-api-school/api-types.html) page)
 
 > 🎒 **Before you start:** you need **Python 3 and curl**, nothing else. This
 > school teaches the *ideas* by running a tiny real API; frameworks (FastAPI,
