@@ -65,6 +65,12 @@ sequenceDiagram
 - Status codes are a **vocabulary**, not decoration: clients branch on
   them (retry a 503, never retry a 400 — lesson 07).
 
+> 🔧 **All seven stamps, drawn:** GET, HEAD, OPTIONS, POST, PUT, PATCH and DELETE —
+> safe, idempotent, cacheable, the status codes each returns, and a script that proves
+> every rule against this counter — are on the course's
+> [**every REST method**](https://baluraut.github.io/learn-api-school/rest-methods.html) page. `bash api/methods_demo.sh`
+> runs it (HEAD and OPTIONS answer too: try `curl -I` and `curl -X OPTIONS -i`).
+
 ## 🤔 Why
 
 Because every tool in the trade — curl, browsers, load balancers, caches,
