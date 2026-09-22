@@ -12,31 +12,40 @@
    an unknown key = we cannot tell who you are = 401 (strict); the lesson-06 counter says 403 — both are seen in the wild
 
 ── 3 Bearer token (opaque) — log in once, get a wristband, show the wristband
-   POST /login teacher/chalk                      → 200  token ex_dEH2APp… expires_in 3600
+   POST /login teacher/chalk                      → 200  token W-TTEyrfwc… expires_in 3600
    no token                                       → 401  send Authorization: Bearer <token>   WWW-Authenticate: Bearer realm="school"
-   Authorization: Bearer ex_dEH2APp…              → 200  as teacher (teacher) via token · 2 grades
+   Authorization: Bearer W-TTEyrfwc…              → 200  as teacher (teacher) via token · 2 grades
    a token issued with ttl=1, 1.2 s later         → 401  token expired   WWW-Authenticate: Bearer realm="school", error="invalid_token", error_description="expired"
    DELETE as student (valid token)                → 403  student is a student: may read grades, not delete them
    401 = who are you? · 403 = I know exactly who you are, and no · the server LOOKS UP each opaque token
 
 ── 4 JWT — a SIGNED wristband: the server verifies, it does not look anything up
    header  {'alg': 'HS256', 'typ': 'JWT'}
-   payload {'sub': 'teacher', 'role': 'teacher', 'iat': 1790042127, 'exp': 1790045727}   ← readable by anyone; never put secrets in it
+   payload {'sub': 'teacher', 'role': 'teacher', 'iat': 1790052651, 'exp': 1790056251}   ← readable by anyone; never put secrets in it
    Authorization: Bearer eyJhbGciOiAiSF…          → 200  as teacher (teacher) via jwt · 2 grades
    payload edited to role=headmaster, same signature → 401  JWT bad signature   WWW-Authenticate: Bearer realm="school", error="invalid_token", error_description="bad signature"
    the signature pins the payload; expiry is inside it (exp) — and a stolen JWT is valid until then, so keep them short
 
 ── 5 HMAC request signing — you sign the request itself (webhooks, AWS SigV4 style)
    unsigned                                       → 401  sign the request: X-Key-Id, X-Timestamp, X-Signature   WWW-Authenticate: HMAC-SHA256 realm="school", headers="X-Key-Id X-Timestamp X-Signature"
-   X-Key-Id key-1 · X-Timestamp 1790042127 · X-Signature fede694f… → 200  as key key-1 (teacher) via hmac · 2 grades
+   X-Key-Id key-1 · X-Timestamp 1790052651 · X-Signature 2370b654… → 200  as key key-1 (teacher) via hmac · 2 grades
    same signature, path changed by an attacker    → 401  signature does not match — the request was altered or the secret is wrong   WWW-Authenticate: HMAC-SHA256 realm="school", headers="X-Key-Id X-Timestamp X-Signature"
    valid signature, 15-minute-old timestamp (replay) → 401  timestamp outside the 5-minute replay window   WWW-Authenticate: HMAC-SHA256 realm="school", headers="X-Key-Id X-Timestamp X-Signature"
    the secret never travels; the signature covers method + path + time + body, so nothing can be altered or replayed
 
 ── 6 Session cookie — the browser's way: log in, the server sets an HttpOnly cookie, the browser sends it back
    no cookie                                      → 401  no valid session cookie — POST /login first   WWW-Authenticate: Cookie realm="school"
-   POST /login                                    → 200  Set-Cookie: sid=vJOmYOXFDj…; HttpOnly; SameSite=Lax
+   POST /login                                    → 200  Set-Cookie: sid=Zha4S2aRtC…; HttpOnly; SameSite=Lax
    GET with the cookie jar                        → 200  as teacher (teacher) via session · 2 grades
    HttpOnly = JavaScript cannot read it (XSS cannot steal it) · SameSite = other sites cannot ride it (CSRF)
 
-✅ six hall passes, one set of grades — who is asking, how do we know, and for how long
+── 7 OAuth 2.0 client_credentials — a PROGRAM's own door: id + secret → access token, at the token endpoint
+   POST /token grant_type=client_credentials (form) → 200  {access_token: _qxFCGv9…, token_type: Bearer, expires_in: 900, scope: grades:read}   Cache-Control: no-store
+   GET /oauth/grades · Bearer _qxFCGv9…           → 200  as report-bot (client:grades:read) via oauth · 2 grades
+   DELETE with scope=grades:read                  → 403  insufficient_scope   WWW-Authenticate: Bearer realm="school", error="insufficient_scope", scope="grades:write"
+   wrong client_secret                            → 401  invalid_client   WWW-Authenticate: Basic realm="token endpoint"
+   grant_type=password                            → 400  unsupported_grant_type: 'password' is not offered: people use authorization_code + PKCE, programs use client_credentials
+   grant_type=refresh_token                       → 200  new access_token Ka1rN5IR… (the old refresh token is now used up)
+   the shape every OAuth server speaks: a FORM to /token, a JSON {access_token, token_type, expires_in, scope} back, errors as {error} — and scope, not identity, decides the 403
+
+✅ seven hall passes, one set of grades — who is asking, how do we know, and for how long
