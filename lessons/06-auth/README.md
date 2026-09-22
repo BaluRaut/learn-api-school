@@ -71,6 +71,13 @@ flowchart LR
 - Transport: all of this is worthless without **TLS** (`https://`) — a
   pass shouted across the playground is not a pass.
 
+> 🪪 **Every kind of hall pass:** this lesson uses an API key. Basic, Bearer tokens,
+> JWT, session cookies, OAuth 2.0 with PKCE, OpenID Connect, HMAC request signing and
+> mutual TLS are each drawn — with 401 vs 403, a decision guide and the mistakes — on
+> [**REST API authentication methods**](https://baluraut.github.io/learn-api-school/auth-methods.html). Six of them run here:
+> `python3 api/auth_demo.py` then `python3 api/auth_client.py` shows every header on the
+> wire, an expired token, a forged JWT, a tampered signature and a replayed request.
+
 ## 🤔 Why
 
 Because the counter is the only place that sees both the slip and the

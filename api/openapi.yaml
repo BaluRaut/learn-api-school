@@ -63,6 +63,25 @@ paths:
         "200": { description: replaced }
         "400": { $ref: "#/components/responses/Error" }
         "404": { $ref: "#/components/responses/Error" }
+    patch:
+      summary: Change part of one student (send only the fields that change)
+      security: [{ApiKey: []}]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name: {type: string}
+                class: {type: string, enum: [3A, 3B]}
+                grade: {type: string, enum: [A+, A, B+, B, C]}
+      responses:
+        "200": {description: The updated student}
+        "400": {description: Unknown field or invalid value}
+        "401": {description: Missing key}
+        "403": {description: Wrong key}
+        "404": {description: No such student}
     delete:
       summary: Remove a student (idempotent — deleting twice is still 204)
       security: [ { apiKey: [] } ]
