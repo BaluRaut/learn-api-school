@@ -19,7 +19,10 @@ study plan, the before-and-trade-offs page, and
 **[every API type](https://baluraut.github.io/learn-api-school/api-types.html)** —
 REST, JSON-RPC, SOAP, GraphQL, gRPC, tRPC, OData, long polling, SSE, WebSocket,
 WebRTC, webhooks, queues, event streams, batch files, libraries, system calls and
-database drivers, on one page.
+database drivers, on one page — plus **[every REST method](https://baluraut.github.io/learn-api-school/rest-methods.html)**
+(GET, HEAD, OPTIONS, POST, PUT, PATCH, DELETE: safe · idempotent · cacheable) and
+**[every authentication method](https://baluraut.github.io/learn-api-school/auth-methods.html)**
+(Basic, API key, Bearer, JWT, cookie, OAuth 2.0, OpenID Connect, HMAC, mTLS).
 
 > 🎒 **Prerequisites:** Python 3 and curl. Nothing else. Good neighbours: the
 > [Database school](https://github.com/BaluRaut/learn-database-school) (the record
@@ -88,6 +91,9 @@ learn-api-school/
 │   ├── webhook_receiver.py   # where the counter calls you back
 │   ├── api_types.py          # the SAME five students as REST · JSON-RPC · GraphQL · long polling · SSE · WebSocket
 │   ├── types_client.py       # one client that exercises all six and prints every byte
+│   ├── methods_demo.sh       # all SEVEN REST methods against the counter, with the headers that prove each rule
+│   ├── auth_demo.py          # the same grades behind SIX auth schemes: Basic · API key · Bearer · JWT · HMAC · cookie
+│   ├── auth_client.py        # every header on the wire, an expired token, a forged JWT, a replayed request
 │   └── expected-output.txt   # what a healthy run prints
 └── docs/                     # the GitHub Pages site
 ```
@@ -109,6 +115,29 @@ Six of them run right here, against the same five students:
 ```bash
 python3 api/api_types.py        # terminal 1 — :8081
 python3 api/types_client.py     # terminal 2 — REST · JSON-RPC · GraphQL · long polling · SSE · WebSocket
+```
+
+## 🔧 Every REST method · 🪪 every authentication method
+
+The counter answers all seven methods — `PATCH` changes one field, `HEAD` gives the
+headers only, `OPTIONS` lists what is allowed (and answers the browser's CORS preflight).
+[Every REST method](https://baluraut.github.io/learn-api-school/rest-methods.html) draws
+each one with the three words that tell them apart, the status codes it returns, and a
+script that proves every rule:
+
+```bash
+python3 api/school_api.py        # terminal 1
+bash api/methods_demo.sh         # terminal 2 — GET · HEAD · OPTIONS · POST · PUT · PATCH · DELETE
+```
+
+[REST API authentication methods](https://baluraut.github.io/learn-api-school/auth-methods.html)
+draws nine ways to show a hall pass — Basic, API key, Bearer token, JWT, session cookie,
+OAuth 2.0 with PKCE, OpenID Connect, HMAC request signing, mutual TLS — with 401 vs 403 and
+the mistakes. Six of them run here, all guarding the same grades:
+
+```bash
+python3 api/auth_demo.py         # terminal 1 — :8082
+python3 api/auth_client.py       # terminal 2 — every header, every 401 and 403
 ```
 
 ## 📜 License
