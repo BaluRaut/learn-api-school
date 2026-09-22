@@ -1,15 +1,16 @@
 <!DOCTYPE html>
-<html lang="en">
+
+<html lang="mr">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Study plan — Learn API School</title>
-<meta name="description" content="A 4-week study plan for the 12-lesson API course: sequence, time estimates, weekly milestones — progress saved in your browser.">
-<meta property="og:title" content="Study plan — Learn API School">
-<meta property="og:description" content="A 4-week study plan for the 12-lesson API course: sequence, time estimates, weekly milestones — progress saved in your browser.">
-<meta property="og:image" content="https://baluraut.github.io/learn-api-school/images/big-picture-4k.png">
-<meta property="og:type" content="website">
-<meta name="twitter:card" content="summary_large_image">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title data-en="Study plan — Learn API School">अभ्यास योजना — Learn API School</title>
+<meta content="A 5-week study plan for the 16-lesson API course: sequence, time estimates, weekly milestones — progress saved in your browser." name="description"/>
+<meta content="Study plan — Learn API School" property="og:title"/>
+<meta content="A 5-week study plan for the 16-lesson API course: sequence, time estimates, weekly milestones — progress saved in your browser." property="og:description"/>
+<meta content="https://baluraut.github.io/learn-api-school/images/big-picture-4k.png" property="og:image"/>
+<meta content="website" property="og:type"/>
+<meta content="summary_large_image" name="twitter:card"/>
 <style>
   :root { --bg:#f8fafc; --card:#fff; --ink:#0f172a; --muted:#475569; --line:#e2e8f0; --accent:#0e7490; --ok:#16a34a; --blue:#2563eb; --bad:#dc2626; }
   @media (prefers-color-scheme: dark) { :root { --bg:#0b1220; --card:#131c2e; --ink:#e2e8f0; --muted:#94a3b8; --line:#253349; } }
@@ -58,56 +59,71 @@
   .milestone b { color:var(--ok); }
   #done { display:none; text-align:center; background:var(--card); border:2px solid var(--ok); border-radius:20px; padding:32px 24px; margin-top:26px; }
 </style>
-</head>
-<body>
 
+<style id="i18n-css">
+#lang-pick{position:fixed;top:10px;right:10px;z-index:9999;font:600 .85rem -apple-system,"Segoe UI",Helvetica,Arial,sans-serif;background:var(--card,#fff);color:var(--ink,#0f172a);border:1px solid var(--line,#e2e8f0);border-radius:999px;padding:6px 12px;box-shadow:0 2px 10px rgba(0,0,0,.08);cursor:pointer}
+html[lang="mr"] body{font-family:"Noto Sans Devanagari","Mukta","Devanagari Sangam MN","Nirmala UI",-apple-system,"Segoe UI",Helvetica,Arial,sans-serif}
+html[lang="mr"] svg text{font-family:"Noto Sans Devanagari","Mukta","Devanagari Sangam MN","Nirmala UI",sans-serif}
+@media print{#lang-pick{display:none}}
+</style></head>
+<body><select aria-label="Language / भाषा" id="lang-pick" onchange="schoolSetLang(this.value)">
+<option value="mr">🇮🇳 मराठी</option><option value="en">🇬🇧 English</option></select>
 <div class="wrap">
 <header>
-  <p><a href="index.html">← Back to the course home</a></p>
-  <h1>🗓️ The study plan — 12 lessons, 4 weeks</h1>
-  <p class="sub">~<b>3 sessions a week</b>: read the lesson (~15 min) + do its lab (~25 min) with the API running. Tick lessons off — <b>progress is saved in this browser</b>.</p>
-  <div class="paces"><div class="pace">🐢 <b>Steady:</b> 3 sessions/week → done in 4 weeks.</div><div class="pace">🐇 <b>Fast track:</b> one weekend per part → done in 2 weekends.</div><div class="pace">💰 <b>Cost:</b> zero. Python 3 + curl on your laptop.</div></div>
+<p data-en='&lt;a href="index.html"&gt;← Back to the course home&lt;/a&gt;'><a href="index.html">← कोर्सच्या मुख्य पानाकडे परत</a></p>
+<h1 data-en="🗓️ The study plan — 16 lessons, 5 weeks">🗓️ अभ्यास योजना — 16 धडे, 5 आठवडे</h1>
+<p class="sub" data-en="~&lt;b&gt;3 sessions a week&lt;/b&gt;: read the lesson (~15 min) + do its lab (~25 min) with the API running. Tick lessons off — &lt;b&gt;progress is saved in this browser&lt;/b&gt;.">~<b>आठवड्याला 3 सत्रे</b>: धडा वाचा (~15 मिनिटे) + API चालू ठेवून त्याची लॅब करा (~25 मिनिटे). धडे टिक करा — <b>प्रगती या ब्राउझरमध्ये जपली जाते</b>.</p>
+<div class="paces"><div class="pace" data-en="🐢 &lt;b&gt;Steady:&lt;/b&gt; 3 sessions/week → done in 5 weeks.">🐢 <b>स्थिर:</b> आठवड्याला 3 सत्रे → 5 आठवड्यांत पूर्ण.</div><div class="pace" data-en="🐇 &lt;b&gt;Fast track:&lt;/b&gt; one weekend per part → done in 3 weekends.">🐇 <b>वेगवान:</b> प्रत्येक भागासाठी एक weekend → 3 weekends मध्ये पूर्ण.</div><div class="pace" data-en="💰 &lt;b&gt;Cost:&lt;/b&gt; zero. Python 3 + curl on your laptop.">💰 <b>खर्च:</b> शून्य. तुमच्या लॅपटॉपवर Python 3 + curl.</div></div>
 </header>
-<div class="progress-box"><div class="progress-inner"><span id="ptext">0 / 12</span><div class="bar"><div id="pbar"></div></div></div></div>
+<div class="progress-box"><div class="progress-inner"><span id="ptext">0 / 16</span><div class="bar"><div id="pbar"></div></div></div></div>
 <section class="week" style="--c:#0e7490">
-  <h2><span class="wk">WEEK 1</span> 🏢 The counter — HTTP and REST</h2>
-  <p class="goal">Why a counter, the slip and the stamp, nouns in cabinets. Lab: run the API, read every status code the smoke test prints.</p>
-  <div class="lesson-row"><input type="checkbox" data-l="l01" id="sl01"><label for="sl01"><a href="https://github.com/BaluRaut/learn-api-school/blob/lesson-01-why-apis/lessons/01-why-apis/README.md">01 · 🏢 Why APIs</a></label><span class="time">~35 min</span></div>
-  <div class="lesson-row"><input type="checkbox" data-l="l02" id="sl02"><label for="sl02"><a href="https://github.com/BaluRaut/learn-api-school/blob/lesson-02-http-anatomy/lessons/02-http-anatomy/README.md">02 · 📨 HTTP anatomy</a></label><span class="time">~40 min</span></div>
-  <div class="lesson-row"><input type="checkbox" data-l="l03" id="sl03"><label for="sl03"><a href="https://github.com/BaluRaut/learn-api-school/blob/lesson-03-rest-resources/lessons/03-rest-resources/README.md">03 · 🗄️ REST resources</a></label><span class="time">~40 min</span></div>
-  <div class="milestone">🏁 <b>Checkpoint:</b> you can name the method, path, headers, status and body of any request in the smoke test — and say which verbs are safe to repeat.</div>
+<h2 data-en='&lt;span class="wk"&gt;WEEK 1&lt;/span&gt; 🏢 The counter — HTTP and REST'><span class="wk">आठवडा 1</span> 🏢 काउंटर — HTTP आणि REST</h2>
+<p class="goal" data-en="Why a counter, the slip and the stamp, nouns in cabinets. Lab: run the API, read every status code the smoke test prints.">काउंटर का, चिठ्ठी आणि शिक्का, कपाटांतली नामे. लॅब: API चालवा, smoke test छापतो तो प्रत्येक status code वाचा.</p>
+<div class="lesson-row"><input data-l="l01" id="sl01" type="checkbox"/><label data-en='&lt;a href="https://github.com/BaluRaut/learn-api-school/blob/lesson-01-why-apis/lessons/01-why-apis/README.md"&gt;01 · 🏢 Why APIs&lt;/a&gt;' for="sl01"><a href="https://github.com/BaluRaut/learn-api-school/blob/lesson-01-why-apis/lessons/01-why-apis/README.md">01 · 🏢 API का</a></label><span class="time" data-en="~35 min">~35 मि.</span></div>
+<div class="lesson-row"><input data-l="l02" id="sl02" type="checkbox"/><label data-en='&lt;a href="https://github.com/BaluRaut/learn-api-school/blob/lesson-02-http-anatomy/lessons/02-http-anatomy/README.md"&gt;02 · 📨 HTTP anatomy&lt;/a&gt;' for="sl02"><a href="https://github.com/BaluRaut/learn-api-school/blob/lesson-02-http-anatomy/lessons/02-http-anatomy/README.md">02 · 📨 HTTP ची रचना</a></label><span class="time" data-en="~40 min">~40 मि.</span></div>
+<div class="lesson-row"><input data-l="l03" id="sl03" type="checkbox"/><label for="sl03"><a href="https://github.com/BaluRaut/learn-api-school/blob/lesson-03-rest-resources/lessons/03-rest-resources/README.md">03 · 🗄️ REST resources</a></label><span class="time" data-en="~40 min">~40 मि.</span></div>
+<div class="milestone" data-en="🏁 &lt;b&gt;Checkpoint:&lt;/b&gt; you can name the method, path, headers, status and body of any request in the smoke test — and say which verbs are safe to repeat.">🏁 <b>टप्पा:</b> smoke test मधल्या कोणत्याही विनंतीचे method, path, headers, status आणि body तुम्ही सांगू शकता — आणि कोणती क्रियापदे पुन्हा करायला सुरक्षित तेही.</div>
 </section>
 <section class="week" style="--c:#0e7490">
-  <h2><span class="wk">WEEK 2</span> 📋 Forms and passes — schemas, the build, auth</h2>
-  <p class="goal">The standard form, the four parts of the server, the hall pass. Lab: add a field with validation; add a second key.</p>
-  <div class="lesson-row"><input type="checkbox" data-l="l04" id="sl04"><label for="sl04"><a href="https://github.com/BaluRaut/learn-api-school/blob/lesson-04-json-and-schemas/lessons/04-json-and-schemas/README.md">04 · 📋 JSON &amp; schemas</a></label><span class="time">~40 min</span></div>
-  <div class="lesson-row"><input type="checkbox" data-l="l05" id="sl05"><label for="sl05"><a href="https://github.com/BaluRaut/learn-api-school/blob/lesson-05-build-an-api/lessons/05-build-an-api/README.md">05 · 🔬 Build an API</a></label><span class="time">~45 min</span></div>
-  <div class="lesson-row"><input type="checkbox" data-l="l06" id="sl06"><label for="sl06"><a href="https://github.com/BaluRaut/learn-api-school/blob/lesson-06-auth/lessons/06-auth/README.md">06 · 🪪 Auth</a></label><span class="time">~40 min</span></div>
-  <div class="milestone">🏁 <b>Checkpoint:</b> a bad form gets a 400 with a problems list you wrote; a write without a pass gets a 401; you can point at all four parts in school_api.py.</div>
+<h2 data-en='&lt;span class="wk"&gt;WEEK 2&lt;/span&gt; 📋 Forms and passes — schemas, the build, auth'><span class="wk">आठवडा 2</span> 📋 फॉर्म आणि पास — schemas, बांधणी, auth</h2>
+<p class="goal" data-en="The standard form, the four parts of the server, the hall pass. Lab: add a field with validation; add a second key.">प्रमाणित फॉर्म, server चे चार भाग, हॉल पास. लॅब: validation सह एक field जोडा; दुसरी key जोडा.</p>
+<div class="lesson-row"><input data-l="l04" id="sl04" type="checkbox"/><label for="sl04"><a href="https://github.com/BaluRaut/learn-api-school/blob/lesson-04-json-and-schemas/lessons/04-json-and-schemas/README.md">04 · 📋 JSON &amp; schemas</a></label><span class="time" data-en="~40 min">~40 मि.</span></div>
+<div class="lesson-row"><input data-l="l05" id="sl05" type="checkbox"/><label data-en='&lt;a href="https://github.com/BaluRaut/learn-api-school/blob/lesson-05-build-an-api/lessons/05-build-an-api/README.md"&gt;05 · 🔬 Build an API&lt;/a&gt;' for="sl05"><a href="https://github.com/BaluRaut/learn-api-school/blob/lesson-05-build-an-api/lessons/05-build-an-api/README.md">05 · 🔬 API बांधा</a></label><span class="time" data-en="~45 min">~45 मि.</span></div>
+<div class="lesson-row"><input data-l="l06" id="sl06" type="checkbox"/><label for="sl06"><a href="https://github.com/BaluRaut/learn-api-school/blob/lesson-06-auth/lessons/06-auth/README.md">06 · 🪪 Auth</a></label><span class="time" data-en="~40 min">~40 मि.</span></div>
+<div class="milestone" data-en="🏁 &lt;b&gt;Checkpoint:&lt;/b&gt; a bad form gets a 400 with a problems list you wrote; a write without a pass gets a 401; you can point at all four parts in school_api.py.">🏁 <b>टप्पा:</b> चुकीच्या फॉर्मला तुम्ही लिहिलेल्या problems यादीसह 400 मिळतो; पास नसलेल्या लिहिण्याला 401; school_api.py मधले चारही भाग तुम्ही दाखवू शकता.</div>
 </section>
 <section class="week" style="--c:#c2410c">
-  <h2><span class="wk">WEEK 3</span> ⚠️ Running it — errors, pages, versions</h2>
-  <p class="goal">Receipt numbers, cursors, additive changes. Lab: retry a POST with the same key; page through with cursor; add a field without breaking v1.</p>
-  <div class="lesson-row"><input type="checkbox" data-l="l07" id="sl07"><label for="sl07"><a href="https://github.com/BaluRaut/learn-api-school/blob/lesson-07-errors-idempotency/lessons/07-errors-idempotency/README.md">07 · ⚠️ Errors &amp; idempotency</a></label><span class="time">~40 min</span></div>
-  <div class="lesson-row"><input type="checkbox" data-l="l08" id="sl08"><label for="sl08"><a href="https://github.com/BaluRaut/learn-api-school/blob/lesson-08-pagination-filtering/lessons/08-pagination-filtering/README.md">08 · 📚 Pagination &amp; filtering</a></label><span class="time">~35 min</span></div>
-  <div class="lesson-row"><input type="checkbox" data-l="l09" id="sl09"><label for="sl09"><a href="https://github.com/BaluRaut/learn-api-school/blob/lesson-09-versioning/lessons/09-versioning/README.md">09 · 🔢 Versioning</a></label><span class="time">~35 min</span></div>
-  <div class="milestone">🏁 <b>Checkpoint:</b> the same Idempotency-Key twice files one student; you paged to the end with cursors; you wrote a one-paragraph deprecation note for a v2.</div>
+<h2 data-en='&lt;span class="wk"&gt;WEEK 3&lt;/span&gt; ⚠️ Running it — errors, pages, versions'><span class="wk">आठवडा 3</span> ⚠️ चालवणे — चुका, पाने, आवृत्त्या</h2>
+<p class="goal" data-en="Receipt numbers, cursors, additive changes. Lab: retry a POST with the same key; page through with cursor; add a field without breaking v1.">पावती क्रमांक, cursors, additive बदल. लॅब: त्याच key ने POST पुन्हा करा; cursor ने पाने पालटा; v1 न मोडता field जोडा.</p>
+<div class="lesson-row"><input data-l="l07" id="sl07" type="checkbox"/><label data-en='&lt;a href="https://github.com/BaluRaut/learn-api-school/blob/lesson-07-errors-idempotency/lessons/07-errors-idempotency/README.md"&gt;07 · ⚠️ Errors &amp;amp; idempotency&lt;/a&gt;' for="sl07"><a href="https://github.com/BaluRaut/learn-api-school/blob/lesson-07-errors-idempotency/lessons/07-errors-idempotency/README.md">07 · ⚠️ चुका &amp; idempotency</a></label><span class="time" data-en="~40 min">~40 मि.</span></div>
+<div class="lesson-row"><input data-l="l08" id="sl08" type="checkbox"/><label for="sl08"><a href="https://github.com/BaluRaut/learn-api-school/blob/lesson-08-pagination-filtering/lessons/08-pagination-filtering/README.md">08 · 📚 Pagination &amp; filtering</a></label><span class="time" data-en="~35 min">~35 मि.</span></div>
+<div class="lesson-row"><input data-l="l09" id="sl09" type="checkbox"/><label for="sl09"><a href="https://github.com/BaluRaut/learn-api-school/blob/lesson-09-versioning/lessons/09-versioning/README.md">09 · 🔢 Versioning</a></label><span class="time" data-en="~35 min">~35 मि.</span></div>
+<div class="milestone" data-en="🏁 &lt;b&gt;Checkpoint:&lt;/b&gt; the same Idempotency-Key twice files one student; you paged to the end with cursors; you wrote a one-paragraph deprecation note for a v2.">🏁 <b>टप्पा:</b> तीच Idempotency-Key दोनदा दिली तरी एकच विद्यार्थी नोंदला जातो; cursors ने तुम्ही शेवटपर्यंत पाने पालटली; v2 साठी एक परिच्छेदाची deprecation टीप लिहिली.</div>
 </section>
 <section class="week" style="--c:#c2410c">
-  <h2><span class="wk">WEEK 4</span> 🚪 The queue, the callback, the gate</h2>
-  <p class="goal">Limits, caching, webhooks, contract tests and the gateway. Lab: trigger 429 and back off; register a webhook; run the smoke test as a CI check.</p>
-  <div class="lesson-row"><input type="checkbox" data-l="l10" id="sl10"><label for="sl10"><a href="https://github.com/BaluRaut/learn-api-school/blob/lesson-10-rate-limits-caching/lessons/10-rate-limits-caching/README.md">10 · ⏱️ Rate limits &amp; caching</a></label><span class="time">~45 min</span></div>
-  <div class="lesson-row"><input type="checkbox" data-l="l11" id="sl11"><label for="sl11"><a href="https://github.com/BaluRaut/learn-api-school/blob/lesson-11-beyond-rest/lessons/11-beyond-rest/README.md">11 · 🔀 Beyond REST</a></label><span class="time">~40 min</span></div>
-  <div class="lesson-row"><input type="checkbox" data-l="l12" id="sl12"><label for="sl12"><a href="https://github.com/BaluRaut/learn-api-school/blob/lesson-12-testing-docs-gateway/lessons/12-testing-docs-gateway/README.md">12 · 🚪 Testing, docs &amp; the gateway</a></label><span class="time">~45 min</span></div>
-  <div class="milestone">🏁 <b>Checkpoint:</b> 🏆 <b>Capstone:</b> add one resource of your own (homework) with schema, auth, pagination, ETag and a smoke test — and explain the whole request path out loud, gate to record room.</div>
+<h2 data-en='&lt;span class="wk"&gt;WEEK 4&lt;/span&gt; 🚪 The queue, the callback, the gate'><span class="wk">आठवडा 4</span> 🚪 रांग, परत-कॉल, गेट</h2>
+<p class="goal" data-en="Limits, caching, webhooks, contract tests and the gateway. Lab: trigger 429 and back off; register a webhook; run the smoke test as a CI check.">Limits, caching, webhooks, contract tests आणि gateway. लॅब: 429 घडवा आणि backoff करा; webhook नोंदवा; smoke test CI तपासणी म्हणून चालवा.</p>
+<div class="lesson-row"><input data-l="l10" id="sl10" type="checkbox"/><label for="sl10"><a href="https://github.com/BaluRaut/learn-api-school/blob/lesson-10-rate-limits-caching/lessons/10-rate-limits-caching/README.md">10 · ⏱️ Rate limits &amp; caching</a></label><span class="time" data-en="~45 min">~45 मि.</span></div>
+<div class="lesson-row"><input data-l="l11" id="sl11" type="checkbox"/><label data-en='&lt;a href="https://github.com/BaluRaut/learn-api-school/blob/lesson-11-beyond-rest/lessons/11-beyond-rest/README.md"&gt;11 · 🔀 Beyond REST&lt;/a&gt;' for="sl11"><a href="https://github.com/BaluRaut/learn-api-school/blob/lesson-11-beyond-rest/lessons/11-beyond-rest/README.md">11 · 🔀 REST च्या पलीकडे</a></label><span class="time" data-en="~40 min">~40 मि.</span></div>
+<div class="lesson-row"><input data-l="l12" id="sl12" type="checkbox"/><label data-en='&lt;a href="https://github.com/BaluRaut/learn-api-school/blob/lesson-12-testing-docs-gateway/lessons/12-testing-docs-gateway/README.md"&gt;12 · 🚪 Testing, docs &amp;amp; the gateway&lt;/a&gt;' for="sl12"><a href="https://github.com/BaluRaut/learn-api-school/blob/lesson-12-testing-docs-gateway/lessons/12-testing-docs-gateway/README.md">12 · 🚪 चाचण्या, docs &amp; gateway</a></label><span class="time" data-en="~45 min">~45 मि.</span></div>
+<div class="milestone" data-en="🏁 &lt;b&gt;Checkpoint:&lt;/b&gt; 🏆 &lt;b&gt;Capstone:&lt;/b&gt; add one resource of your own (homework) with schema, auth, pagination, ETag and a smoke test — and explain the whole request path out loud, gate to record room.">🏁 <b>टप्पा:</b> 🏆 <b>कळस-प्रकल्प:</b> schema, auth, pagination, ETag आणि smoke test सह स्वतःचा एक resource (homework) जोडा — आणि गेटपासून रेकॉर्ड रूमपर्यंतचा संपूर्ण विनंतीचा प्रवास मोठ्याने समजावा.</div>
+</section>
+<section class="week" style="--c:#0f766e">
+<h2 data-en='&lt;span class="wk"&gt;WEEK 5&lt;/span&gt; 🗺️ The full maps — methods, passes, types, tests'><span class="wk">आठवडा 5</span> 🗺️ संपूर्ण नकाशे — methods, पास, प्रकार, चाचण्या</h2>
+<p class="goal" data-en="The reference lessons. Lab: run methods_demo.sh, auth_client.py and types_client.py; pick one API you use at work and place it on the master tables.">संदर्भ धडे. लॅब: methods_demo.sh, auth_client.py आणि types_client.py चालवा; कामात वापरता ते एक API निवडा आणि मुख्य तक्त्यांवर बसवा.</p>
+<div class="lesson-row"><input data-l="l13" id="sl13" type="checkbox"/><label data-en='&lt;a href="https://github.com/BaluRaut/learn-api-school/blob/lesson-13-rest-methods/lessons/13-rest-methods/README.md"&gt;13 · 🔧 Every REST method&lt;/a&gt;' for="sl13"><a href="https://github.com/BaluRaut/learn-api-school/blob/lesson-13-rest-methods/lessons/13-rest-methods/README.md">13 · 🔧 प्रत्येक REST method</a></label><span class="time" data-en="~45 min">~45 मि.</span></div>
+<div class="lesson-row"><input data-l="l14" id="sl14" type="checkbox"/><label data-en='&lt;a href="https://github.com/BaluRaut/learn-api-school/blob/lesson-14-auth-methods/lessons/14-auth-methods/README.md"&gt;14 · 🪪 Every authentication method&lt;/a&gt;' for="sl14"><a href="https://github.com/BaluRaut/learn-api-school/blob/lesson-14-auth-methods/lessons/14-auth-methods/README.md">14 · 🪪 प्रत्येक authentication पद्धत</a></label><span class="time" data-en="~50 min">~50 मिनिटे</span></div>
+<div class="lesson-row"><input data-l="l15" id="sl15" type="checkbox"/><label data-en='&lt;a href="https://github.com/BaluRaut/learn-api-school/blob/lesson-15-api-types/lessons/15-api-types/README.md"&gt;15 · 🔀 Every API type&lt;/a&gt;' for="sl15"><a href="https://github.com/BaluRaut/learn-api-school/blob/lesson-15-api-types/lessons/15-api-types/README.md">15 · 🔀 प्रत्येक API प्रकार</a></label><span class="time" data-en="~50 min">~50 मिनिटे</span></div>
+<div class="lesson-row"><input data-l="l16" id="sl16" type="checkbox"/><label data-en='&lt;a href="https://github.com/BaluRaut/learn-api-school/blob/lesson-16-testing-types/lessons/16-testing-types/README.md"&gt;16 · 🧪 Every kind of API test&lt;/a&gt;' for="sl16"><a href="https://github.com/BaluRaut/learn-api-school/blob/lesson-16-testing-types/lessons/16-testing-types/README.md">16 · 🧪 API चाचणीचा प्रत्येक प्रकार</a></label><span class="time" data-en="~40 min">~40 मि.</span></div>
+<div class="milestone" data-en="🏁 &lt;b&gt;Checkpoint:&lt;/b&gt; you can name all seven methods with their three words, pick an auth method for a person and for a program, place any API on the four families, and say which of the nine tests you would run first.">🏁 <b>टप्पा:</b> सातही methods त्यांच्या तीन शब्दांसह तुम्ही नावाने सांगू शकता, व्यक्तीसाठी आणि प्रोग्रामसाठी auth पद्धत निवडू शकता, कोणतेही API चार कुटुंबांवर बसवू शकता, आणि नऊ चाचण्यांपैकी कोणती आधी चालवाल ते सांगू शकता.</div>
 </section>
 <div id="done">
-  <h2>🎓 12 / 12 — the counter is yours!</h2>
-  <p class="sub" style="margin:10px auto 0">Next: the <a href="https://baluraut.github.io/learn-database-school/">Database school</a> makes the record room durable, the <a href="https://baluraut.github.io/learn-ui-school/">UI school</a> builds the notice board that calls this API, and the <a href="https://baluraut.github.io/school/">School portal</a> has the rest.</p>
+<h2 data-en="🎓 16 / 16 — the counter is yours!">🎓 16 / 16 — काउंटर तुमचे झाले!</h2>
+<p class="sub" data-en='Next: the &lt;a href="https://baluraut.github.io/learn-database-school/"&gt;Database school&lt;/a&gt; makes the record room durable, the &lt;a href="https://baluraut.github.io/learn-ui-school/"&gt;UI school&lt;/a&gt; builds the notice board that calls this API, and the &lt;a href="https://baluraut.github.io/school/"&gt;School portal&lt;/a&gt; has the rest.' style="margin:10px auto 0">पुढे: <a href="https://baluraut.github.io/learn-database-school/">Database शाळा</a> रेकॉर्ड रूम टिकाऊ करते, <a href="https://baluraut.github.io/learn-ui-school/">UI शाळा</a> या API ला कॉल करणारा सूचना फलक बांधते, आणि बाकीचे <a href="https://baluraut.github.io/school/">शाळेच्या पोर्टलवर</a>.</p>
 </div>
-<footer>
-  Learn API School · the counter is in the repo · <a href="index.html">Course home</a> · <a href="lesson-diagrams.html">Lesson diagrams</a> · <a href="https://github.com/BaluRaut/learn-api-school">GitHub</a> · <a href="https://baluraut.github.io/school/dictionary.html">📖 the Dictionary</a> · <a href="https://baluraut.github.io/school/">🏫 all schools</a> · <a href="https://github.com/BaluRaut/learn-api-school/issues">🐛 found a mistake?</a>
-</footer>
+<footer data-en='
+  Learn API School · the counter is in the repo · &lt;a href="index.html"&gt;Course home&lt;/a&gt; · &lt;a href="lesson-diagrams.html"&gt;Lesson diagrams&lt;/a&gt; · &lt;a href="https://github.com/BaluRaut/learn-api-school"&gt;GitHub&lt;/a&gt; · &lt;a href="https://baluraut.github.io/school/dictionary.html"&gt;📖 the Dictionary&lt;/a&gt; · &lt;a href="https://baluraut.github.io/school/"&gt;🏫 all schools&lt;/a&gt; · &lt;a href="https://github.com/BaluRaut/learn-api-school/issues"&gt;🐛 found a mistake?&lt;/a&gt;
+'>Learn API School · काउंटर रेपोच्या आत आहे · <a href="index.html">कोर्स मुख्य पान</a> · <a href="lesson-diagrams.html">धड्यांच्या आकृत्या</a> · <a href="https://github.com/BaluRaut/learn-api-school">GitHub</a> · <a href="https://baluraut.github.io/school/dictionary.html">📖 शब्दकोश</a> · <a href="https://baluraut.github.io/school/">🏫 सर्व शाळा</a> · <a href="https://github.com/BaluRaut/learn-api-school/issues">🐛 चूक सापडली?</a></footer>
 </div>
 <script>
 (function(){
@@ -128,5 +144,22 @@
   render();
 })();
 </script>
-</body>
+
+<script id="i18n-js">
+function schoolSetLang(l){
+  try{localStorage.setItem('school-lang',l)}catch(e){}
+  document.documentElement.setAttribute('lang',l);
+  document.querySelectorAll('[data-en]').forEach(function(el){
+    if(!el.hasAttribute('data-mr')) el.setAttribute('data-mr', el.innerHTML);
+    el.innerHTML = (l==='en') ? el.getAttribute('data-en') : el.getAttribute('data-mr');
+  });
+  document.querySelectorAll('[data-en-ph]').forEach(function(el){
+    if(!el.hasAttribute('data-mr-ph')) el.setAttribute('data-mr-ph', el.getAttribute('placeholder'));
+    el.setAttribute('placeholder', (l==='en') ? el.getAttribute('data-en-ph') : el.getAttribute('data-mr-ph'));
+  });
+  var p=document.getElementById('lang-pick'); if(p) p.value=l;
+}
+(function(){ var l='mr'; try{ l=localStorage.getItem('school-lang')||'mr'; }catch(e){}
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',function(){schoolSetLang(l)}); else schoolSetLang(l); })();
+</script></body>
 </html>

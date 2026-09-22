@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1160" font-family="-apple-system, 'Segoe UI', Helvetica, Arial, sans-serif">
   <defs><marker id="arw" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#64748b"/></marker></defs>
   <style>
-    .band1 { fill: #fff; stroke: #0e7490; stroke-width: 3; } .band2 { fill: #fff; stroke: #c2410c; stroke-width: 3; }
+    .band1 { fill: #fff; stroke: #0e7490; stroke-width: 3; } .band2 { fill: #fff; stroke: #c2410c; stroke-width: 3; } .band3 { fill: #f0fdfa; stroke: #0f766e; stroke-width: 3; } .bandt3 { font-size: 22px; font-weight: 800; fill: #0f766e; }
     .bx { fill: #f8fafc; stroke: #94a3b8; stroke-width: 2; } .bxp { fill: #fff; stroke: #0e7490; stroke-width: 2.5; } .bxo { fill: #fff; stroke: #c2410c; stroke-width: 2.5; }
     .warn { fill: #fef2f2; stroke: #dc2626; stroke-width: 1.5; stroke-dasharray: 7 6; } .tip { fill: #ecfeff; stroke: #0e7490; stroke-width: 1.5; } .win { fill: #fff7ed; stroke: #c2410c; stroke-width: 1.5; }
     .title { font-size: 36px; font-weight: 800; fill: #0f172a; } .bandt { font-size: 26px; font-weight: 800; }
@@ -54,7 +54,7 @@
 
   <text class="t m" x="960" y="590">python3 api/school_api.py · bash api/smoke_test.sh — the whole course, in curl, in 60 seconds</text>
 
-  <rect class="band2" x="40" y="620" width="1840" height="500" rx="20"/>
+  <rect class="band2" x="40" y="620" width="1840" height="465" rx="20"/>
   <text class="bandt" x="70" y="662" fill="#c2410c">🏃 PART 2 — RUNNING THE COUNTER (lessons 7–12)</text>
 
   <rect class="bxo" x="70" y="700" width="420" height="200" rx="14"/>
@@ -93,8 +93,11 @@
   <text class="s m" x="1655" y="869">(AWS API Gateway · Kubernetes Ingress)</text>
   <g transform="translate(1460,700)"><circle r="13" fill="#c2410c"/><text class="ntb" dy="5">4</text></g>
 
-  <rect class="win" x="70" y="950" width="1780" height="140" rx="14"/>
-  <text class="t m" x="960" y="990">🧭 read one counter, read them all: slip → clerk → stamp · nouns + safe verbs · one form, one error shape · a pass for writes</text>
-  <text class="s m" x="960" y="1020">receipts for retries · cursors for pages · additive changes · a fair queue and a cached copy · a callback when it matters · a gate in front</text>
-  <text class="s m" x="960" y="1050">siblings: the Database school is the record room behind this counter · the UI school is the notice board that fills in these slips · AWS L25 rents the gate</text>
+  <rect class="win" x="70" y="950" width="1780" height="118" rx="14"/>
+  <text class="t m" x="960" y="984">🧭 read one counter, read them all: slip → clerk → stamp · nouns + safe verbs · one form, one error shape · a pass for writes</text>
+  <text class="s m" x="960" y="1012">receipts for retries · cursors for pages · additive changes · a fair queue and a cached copy · a callback when it matters · a gate in front</text>
+  <text class="s m" x="960" y="1040">siblings: the Database school is the record room behind this counter · the UI school is the notice board that fills in these slips · AWS L25 rents the gate</text>
+
+  <rect class="band3" x="40" y="1098" width="1840" height="54" rx="14"/>
+  <text class="bandt3" x="70" y="1133">🗺️ PART 3 — THE FULL MAPS (lessons 13–16): every REST method 🔧 · every authentication method 🪪 · every API type 🔀 · every kind of API test 🧪 — each drawn one per row, runnable where it can be</text>
 </svg>
