@@ -1,0 +1,46 @@
+
+── GET — read it · safe · idempotent · cacheable
+   HTTP/1.0 200 OK
+   ETag: "0e9a0b7538b2ac15"
+   Cache-Control: private, max-age=30
+   {"id": 2, "name": "Sita", "class": "3A", "grade": "A+"}
+
+── HEAD — GET's headers without the body: same ETag and Content-Length, zero bytes of body
+   HTTP/1.0 200 OK
+   Content-Length: 55
+   ETag: "0e9a0b7538b2ac15"
+
+── OPTIONS — what may I do here? (also the browser's CORS preflight)
+   HTTP/1.0 204 No Content
+   Allow: GET, HEAD, PUT, PATCH, DELETE, OPTIONS
+   Access-Control-Allow-Methods: GET, HEAD, PUT, PATCH, DELETE, OPTIONS
+
+── POST — create a NEW one · NOT idempotent: the same form twice = two students (unless Idempotency-Key, lesson 07)
+   HTTP/1.0 201 Created
+   Location: /v1/students/6
+   HTTP/1.0 201 Created
+   Location: /v1/students/7
+
+── PUT — REPLACE the whole student · idempotent: twice = the same student
+{"id": 2, "name": "Sita", "class": "3B", "grade": "A+"}
+{"id": 2, "name": "Sita", "class": "3B", "grade": "A+"}
+
+── PUT with only one field — a replace means ALL the fields, so this is a 400 with problems
+{"error": {"code": "validation_failed", "message": "The form has problems.", "problems": [{"field": "name", "problem": "required, non-empty string"}, {"field": "class", "problem": "must be one of ['3A', '3B']"}]}}
+
+── PATCH — change PART of the student: send only what changes
+{"id": 2, "name": "Sita", "class": "3B", "grade": "A"}
+
+── PATCH with a field that does not exist — 400, never a silent ignore
+{"error": {"code": "validation_failed", "message": "Unknown fields.", "problems": [{"field": "nickname", "problem": "not a student field"}]}}
+
+── DELETE — remove it · idempotent: the second DELETE is still 204, because the state is the same (gone)
+   first:  204   second: 204   GET afterwards: 404
+
+── the unsafe methods need the hall pass (lesson 06); the safe ones never do
+   DELETE without a key: 401   GET without a key: 200
+
+── and one that is NOT a method: /students/5/delete as a GET is a smell — GET must never change anything
+   404  ← 404: no such noun, and no verb hidden in the URL
+
+✅ seven methods, one counter — safe · idempotent · body · cacheable decide which one you reach for
