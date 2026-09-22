@@ -16,9 +16,8 @@ Lessons 01–10, **plus** the other shapes a counter can take — **GraphQL**,
 > 🔀 **The full map:** this lesson teaches the four shapes you meet most. Every
 > other type — SOAP, tRPC, OData, WebRTC, queues, event streams, batch files,
 > and the APIs that never touch a network (libraries, system calls, database
-> drivers) — is on the course's
-> [**every API type**](https://baluraut.github.io/learn-api-school/api-types.html)
-> page: one master table, four families, and a decision guide.
+> drivers) — is
+> [**lesson 15 — every API type**](https://baluraut.github.io/learn-api-school/lesson-diagrams.html#l15): one master table, four families, and a decision guide.
 
 ## 🧒 Explain like I'm 5
 
@@ -78,7 +77,7 @@ flowchart LR
   HTTP request (`101 Switching Protocols`) into one socket *both* sides may
   use — chat, cursors, live dashboards.
 - **Also in the family** (see the [every API type](https://baluraut.github.io/learn-api-school/api-types.html)
-  page): **SOAP/XML-RPC** — the notarised envelope you will meet in banking;
+  lesson 15): **SOAP/XML-RPC** — the notarised envelope you will meet in banking;
   **tRPC** — typed calls inside one TypeScript codebase; **OData** — REST
   with a query language; **WebRTC** — peer to peer for media; **batch file
   drops** (SFTP, CSV) — still how payroll and banking move millions of rows;

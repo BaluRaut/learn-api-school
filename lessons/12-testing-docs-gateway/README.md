@@ -64,9 +64,8 @@ flowchart LR
 
 > 🧪 **The full testing map:** this lesson builds the smoke test and the contract
 > test. The other seven kinds — functional, integration, regression, load, stress,
-> security, fuzz — and the UI kind are drawn one per row on the course's
-> [**nine ways to test a counter**](https://baluraut.github.io/learn-api-school/api-types.html#testing)
-> gallery, each with how you would run it against this counter.
+> security, fuzz — and the UI kind are drawn one per row in
+> [**lesson 16 — every kind of API test**](https://baluraut.github.io/learn-api-school/lesson-diagrams.html#l16), each with how you would run it against this counter.
 
 ## 🤔 Why
 
