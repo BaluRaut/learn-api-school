@@ -68,8 +68,8 @@ flowchart TB
 > 🔧 **PUT vs PATCH vs POST, and the other four:** the counter now answers all seven
 > methods — `PATCH /v1/students/2 {"grade":"A"}` changes one field, `HEAD` gives the
 > headers only, `OPTIONS` lists what is allowed. Each is drawn, with the three words
-> (safe · idempotent · cacheable) and its status codes, on
-> [**every REST method**](https://baluraut.github.io/learn-api-school/rest-methods.html); `bash api/methods_demo.sh` proves
+> (safe · idempotent · cacheable) and its status codes, in
+> [**lesson 13 — every REST method**](https://baluraut.github.io/learn-api-school/lesson-diagrams.html#l13); `bash api/methods_demo.sh` proves
 > every rule on the running counter.
 
 ## 🤔 Why
