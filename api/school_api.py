@@ -2,7 +2,8 @@
 
 Zero dependencies: the standard library's http.server. Every idea in the course is a
 few readable lines here: routes, status codes, validation, API keys, idempotency keys,
-pagination, ETags, rate limits, versioning, request logs.
+pagination, ETags, rate limits, versioning, request logs — and all seven REST methods
+(GET, HEAD, OPTIONS, POST, PUT, PATCH, DELETE; see docs/rest-methods.html).
 
     python3 api/school_api.py            # serves http://127.0.0.1:8080/v1/...
     bash api/smoke_test.sh               # the whole course, in curl
@@ -61,7 +62,7 @@ class Handler(BaseHTTPRequestHandler):
             self.send_header(k, v)
         self.end_headers()
         if data:
-            self.wfile.write(data)
+            if not getattr(self, "head_only", False): self.wfile.write(data)   # HEAD: headers only
         self.log_line(status)
 
     def error(self, status, code, message, hint=None, **extra):
@@ -210,6 +211,46 @@ class Handler(BaseHTTPRequestHandler):
             return self.error(400, "validation_failed", "The form has problems.", problems=problems)
         STUDENTS[sid] = {"id": sid, "name": body["name"].strip(), "class": body["class"], "grade": body.get("grade", "C")}
         self.send(200, STUDENTS[sid], {"ETag": etag_of(STUDENTS[sid])})
+
+    def do_PATCH(self):
+        """Lesson 03: change PART of one student — send only the fields that change (PUT replaces the whole thing)."""
+        p = self.route()
+        if p is None: return
+        if len(p) != 2 or p[0] != "students" or not p[1].isdigit():
+            return self.error(404, "not_found", "PATCH changes part of one student: /v1/students/{id}.")
+        if not self.authorized(): return
+        sid = int(p[1])
+        if sid not in STUDENTS:
+            return self.error(404, "not_found", f"No student with id {sid}.")
+        body = self.read_json()
+        if body is None: return
+        if not isinstance(body, dict) or not body:
+            return self.error(400, "validation_failed", "Send a JSON object with the fields to change.")
+        unknown = [k for k in body if k not in ("name", "class", "grade")]
+        if unknown:
+            return self.error(400, "validation_failed", "Unknown fields.", problems=[{"field": k, "problem": "not a student field"} for k in unknown])
+        merged = {**STUDENTS[sid], **body}
+        problems = validate_student(merged)
+        if problems:
+            return self.error(400, "validation_failed", "The form has problems.", problems=problems)
+        STUDENTS[sid] = {"id": sid, "name": merged["name"].strip(), "class": merged["class"], "grade": merged.get("grade", "C")}
+        self.send(200, STUDENTS[sid], {"ETag": etag_of(STUDENTS[sid])})
+
+    def do_HEAD(self):
+        """Lesson 02: GET's headers without the body — 'is it there, has it changed?' for the price of the envelope."""
+        self.head_only = True
+        self.do_GET()
+
+    def do_OPTIONS(self):
+        """Lesson 02: 'what may I do here?' — and the browser's CORS preflight before a cross-origin write (UI school, lesson 11)."""
+        p = self.route()
+        if p is None: return
+        if p == ["students"]:                         allow = "GET, HEAD, POST, OPTIONS"
+        elif len(p) == 2 and p[0] == "students":     allow = "GET, HEAD, PUT, PATCH, DELETE, OPTIONS"
+        else:                                          allow = "GET, HEAD, OPTIONS"
+        self.send(204, None, {"Allow": allow, "Access-Control-Allow-Origin": "*", "Access-Control-Allow-Methods": allow,
+                              "Access-Control-Allow-Headers": "Content-Type, X-API-Key, Idempotency-Key, If-None-Match",
+                              "Access-Control-Max-Age": "600"})
 
     def do_DELETE(self):
         p = self.route()
