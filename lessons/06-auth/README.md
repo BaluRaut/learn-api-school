@@ -73,8 +73,9 @@ flowchart LR
 
 > 🪪 **Every kind of hall pass:** this lesson uses an API key. Basic, Bearer tokens,
 > JWT, session cookies, OAuth 2.0 with PKCE, OpenID Connect, HMAC request signing and
-> mutual TLS are each drawn — with 401 vs 403, a decision guide and the mistakes — on
-> [**REST API authentication methods**](https://baluraut.github.io/learn-api-school/auth-methods.html). Six of them run here:
+> mutual TLS are each drawn — with every OAuth grant type, 401 vs 403, a decision guide and
+> the mistakes — on [**REST API authentication methods**](https://baluraut.github.io/learn-api-school/auth-methods.html).
+> Seven of them run here (including an OAuth token endpoint that refuses `grant_type=password`):
 > `python3 api/auth_demo.py` then `python3 api/auth_client.py` shows every header on the
 > wire, an expired token, a forged JWT, a tampered signature and a replayed request.
 

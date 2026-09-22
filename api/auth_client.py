@@ -70,4 +70,26 @@ print(f"   POST /login                                    → {st}  Set-Cookie: 
 show("GET with the cookie jar", call("GET", "/session/grades", opener=opener))
 print("   HttpOnly = JavaScript cannot read it (XSS cannot steal it) · SameSite = other sites cannot ride it (CSRF)")
 
-print("\n✅ six hall passes, one set of grades — who is asking, how do we know, and for how long")
+sec("7 OAuth 2.0 client_credentials — a PROGRAM's own door: id + secret → access token, at the token endpoint")
+import urllib.parse
+def form(fields, headers=None):
+    req = urllib.request.Request(BASE + "/token", data=urllib.parse.urlencode(fields).encode(),
+                                 headers={"Content-Type": "application/x-www-form-urlencoded", **(headers or {})}, method="POST")
+    try:
+        with urllib.request.urlopen(req, timeout=5) as r: return r.status, dict(r.headers), json.loads(r.read())
+    except urllib.error.HTTPError as e: return e.code, dict(e.headers), json.loads(e.read())
+st, h, b = form({"grant_type": "client_credentials", "client_id": "report-bot", "client_secret": "s3cr3t-bot", "scope": "grades:read"})
+print(f"   POST /token grant_type=client_credentials (form) → {st}  {{access_token: {b['access_token'][:8]}…, token_type: {b['token_type']}, expires_in: {b['expires_in']}, scope: {b['scope']}}}   Cache-Control: {h['Cache-Control']}")
+at, rt = b["access_token"], b["refresh_token"]
+show(f"GET /oauth/grades · Bearer {at[:8]}…", call("GET", "/oauth/grades", {"Authorization": f"Bearer {at}"}))
+st, h, b = call("DELETE", "/oauth/grades", {"Authorization": f"Bearer {at}"})
+print(f"   DELETE with scope=grades:read                  → {st}  {json.loads(b)['error']}   WWW-Authenticate: {h['WWW-Authenticate']}")
+st, h, b = form({"grant_type": "client_credentials", "client_id": "report-bot", "client_secret": "wrong"})
+print(f"   wrong client_secret                            → {st}  {b['error']}   WWW-Authenticate: {h['WWW-Authenticate']}")
+st, h, b = form({"grant_type": "password", "username": "teacher", "password": "chalk"})
+print(f"   grant_type=password                            → {st}  {b['error']}: {b['error_description']}")
+st, h, b = form({"grant_type": "refresh_token", "refresh_token": rt})
+print(f"   grant_type=refresh_token                       → {st}  new access_token {b['access_token'][:8]}… (the old refresh token is now used up)")
+print("   the shape every OAuth server speaks: a FORM to /token, a JSON {access_token, token_type, expires_in, scope} back, errors as {error} — and scope, not identity, decides the 403")
+
+print("\n✅ seven hall passes, one set of grades — who is asking, how do we know, and for how long")
