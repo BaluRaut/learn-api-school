@@ -5,9 +5,9 @@
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title data-en="Quiz — Learn API School">प्रश्नमंजुषा — Learn API School</title>
-<meta content="Self-test quiz for Learn API School — 20 questions with explanations." name="description"/>
+<meta content="Self-test quiz for Learn API School — 23 questions with explanations." name="description"/>
 <meta content="Quiz — Learn API School" property="og:title"/>
-<meta content="Self-test quiz for Learn API School — 20 questions with explanations." property="og:description"/>
+<meta content="Self-test quiz for Learn API School — 23 questions with explanations." property="og:description"/>
 <meta content="https://baluraut.github.io/learn-api-school/images/big-picture-4k.png" property="og:image"/>
 <meta content="website" property="og:type"/>
 <meta content="summary_large_image" name="twitter:card"/>
@@ -52,19 +52,7 @@
 .reset { margin-top:20px; background:var(--accent); color:#fff; border:none; border-radius:10px; padding:10px 18px; font:inherit; font-weight:700; cursor:pointer; }
 .parts{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0 4px} .pbtn{border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:999px;padding:6px 14px;font:inherit;font-size:.88rem;cursor:pointer} .pbtn.on{background:var(--accent);color:#fff;border-color:var(--accent)}
 </style>
-
-<style id="i18n-css">
-#lang-pick{position:fixed;top:10px;right:10px;z-index:9999;font:600 .85rem -apple-system,"Segoe UI",Helvetica,Arial,sans-serif;background:var(--card,#fff);color:var(--ink,#0f172a);border:1px solid var(--line,#e2e8f0);border-radius:999px;padding:6px 12px;box-shadow:0 2px 10px rgba(0,0,0,.08);cursor:pointer}
-html[lang="mr"] body{font-family:"Noto Sans Devanagari","Mukta","Devanagari Sangam MN","Nirmala UI",-apple-system,"Segoe UI",Helvetica,Arial,sans-serif}
-html[lang="mr"] svg text{font-family:"Noto Sans Devanagari","Mukta","Devanagari Sangam MN","Nirmala UI",sans-serif}
-.i18n-en{display:block;font-size:.86em;line-height:1.35;color:var(--muted,#64748b);font-weight:400;margin-top:2px;font-family:-apple-system,"Segoe UI",Helvetica,Arial,sans-serif}
-.i18n-en.i{display:inline;margin:0 0 0 .3em;font-size:.92em;opacity:.85}
-.i18n-en.i::before{content:"· "}
-h1 .i18n-en,h2 .i18n-en{font-size:.58em;margin-top:4px} h3 .i18n-en{font-size:.78em}
-.lab .i18n-en,.wk .i18n-en{color:inherit;opacity:.85}
-html[lang="mr"] .i18n-en{font-family:-apple-system,"Segoe UI",Helvetica,Arial,sans-serif}
-@media print{#lang-pick{display:none}}
-</style><style id="navfab-css">
+<style id="navfab-css">
 #navfab{position:fixed;right:18px;bottom:18px;z-index:9000;display:flex;flex-direction:column;align-items:flex-end;gap:10px;font-family:-apple-system,"Segoe UI",Helvetica,Arial,sans-serif}
 #navfab button.fb{border:0;cursor:pointer;border-radius:999px;box-shadow:0 6px 18px rgba(15,23,42,.28);display:flex;align-items:center;gap:8px;font-weight:700}
 #navfab .fb-main{background:var(--accent,#2563eb);color:#fff;height:52px;padding:0 18px 0 16px;font-size:1rem}
@@ -88,21 +76,33 @@ html[lang="mr"] .i18n-en{font-family:-apple-system,"Segoe UI",Helvetica,Arial,sa
  #navpanel{left:0;right:0;bottom:0;width:auto;max-height:78vh;border-radius:18px 18px 0 0}}
 @media print{#navfab,#navpanel{display:none!important}}
 </style>
-</head>
+
+<style id="i18n-css">
+#lang-pick{position:fixed;top:10px;right:10px;z-index:9999;font:600 .85rem -apple-system,"Segoe UI",Helvetica,Arial,sans-serif;background:var(--card,#fff);color:var(--ink,#0f172a);border:1px solid var(--line,#e2e8f0);border-radius:999px;padding:6px 12px;box-shadow:0 2px 10px rgba(0,0,0,.08);cursor:pointer}
+html[lang="mr"] body{font-family:"Noto Sans Devanagari","Mukta","Devanagari Sangam MN","Nirmala UI",-apple-system,"Segoe UI",Helvetica,Arial,sans-serif}
+html[lang="mr"] svg text{font-family:"Noto Sans Devanagari","Mukta","Devanagari Sangam MN","Nirmala UI",sans-serif}
+.i18n-en{display:block;font-size:.86em;line-height:1.35;color:var(--muted,#64748b);font-weight:400;margin-top:2px;font-family:-apple-system,"Segoe UI",Helvetica,Arial,sans-serif}
+.i18n-en.i{display:inline;margin:0 0 0 .3em;font-size:.92em;opacity:.85}
+.i18n-en.i::before{content:"· "}
+h1 .i18n-en,h2 .i18n-en{font-size:.58em;margin-top:4px} h3 .i18n-en{font-size:.78em}
+.lab .i18n-en,.wk .i18n-en{color:inherit;opacity:.85}
+html[lang="mr"] .i18n-en{font-family:-apple-system,"Segoe UI",Helvetica,Arial,sans-serif}
+@media print{#lang-pick{display:none}}
+</style></head>
 <body><select aria-label="Language / भाषा" id="lang-pick" onchange="schoolSetLang(this.value)">
 <option value="both">🇮🇳🇬🇧 मराठी + English</option><option value="mr">🇮🇳 मराठी</option><option value="en">🇬🇧 English</option></select>
 <div class="wrap">
 <p data-en='&lt;a href="index.html"&gt;← Back to the course home&lt;/a&gt;'><a href="index.html">← कोर्सच्या मुख्य पानाकडे परत</a></p>
 <h1 data-en="🧪 The 🏢 API quiz">🧪 🏢 API प्रश्नमंजुषा</h1>
-<p class="sub" data-en="20 questions — pick an answer, get the why. Filter by Part below. One attempt per question (until reset). Your best score is saved in this browser.">20 प्रश्न — उत्तर निवडा, कारण मिळवा. खाली भागानुसार गाळा. प्रत्येक प्रश्नाला एकच प्रयत्न (reset पर्यंत). तुमचा सर्वोत्तम गुण या ब्राउझरमध्ये जपला जातो.</p>
-<div class="scorebox"><div class="score" data-en="0 / 20 · best: —" id="score">0 / 20 · सर्वोत्तम: —</div></div>
-<div class="parts" id="parts"><button class="pbtn on" data-en="All 20" onclick="setPart(0)">सर्व 20</button><button class="pbtn" data-en="📨 Part 1 counter" onclick="setPart(1)">📨 भाग 1 काउंटर</button><button class="pbtn" data-en="🏃 Part 2 running it" onclick="setPart(2)">🏃 भाग 2 चालवणे</button><button class="pbtn" data-en="🗺️ Part 3 full maps" onclick="setPart(3)">🗺️ भाग 3 संपूर्ण नकाशे</button></div>
+<p class="sub" data-en="23 questions — pick an answer, get the why. Filter by Part below. One attempt per question (until reset). Your best score is saved in this browser.">23 प्रश्न — उत्तर निवडा, कारण मिळवा. खाली भागानुसार गाळा. प्रत्येक प्रश्नाला एकच प्रयत्न (reset पर्यंत). तुमचा सर्वोत्तम गुण या browser मध्ये जतन होतो.</p>
+<div class="scorebox"><div class="score" data-en="0 / 23 · best: —" id="score">0 / 23 · सर्वोत्तम: —</div></div>
+<div class="parts" id="parts"><button class="pbtn on" data-en="All 23" onclick="setPart(0)">सर्व 23</button><button class="pbtn" data-en="📨 Part 1 counter" onclick="setPart(1)">📨 भाग 1 काउंटर</button><button class="pbtn" data-en="🏃 Part 2 running it" onclick="setPart(2)">🏃 भाग 2 चालवणे</button><button class="pbtn" data-en="🗺️ Part 3 full maps" onclick="setPart(3)">🗺️ भाग 3 संपूर्ण नकाशे</button><button class="pbtn" data-en="📈 Part 4 production" onclick="setPart(4)">📈 भाग 4 production</button></div>
 <div id="quiz"></div>
 <button class="reset" data-en="↺ Reset &amp;amp; retake" onclick="reset()">↺ Reset &amp; पुन्हा द्या</button>
 <footer data-en='Part of &lt;a href="https://baluraut.github.io/school/"&gt;🏫 The School&lt;/a&gt; · &lt;a href="index.html"&gt;course home&lt;/a&gt; · &lt;a href="https://github.com/BaluRaut/learn-api-school/issues"&gt;🐛 found a mistake?&lt;/a&gt;'><a href="https://baluraut.github.io/school/">🏫 द स्कूल</a> चा भाग · <a href="index.html">कोर्स मुख्य पान</a> · <a href="https://github.com/BaluRaut/learn-api-school/issues">🐛 चूक सापडली?</a></footer>
 </div>
 <script>
-var QS = [{"q": "What is an API, in school words?", "o": ["The archive itself", "The front office counter: a standard slip in, a stamped answer out — a contract any visitor can rely on", "A database"], "c": 1, "w": "L01: nobody wanders into the archive; the counter is the contract.", "p": 1}, {"q": "A response comes back 404. Whose fault?", "o": ["The office is broken (5xx)", "The slip: the thing asked for isn't there — a 4xx means fix the request", "The network"], "c": 1, "w": "L02: 4xx = your slip, 5xx = our office.", "p": 1}, {"q": "Which verb is NOT idempotent on its own?", "o": ["PUT", "DELETE", "POST — twice can file twice, hence lesson 07's receipt number"], "c": 2, "w": "L03: twice = once for PUT/DELETE; POST needs an Idempotency-Key.", "p": 1}, {"q": "Good REST URL for one student?", "o": ["/getStudent?id=2", "/v1/students/2 — a noun, an id, no verb", "/v1/student/get/2"], "c": 1, "w": "L03: nouns in cabinets; the verb is the HTTP method.", "p": 1}, {"q": "A POST body has class '9Z'. The right answer is…", "o": ["500", "400 validation_failed with a problems list naming the field", "201 and fix it later"], "c": 1, "w": "L04: validate before touching storage; say exactly what's wrong.", "p": 1}, {"q": "What is OpenAPI?", "o": ["A framework", "The printed catalogue of every form: paths, parameters, schemas, errors — docs, clients and tests come from it", "A database format"], "c": 1, "w": "L04/L12.", "p": 1}, {"q": "Missing X-API-Key on a write →", "o": ["403", "401 unauthenticated (no pass); a wrong pass is 403", "404"], "c": 1, "w": "L06: 401 = who are you; 403 = you may not.", "p": 1}, {"q": "Which pass suits a browser app?", "o": ["A long-lived API key embedded in the JS", "A short-lived user token (JWT / session) — keys shipped to browsers are public", "The admin key"], "c": 1, "w": "L06: keys are for machines; users get expiring tokens.", "p": 1}, {"q": "A client sends POST with Idempotency-Key 'enrol-1' twice. The server…", "o": ["Creates two students", "Returns the same 201 the second time, files once, marks it Idempotent-Replay", "Returns 409"], "c": 1, "w": "L07: the receipt number makes retries safe.", "p": 2}, {"q": "Should a client retry a 400?", "o": ["Yes, with backoff", "No — the slip is wrong; retry 429/5xx/timeouts only, with backoff and jitter", "Only three times"], "c": 1, "w": "L07/L10.", "p": 2}, {"q": "Why prefer cursor pagination for a growing list?", "o": ["It shows page numbers", "It stays stable when rows are inserted and stays fast with an index; offsets skip or duplicate", "It compresses better"], "c": 1, "w": "L08.", "p": 2}, {"q": "Which change forces /v2?", "o": ["Adding an optional field", "Renaming or removing a field, or changing a type — clients would break", "Adding a new endpoint"], "c": 1, "w": "L09: additive is safe; breaking gets a new version and a sunset date.", "p": 2}, {"q": "429 with Retry-After: 10 arrives. The polite client…", "o": ["Retries immediately", "Waits ~10 s (plus jitter), retries, and gives up after a few attempts", "Switches to POST"], "c": 1, "w": "L10: the queue at the counter.", "p": 2}, {"q": "When is a webhook the right shape?", "o": ["When the client wants data on demand", "When the server should tell the client that something happened — instead of polling every 5 s", "For all public APIs"], "c": 1, "w": "L11: the counter calls you back.", "p": 2}, {"q": "Three jobs an API gateway takes off your API?", "o": ["Business logic, storage, UI", "Auth, rate limiting and routing/logging — in front of every counter", "Testing, docs, versioning"], "c": 1, "w": "L12: the school gate.", "p": 2}, {"q": "Which methods are safe — they change nothing on the server?", "o": ["GET, HEAD, OPTIONS", "GET and POST", "Only GET"], "c": 0, "w": "L13: safe means read-only; HEAD and OPTIONS are safe too. PUT and DELETE are idempotent but not safe.", "p": 3}, {"q": "You send the same PUT twice. What happens?", "o": ["Two copies are created", "The same state as after one PUT — PUT is idempotent", "The second one is rejected with 409"], "c": 1, "w": "L13: PUT replaces the whole resource; repeating it changes nothing further. POST is the one that creates twins.", "p": 3}, {"q": "A program (no person) needs a token from an OAuth server. Which grant?", "o": ["password", "client_credentials", "implicit"], "c": 1, "w": "L14: client_credentials is a program's own door; password and implicit are removed in the OAuth 2.1 draft.", "p": 3}, {"q": "401 or 403 — a valid student token tries to DELETE the grades.", "o": ["401 — who are you?", "403 — I know exactly who you are, and no", "400 — bad request"], "c": 1, "w": "L14: 401 is for unknown callers (with a WWW-Authenticate challenge); 403 is a known caller without permission.", "p": 3}, {"q": "Updates flow one way, seconds of delay are fine, thousands of browsers listen. Which API type?", "o": ["WebSocket", "Server-Sent Events", "Long polling"], "c": 1, "w": "L15: SSE is the loudspeaker — one connection, server → client, reconnects by itself. WebSocket is for two-way traffic.", "p": 3}];
+var QS = [{"q": "What is an API, in school words?", "o": ["The archive itself", "The front office counter: a standard slip in, a stamped answer out — a contract any visitor can rely on", "A database"], "c": 1, "w": "L01: nobody wanders into the archive; the counter is the contract.", "p": 1}, {"q": "A response comes back 404. Whose fault?", "o": ["The office is broken (5xx)", "The slip: the thing asked for isn't there — a 4xx means fix the request", "The network"], "c": 1, "w": "L02: 4xx = your slip, 5xx = our office.", "p": 1}, {"q": "Which verb is NOT idempotent on its own?", "o": ["PUT", "DELETE", "POST — twice can file twice, hence lesson 07's receipt number"], "c": 2, "w": "L03: twice = once for PUT/DELETE; POST needs an Idempotency-Key.", "p": 1}, {"q": "Good REST URL for one student?", "o": ["/getStudent?id=2", "/v1/students/2 — a noun, an id, no verb", "/v1/student/get/2"], "c": 1, "w": "L03: nouns in cabinets; the verb is the HTTP method.", "p": 1}, {"q": "A POST body has class '9Z'. The right answer is…", "o": ["500", "400 validation_failed with a problems list naming the field", "201 and fix it later"], "c": 1, "w": "L04: validate before touching storage; say exactly what's wrong.", "p": 1}, {"q": "What is OpenAPI?", "o": ["A framework", "The printed catalogue of every form: paths, parameters, schemas, errors — docs, clients and tests come from it", "A database format"], "c": 1, "w": "L04/L12.", "p": 1}, {"q": "Missing X-API-Key on a write →", "o": ["403", "401 unauthenticated (no pass); a wrong pass is 403", "404"], "c": 1, "w": "L06: 401 = who are you; 403 = you may not.", "p": 1}, {"q": "Which pass suits a browser app?", "o": ["A long-lived API key embedded in the JS", "A short-lived user token (JWT / session) — keys shipped to browsers are public", "The admin key"], "c": 1, "w": "L06: keys are for machines; users get expiring tokens.", "p": 1}, {"q": "A client sends POST with Idempotency-Key 'enrol-1' twice. The server…", "o": ["Creates two students", "Returns the same 201 the second time, files once, marks it Idempotent-Replay", "Returns 409"], "c": 1, "w": "L07: the receipt number makes retries safe.", "p": 2}, {"q": "Should a client retry a 400?", "o": ["Yes, with backoff", "No — the slip is wrong; retry 429/5xx/timeouts only, with backoff and jitter", "Only three times"], "c": 1, "w": "L07/L10.", "p": 2}, {"q": "Why prefer cursor pagination for a growing list?", "o": ["It shows page numbers", "It stays stable when rows are inserted and stays fast with an index; offsets skip or duplicate", "It compresses better"], "c": 1, "w": "L08.", "p": 2}, {"q": "Which change forces /v2?", "o": ["Adding an optional field", "Renaming or removing a field, or changing a type — clients would break", "Adding a new endpoint"], "c": 1, "w": "L09: additive is safe; breaking gets a new version and a sunset date.", "p": 2}, {"q": "429 with Retry-After: 10 arrives. The polite client…", "o": ["Retries immediately", "Waits ~10 s (plus jitter), retries, and gives up after a few attempts", "Switches to POST"], "c": 1, "w": "L10: the queue at the counter.", "p": 2}, {"q": "When is a webhook the right shape?", "o": ["When the client wants data on demand", "When the server should tell the client that something happened — instead of polling every 5 s", "For all public APIs"], "c": 1, "w": "L11: the counter calls you back.", "p": 2}, {"q": "Three jobs an API gateway takes off your API?", "o": ["Business logic, storage, UI", "Auth, rate limiting and routing/logging — in front of every counter", "Testing, docs, versioning"], "c": 1, "w": "L12: the school gate.", "p": 2}, {"q": "Which methods are safe — they change nothing on the server?", "o": ["GET, HEAD, OPTIONS", "GET and POST", "Only GET"], "c": 0, "w": "L13: safe means read-only; HEAD and OPTIONS are safe too. PUT and DELETE are idempotent but not safe.", "p": 3}, {"q": "You send the same PUT twice. What happens?", "o": ["Two copies are created", "The same state as after one PUT — PUT is idempotent", "The second one is rejected with 409"], "c": 1, "w": "L13: PUT replaces the whole resource; repeating it changes nothing further. POST is the one that creates twins.", "p": 3}, {"q": "A program (no person) needs a token from an OAuth server. Which grant?", "o": ["password", "client_credentials", "implicit"], "c": 1, "w": "L14: client_credentials is a program's own door; password and implicit are removed in the OAuth 2.1 draft.", "p": 3}, {"q": "401 or 403 — a valid student token tries to DELETE the grades.", "o": ["401 — who are you?", "403 — I know exactly who you are, and no", "400 — bad request"], "c": 1, "w": "L14: 401 is for unknown callers (with a WWW-Authenticate challenge); 403 is a known caller without permission.", "p": 3}, {"q": "Updates flow one way, seconds of delay are fine, thousands of browsers listen. Which API type?", "o": ["WebSocket", "Server-Sent Events", "Long polling"], "c": 1, "w": "L15: SSE is the loudspeaker — one connection, server → client, reconnects by itself. WebSocket is for two-way traffic.", "p": 3}, {"q": "A route's latency: mean 19 ms, p90 11 ms, p95 136 ms. What does that say?", "o": ["The route is fast — the mean is low", "Most callers wait ~10 ms, but about 1 in 15 waits ~150 ms — the tail the mean hides", "The measurement is broken"], "c": 1, "w": "L17: a percentile is a place in the sorted line; p95 = 95% waited less.", "p": 4}, {"q": "All routes together show p95 = 11 ms, yet users complain about the report page. Why?", "o": ["Users are wrong", "Fast routes outnumber the slow one and drown it out — measure p95 per route (method + path template)", "p95 is always 11 ms"], "c": 1, "w": "L17: mixing routes hides the slow one.", "p": 4}, {"q": "How does each tool receive the counter's latency?", "o": ["All three read the database", "Prometheus scrapes GET /metrics; Datadog gets DogStatsD packets from the agent; CloudWatch turns EMF log lines into metrics", "They read the browser"], "c": 1, "w": "L17: pull (Prometheus) vs push (DogStatsD, EMF).", "p": 4}];
 var KEY='quiz-learn-api-school', answered={}, score=0, PART=0, SEL=QS;
 function setPart(p){PART=p;SEL=p?QS.filter(function(q){return q.p===p}):QS;[].slice.call(document.querySelectorAll('.pbtn')).forEach(function(b,i){b.classList.toggle('on',i===p)});reset();}
 var best = parseInt(localStorage.getItem(KEY)||'-1');
@@ -131,49 +131,12 @@ function render() {
 function update() {
   var done=Object.keys(answered).length;
   if (PART===0 && done===QS.length && score>best) { best=score; localStorage.setItem(KEY,best); }
-  document.getElementById('score').textContent=score+' / '+SEL.length+(done===SEL.length?' — done! 🎓':'')+' · best (all 20): '+(best<0?'—':best+'/'+QS.length);
+  document.getElementById('score').textContent=score+' / '+SEL.length+(done===SEL.length?' — done! 🎓':'')+' · best (all 23): '+(best<0?'—':best+'/'+QS.length);
 }
 function reset() { answered={}; score=0; render(); update(); }
 render(); update();
 </script>
-
-<script id="i18n-js">
-var I18N_INLINE={A:1,SPAN:1,CODE:1,B:1,I:1,EM:1,STRONG:1,BUTTON:1,LABEL:1,SUMMARY:1,SMALL:1,KBD:1};
-function schoolSetLang(l){
-  if(l!=='en'&&l!=='mr'&&l!=='both') l='both';
-  try{localStorage.setItem('school-lang2',l)}catch(e){}
-  document.documentElement.setAttribute('lang', l==='en' ? 'en' : 'mr');
-  document.querySelectorAll('[data-en]').forEach(function(el){
-    if(!el.hasAttribute('data-mr')) el.setAttribute('data-mr', el.innerHTML);
-    var en=el.getAttribute('data-en'), mr=el.getAttribute('data-mr');
-    var svg = el.namespaceURI && el.namespaceURI.indexOf('svg')>-1;
-    if(svg){
-      el.innerHTML = (l==='en') ? en : mr;
-      var t=el.querySelector('title'); if(t) t.remove();
-      if(l==='both'){ t=document.createElementNS('http://www.w3.org/2000/svg','title'); t.textContent=en.replace(/<[^>]+>/g,''); el.insertBefore(t, el.firstChild); }
-      return;
-    }
-    if(l==='en') el.innerHTML = en;
-    else if(l==='mr') el.innerHTML = mr;
-    else if(en.replace(/\s+/g,' ').trim()===mr.replace(/\s+/g,' ').trim()) el.innerHTML = mr;
-    else {
-      var e2=en.replace(/<span class="(ln|num|wk)">[\s\S]*?<\/span>\s*/g,'');
-      if(e2.charAt(0)!=='<' && mr.charAt(0)!=='<'){           /* drop the prefix both languages share, e.g. "01 · 🏢 " */
-        var i=0; while(i<e2.length&&i<mr.length&&e2.charAt(i)===mr.charAt(i)) i++;
-        var cut=e2.lastIndexOf(' ',i); if(cut>0 && cut<e2.length-1) e2=e2.slice(cut+1);
-      }
-      el.innerHTML = mr + '<span class="i18n-en'+(I18N_INLINE[el.tagName]?' i':'')+'">'+e2+'</span>';
-    }
-  });
-  document.querySelectorAll('[data-en-ph]').forEach(function(el){
-    if(!el.hasAttribute('data-mr-ph')) el.setAttribute('data-mr-ph', el.getAttribute('placeholder'));
-    el.setAttribute('placeholder', (l==='en') ? el.getAttribute('data-en-ph') : (l==='mr' ? el.getAttribute('data-mr-ph') : el.getAttribute('data-mr-ph')+' / '+el.getAttribute('data-en-ph')));
-  });
-  var p=document.getElementById('lang-pick'); if(p) p.value=l;
-}
-(function(){ var l='both'; try{ l=localStorage.getItem('school-lang2')||'both'; }catch(e){}
-  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',function(){schoolSetLang(l)}); else schoolSetLang(l); })();
-</script><div id="navfab-js"><script>
+<div id="navfab-js"><script>
 (function(){
 const PAGES=[["index.html", "🏠 Course home", "🏠 कोर्स मुख्य पान"], ["lesson-diagrams.html", "🖼️ All lesson diagrams", "🖼️ सर्व धड्यांच्या आकृत्या"], ["quiz.html", "🧪 Quiz", "🧪 प्रश्नमंजुषा"], ["study-plan.html", "🗓️ Study plan", "🗓️ अभ्यास योजना"], ["before-and-tradeoffs.html", "⚖️ Before & trade-offs", "⚖️ आधी आणि फायदे-तोटे"]], PORTAL="https://baluraut.github.io/school/", HERE=location.pathname.split('/').pop()||'index.html';
 const mr=()=> (document.documentElement.lang||'').startsWith('mr');
@@ -223,5 +186,42 @@ if('IntersectionObserver' in window){const io=new IntersectionObserver(es=>{es.f
  items().forEach(i=>{const t=document.getElementById(i.id);if(t)io.observe(t)})}
 })();
 </script></div><!--/navfab-js-->
-</body>
+
+<script id="i18n-js">
+var I18N_INLINE={A:1,SPAN:1,CODE:1,B:1,I:1,EM:1,STRONG:1,BUTTON:1,LABEL:1,SUMMARY:1,SMALL:1,KBD:1};
+function schoolSetLang(l){
+  if(l!=='en'&&l!=='mr'&&l!=='both') l='both';
+  try{localStorage.setItem('school-lang2',l)}catch(e){}
+  document.documentElement.setAttribute('lang', l==='en' ? 'en' : 'mr');
+  document.querySelectorAll('[data-en]').forEach(function(el){
+    if(!el.hasAttribute('data-mr')) el.setAttribute('data-mr', el.innerHTML);
+    var en=el.getAttribute('data-en'), mr=el.getAttribute('data-mr');
+    var svg = el.namespaceURI && el.namespaceURI.indexOf('svg')>-1;
+    if(svg){
+      el.innerHTML = (l==='en') ? en : mr;
+      var t=el.querySelector('title'); if(t) t.remove();
+      if(l==='both'){ t=document.createElementNS('http://www.w3.org/2000/svg','title'); t.textContent=en.replace(/<[^>]+>/g,''); el.insertBefore(t, el.firstChild); }
+      return;
+    }
+    if(l==='en') el.innerHTML = en;
+    else if(l==='mr') el.innerHTML = mr;
+    else if(en.replace(/\s+/g,' ').trim()===mr.replace(/\s+/g,' ').trim()) el.innerHTML = mr;
+    else {
+      var e2=en.replace(/<span class="(ln|num|wk)">[\s\S]*?<\/span>\s*/g,'');
+      if(e2.charAt(0)!=='<' && mr.charAt(0)!=='<'){           /* drop the prefix both languages share, e.g. "01 · 🏢 " */
+        var i=0; while(i<e2.length&&i<mr.length&&e2.charAt(i)===mr.charAt(i)) i++;
+        var cut=e2.lastIndexOf(' ',i); if(cut>0 && cut<e2.length-1) e2=e2.slice(cut+1);
+      }
+      el.innerHTML = mr + '<span class="i18n-en'+(I18N_INLINE[el.tagName]?' i':'')+'">'+e2+'</span>';
+    }
+  });
+  document.querySelectorAll('[data-en-ph]').forEach(function(el){
+    if(!el.hasAttribute('data-mr-ph')) el.setAttribute('data-mr-ph', el.getAttribute('placeholder'));
+    el.setAttribute('placeholder', (l==='en') ? el.getAttribute('data-en-ph') : (l==='mr' ? el.getAttribute('data-mr-ph') : el.getAttribute('data-mr-ph')+' / '+el.getAttribute('data-en-ph')));
+  });
+  var p=document.getElementById('lang-pick'); if(p) p.value=l;
+}
+(function(){ var l='both'; try{ l=localStorage.getItem('school-lang2')||'both'; }catch(e){}
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',function(){schoolSetLang(l)}); else schoolSetLang(l); })();
+</script></body>
 </html>

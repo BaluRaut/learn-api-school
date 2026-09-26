@@ -10,12 +10,13 @@ programs talk to each other, taught as the school's **front office** — a slip 
 the counter, a clerk, a stamped answer.
 
 What makes this course different: **the counter is IN the repo.** A real HTTP/JSON
-API in ~235 lines of pure Python, zero dependencies — you run it, curl it, break
+API in ~340 lines of pure Python, zero dependencies — you run it, curl it, break
 it and extend it in every lesson.
 
 🌐 **Interactive site:** **<https://baluraut.github.io/learn-api-school/>** —
 lesson cards, every lesson as a numbered diagram, the big-picture 4K, a quiz, a
-study plan and the before-and-trade-offs page. Lessons 13–16 are the full maps, each
+study plan and the before-and-trade-offs page. Lesson 17 measures the counter like production does
+(p25 · p50 · p75 · p90 · p95 · p99 per route; Prometheus, Datadog, CloudWatch). Lessons 13–16 are the full maps, each
 drawn one type per row on the diagrams page:
 **[every REST method](https://baluraut.github.io/learn-api-school/lesson-diagrams.html#l13)**,
 **[every authentication method](https://baluraut.github.io/learn-api-school/lesson-diagrams.html#l14)**
@@ -42,16 +43,16 @@ for an idempotent delete, and 429 when the queue is full.
 
 ## 🗺️ The big picture
 
-![The big picture: the counter (HTTP, REST, JSON, auth) and running it (errors, pagination, versioning, rate limits, beyond REST, testing and gateways)](docs/images/big-picture-4k.png)
+![The big picture: the counter (HTTP, REST, JSON, auth), running it (errors, pagination, versioning, rate limits, beyond REST, testing and gateways), the full maps, and performance and monitoring](docs/images/big-picture-4k.png)
 
-## 🎓 The 16 lessons
+## 🎓 The 17 lessons
 
 Each numbered branch adds ONE lesson folder (`lessons/NN-topic/README.md`) with an
 explain-like-I'm-5 story, a school analogy, a diagram, **What / Why / How**, a
 hands-on lab on the real API, and Verify / Clean-up / Common-mistakes sections.
 Branches are **sequential** — branch 07 contains lessons 01–07. Lessons 01–12 build
 the counter; lessons 13–16 are **the full maps** — the reference lessons that place
-everything else.
+everything else; lesson 17 opens **Part 4 — production APIs**.
 
 ```bash
 git checkout lesson-01-why-apis          # read lessons/01-why-apis/README.md, then...
@@ -89,12 +90,18 @@ git checkout lesson-02-http-anatomy      # ...keep going, one branch at a time
 | 15 | `lesson-15-api-types` | Twenty API types in four families — REST to MQTT to batch files to system calls; six of them runnable | One school, many counters 🔀 |
 | 16 | `lesson-16-testing-types` | Smoke, functional, integration, regression, load, stress, security, UI, fuzz — and the order to adopt them | Nine ways to test a counter 🧪 |
 
+### Part 4 — production APIs 📈
+
+| # | Branch | You learn | Analogy |
+|---|---|---|---|
+| 17 | `lesson-17-performance-monitoring` | Latency percentiles p25/p50/p75/p90/p95/p99 per route, RED metrics, Prometheus `/metrics`, Datadog DogStatsD, CloudWatch EMF, one SLO alarm in each | The stopwatch at the counter 📈 |
+
 ## 📦 What's in this repo (main branch)
 
 ```
 learn-api-school/
 ├── api/
-│   ├── school_api.py         # the front office: a REAL HTTP/JSON API, ~235 lines, zero deps
+│   ├── school_api.py         # the front office: a REAL HTTP/JSON API, ~340 lines, zero deps
 │   ├── smoke_test.sh         # the whole course as a curl script (contract test)
 │   ├── openapi.yaml          # the printed catalogue of every form
 │   ├── client.py             # the polite client: timeouts, backoff + jitter, ETag cache
@@ -104,6 +111,8 @@ learn-api-school/
 │   ├── methods_demo.sh       # all SEVEN REST methods against the counter, with the headers that prove each rule
 │   ├── auth_demo.py          # the same grades behind SEVEN auth schemes: Basic · API key · Bearer · JWT · HMAC · cookie · OAuth client_credentials
 │   ├── auth_client.py        # every header on the wire, an expired token, a forged JWT, a replayed request
+│   ├── perf.py               # lesson 17: 400 requests → p25…p99 per route, /metrics, DogStatsD packets, a CloudWatch EMF line, the alarms
+│   ├── perf-output.txt       # one run of perf.py on our laptop
 │   └── expected-output.txt   # what a healthy run prints
 └── docs/                     # the GitHub Pages site
 ```

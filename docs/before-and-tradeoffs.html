@@ -53,19 +53,7 @@
   .toc a { border:1px solid var(--line); background:var(--card); border-radius:999px; padding:5px 12px; font-size:.82rem; color:var(--muted); text-decoration:none; }
   .toc a:hover { color:var(--ink); border-color:var(--muted); }
 </style>
-
-<style id="i18n-css">
-#lang-pick{position:fixed;top:10px;right:10px;z-index:9999;font:600 .85rem -apple-system,"Segoe UI",Helvetica,Arial,sans-serif;background:var(--card,#fff);color:var(--ink,#0f172a);border:1px solid var(--line,#e2e8f0);border-radius:999px;padding:6px 12px;box-shadow:0 2px 10px rgba(0,0,0,.08);cursor:pointer}
-html[lang="mr"] body{font-family:"Noto Sans Devanagari","Mukta","Devanagari Sangam MN","Nirmala UI",-apple-system,"Segoe UI",Helvetica,Arial,sans-serif}
-html[lang="mr"] svg text{font-family:"Noto Sans Devanagari","Mukta","Devanagari Sangam MN","Nirmala UI",sans-serif}
-.i18n-en{display:block;font-size:.86em;line-height:1.35;color:var(--muted,#64748b);font-weight:400;margin-top:2px;font-family:-apple-system,"Segoe UI",Helvetica,Arial,sans-serif}
-.i18n-en.i{display:inline;margin:0 0 0 .3em;font-size:.92em;opacity:.85}
-.i18n-en.i::before{content:"· "}
-h1 .i18n-en,h2 .i18n-en{font-size:.58em;margin-top:4px} h3 .i18n-en{font-size:.78em}
-.lab .i18n-en,.wk .i18n-en{color:inherit;opacity:.85}
-html[lang="mr"] .i18n-en{font-family:-apple-system,"Segoe UI",Helvetica,Arial,sans-serif}
-@media print{#lang-pick{display:none}}
-</style><style id="navfab-css">
+<style id="navfab-css">
 #navfab{position:fixed;right:18px;bottom:18px;z-index:9000;display:flex;flex-direction:column;align-items:flex-end;gap:10px;font-family:-apple-system,"Segoe UI",Helvetica,Arial,sans-serif}
 #navfab button.fb{border:0;cursor:pointer;border-radius:999px;box-shadow:0 6px 18px rgba(15,23,42,.28);display:flex;align-items:center;gap:8px;font-weight:700}
 #navfab .fb-main{background:var(--accent,#2563eb);color:#fff;height:52px;padding:0 18px 0 16px;font-size:1rem}
@@ -89,7 +77,19 @@ html[lang="mr"] .i18n-en{font-family:-apple-system,"Segoe UI",Helvetica,Arial,sa
  #navpanel{left:0;right:0;bottom:0;width:auto;max-height:78vh;border-radius:18px 18px 0 0}}
 @media print{#navfab,#navpanel{display:none!important}}
 </style>
-</head>
+
+<style id="i18n-css">
+#lang-pick{position:fixed;top:10px;right:10px;z-index:9999;font:600 .85rem -apple-system,"Segoe UI",Helvetica,Arial,sans-serif;background:var(--card,#fff);color:var(--ink,#0f172a);border:1px solid var(--line,#e2e8f0);border-radius:999px;padding:6px 12px;box-shadow:0 2px 10px rgba(0,0,0,.08);cursor:pointer}
+html[lang="mr"] body{font-family:"Noto Sans Devanagari","Mukta","Devanagari Sangam MN","Nirmala UI",-apple-system,"Segoe UI",Helvetica,Arial,sans-serif}
+html[lang="mr"] svg text{font-family:"Noto Sans Devanagari","Mukta","Devanagari Sangam MN","Nirmala UI",sans-serif}
+.i18n-en{display:block;font-size:.86em;line-height:1.35;color:var(--muted,#64748b);font-weight:400;margin-top:2px;font-family:-apple-system,"Segoe UI",Helvetica,Arial,sans-serif}
+.i18n-en.i{display:inline;margin:0 0 0 .3em;font-size:.92em;opacity:.85}
+.i18n-en.i::before{content:"· "}
+h1 .i18n-en,h2 .i18n-en{font-size:.58em;margin-top:4px} h3 .i18n-en{font-size:.78em}
+.lab .i18n-en,.wk .i18n-en{color:inherit;opacity:.85}
+html[lang="mr"] .i18n-en{font-family:-apple-system,"Segoe UI",Helvetica,Arial,sans-serif}
+@media print{#lang-pick{display:none}}
+</style></head>
 <body><select aria-label="Language / भाषा" id="lang-pick" onchange="schoolSetLang(this.value)">
 <option value="both">🇮🇳🇬🇧 मराठी + English</option><option value="mr">🇮🇳 मराठी</option><option value="en">🇬🇧 English</option></select>
 <div class="wrap">
@@ -97,8 +97,28 @@ html[lang="mr"] .i18n-en{font-family:-apple-system,"Segoe UI",Helvetica,Arial,sa
 <p data-en='&lt;a href="index.html"&gt;← Back to the course home&lt;/a&gt;'><a href="index.html">← कोर्सच्या मुख्य पानाकडे परत</a></p>
 <h1 data-en="⏮️ Before &amp;amp; trade-offs">⏮️ आधी काय होते &amp; फायदे-तोटे</h1>
 <p class="sub" data-en="Every tool replaced something worse — and is itself the wrong tool somewhere. For each big idea: what life was like &lt;b&gt;before&lt;/b&gt;, honest &lt;b&gt;merits ✅ / demerits ❌&lt;/b&gt;, and &lt;b&gt;where to use it 👍 vs not 👎&lt;/b&gt;.">प्रत्येक साधनाने काहीतरी वाईट गोष्ट बदलली — आणि तेच साधन कुठेतरी चुकीचे ठरते. प्रत्येक मोठ्या कल्पनेसाठी: <b>आधी</b> जीवन कसे होते, प्रामाणिक <b>फायदे ✅ / तोटे ❌</b>, आणि <b>कुठे वापरावी 👍 विरुद्ध कुठे नाही 👎</b>.</p>
-<nav class="toc" data-en='&lt;a href="#rest"&gt;🗄️ REST vs GraphQL vs gRPC&lt;/a&gt;&lt;a href="#auth"&gt;🪪 API keys vs tokens vs OAuth&lt;/a&gt;&lt;a href="#pages"&gt;📚 Cursor vs offset&lt;/a&gt;&lt;a href="#version"&gt;🔢 Path vs header versioning&lt;/a&gt;&lt;a href="#limits"&gt;⏱️ Rate limiting&lt;/a&gt;&lt;a href="#hooks"&gt;📣 Webhooks vs polling&lt;/a&gt;&lt;a href="#gateway"&gt;🚪 API gateway&lt;/a&gt;'><a href="#rest">🗄️ REST विरुद्ध GraphQL विरुद्ध gRPC</a><a href="#auth">🪪 API keys विरुद्ध tokens विरुद्ध OAuth</a><a href="#pages">📚 Cursor विरुद्ध offset</a><a href="#version">🔢 Path विरुद्ध header versioning</a><a href="#limits">⏱️ Rate limiting</a><a href="#hooks">📣 Webhooks विरुद्ध polling</a><a href="#gateway">🚪 API gateway</a></nav>
+<nav class="toc" data-en='&lt;a href="#rest"&gt;🗄️ REST vs GraphQL vs gRPC&lt;/a&gt;&lt;a href="#pct"&gt;📈 Mean vs percentiles&lt;/a&gt;&lt;a href="#mon"&gt;📡 Prometheus vs Datadog vs CloudWatch&lt;/a&gt;&lt;a href="#auth"&gt;🪪 API keys vs tokens vs OAuth&lt;/a&gt;&lt;a href="#pages"&gt;📚 Cursor vs offset&lt;/a&gt;&lt;a href="#version"&gt;🔢 Path vs header versioning&lt;/a&gt;&lt;a href="#limits"&gt;⏱️ Rate limiting&lt;/a&gt;&lt;a href="#hooks"&gt;📣 Webhooks vs polling&lt;/a&gt;&lt;a href="#gateway"&gt;🚪 API gateway&lt;/a&gt;'><a href="#rest">🗄️ REST विरुद्ध GraphQL विरुद्ध gRPC</a><a href="#pct">📈 Mean विरुद्ध percentiles</a><a href="#mon">📡 Prometheus विरुद्ध Datadog विरुद्ध CloudWatch</a><a href="#auth">🪪 API keys विरुद्ध tokens विरुद्ध OAuth</a><a href="#pages">📚 Cursor विरुद्ध offset</a><a href="#version">🔢 Path विरुद्ध header versioning</a><a href="#limits">⏱️ Rate limiting</a><a href="#hooks">📣 Webhooks विरुद्ध polling</a><a href="#gateway">🚪 API gateway</a></nav>
 </header>
+<section class="term" id="pct" style="--c:#6d28d9">
+<h2 data-en="📈 The mean vs percentiles (p50, p95, p99) — lesson 17">📈 Mean विरुद्ध percentiles (p50, p95, p99) — धडा 17</h2>
+<div class="hist"><b data-en="⏮️ Before percentiles">⏮️ Percentiles आधी</b><p data-en="Dashboards showed the average response time. It said 19 ms while one caller in fifteen waited 150 ms — the complaints were real and the graph was calm.">Dashboards सरासरी response time दाखवत. तो 19 ms सांगत असे, तर पंधरापैकी एक caller 150 ms वाट पाहत होता — तक्रारी खऱ्या होत्या आणि graph शांत होता.</p></div>
+<div class="quad">
+<div class="q merit"><h4 data-en="✅ Merits">✅ फायदे</h4><ul><li data-en="p50 is the typical caller; p95 and p99 are the unlucky ones — the ones who complain">p50 म्हणजे नेहमीचा caller; p95 आणि p99 म्हणजे दुर्दैवी callers — जे तक्रार करतात</li><li data-en="a percentile per route finds the slow endpoint that an all-routes number hides">प्रत्येक route चा percentile तो हळू endpoint शोधतो जो सर्व-routes चा आकडा लपवतो</li><li data-en='SLOs are written in percentiles: "p95 under 100 ms over 15 minutes"'>SLOs percentiles मध्ये लिहिले जातात: "15 मिनिटांत p95 100 ms पेक्षा कमी"</li></ul></div>
+<div class="q demerit"><h4 data-en="❌ Demerits">❌ तोटे</h4><ul><li data-en="percentiles cannot be averaged across servers — keep histograms or distributions and compute them centrally">वेगवेगळ्या servers चे percentiles सरासरी करता येत नाहीत — histograms किंवा distributions ठेवा आणि ते एका ठिकाणी काढा</li><li data-en="p99 needs enough traffic to be stable; at 20 requests a minute it is one request">p99 स्थिर होण्यासाठी पुरेसा traffic लागतो; मिनिटाला 20 requests असताना तो फक्त एक request असतो</li><li data-en="bucket-based percentiles (Prometheus) are estimates, not exact">bucket-आधारित percentiles (Prometheus) हे अंदाज आहेत, अचूक नाहीत</li></ul></div>
+<div class="q use"><h4 data-en="👍 Use when">👍 वापरा जेव्हा</h4><ul><li data-en="latency of anything a person or another service waits for">माणूस किंवा दुसरी service ज्याची वाट पाहते त्या कशाचीही latency</li><li data-en="alerts and SLOs; capacity tests (lesson 16's load test)">alerts आणि SLOs; capacity tests (धडा 16 ची load test)</li></ul></div>
+<div class="q avoid"><h4 data-en="👎 Think twice when">👎 दोनदा विचार करा जेव्हा</h4><ul><li data-en="the mean alone for latency — it hides the tail">latency साठी फक्त mean — तो tail लपवतो</li><li data-en="one latency number for a whole API with very different routes">अगदी वेगवेगळे routes असलेल्या संपूर्ण API साठी एकच latency आकडा</li></ul></div>
+</div>
+</section>
+<section class="term" id="mon" style="--c:#6d28d9">
+<h2 data-en="📡 Prometheus vs Datadog vs CloudWatch — lesson 17">📡 Prometheus विरुद्ध Datadog विरुद्ध CloudWatch — धडा 17</h2>
+<div class="hist"><b data-en="⏮️ Before metrics platforms">⏮️ Metrics platforms आधी</b><p data-en="Engineers SSH-ed into servers and grepped logs to guess how slow the API was — after the users had already told them.">API किती हळू आहे याचा अंदाज घेण्यासाठी engineers servers मध्ये SSH करून logs grep करत — तेही वापरकर्त्यांनी आधीच सांगितल्यानंतर.</p></div>
+<div class="quad">
+<div class="q merit"><h4 data-en="✅ Merits">✅ फायदे</h4><ul><li data-en="Prometheus + Grafana: open source, pulls /metrics, free, the Kubernetes default">Prometheus + Grafana: open source, /metrics pull करतो, मोफत, Kubernetes चा default</li><li data-en="Datadog: hosted, agent + DogStatsD, metrics + traces + logs in one place, fast to start">Datadog: hosted, agent + DogStatsD, metrics + traces + logs एकाच ठिकाणी, सुरू करायला जलद</li><li data-en="CloudWatch: built into AWS — Lambda, API Gateway, ALB and RDS already report to it; EMF turns log lines into metrics">CloudWatch: AWS मध्येच बांधलेले — Lambda, API Gateway, ALB आणि RDS आधीच त्याला report करतात; EMF log ओळींचे metrics बनवतो</li></ul></div>
+<div class="q demerit"><h4 data-en="❌ Demerits">❌ तोटे</h4><ul><li data-en="Prometheus: you run, store and scale it yourself; long-term storage is extra work">Prometheus: तो तुम्हीच चालवता, साठवता आणि scale करता; दीर्घकालीन storage हे जादा काम आहे</li><li data-en="Datadog: priced per host, per custom metric and per GB — high-cardinality tags get expensive">Datadog: प्रत्येक host, प्रत्येक custom metric आणि प्रत्येक GB नुसार किंमत — high-cardinality tags महाग पडतात</li><li data-en="CloudWatch: AWS-only, per-metric and per-alarm costs, a clumsier query experience">CloudWatch: फक्त AWS, प्रत्येक metric आणि प्रत्येक alarm चा खर्च, query करणे अधिक अवघड</li></ul></div>
+<div class="q use"><h4 data-en="👍 Use when">👍 वापरा जेव्हा</h4><ul><li data-en="Prometheus in Kubernetes (the Kubernetes school's lesson 26)">Kubernetes मध्ये Prometheus (Kubernetes शाळेचा धडा 26)</li><li data-en="Datadog when a team wants one paid pane for everything">टीमला सगळ्यासाठी एकच सशुल्क पडदा हवा असेल तेव्हा Datadog</li><li data-en="CloudWatch for AWS-native stacks (the AWS school's lesson 18)">AWS-native stacks साठी CloudWatch (AWS शाळेचा धडा 18)</li></ul></div>
+<div class="q avoid"><h4 data-en="👎 Think twice when">👎 दोनदा विचार करा जेव्हा</h4><ul><li data-en="running two of them for the same numbers without a reason">कारण नसताना त्याच आकड्यांसाठी त्यातले दोन चालवणे</li><li data-en="labels with user ids or raw URLs — cardinality explodes in all three">user ids किंवा कच्चे URLs असलेले labels — तिन्हींमध्ये cardinality फुटते</li></ul></div>
+</div>
+</section>
 <section class="term" id="rest" style="--c:#0e7490">
 <h2 data-en="🗄️ REST (vs GraphQL, gRPC) — lessons 03, 11">🗄️ REST (विरुद्ध GraphQL, gRPC) — धडे 03, 11</h2>
 <div class="hist"><b data-en="⏮️ Before REST won (2000s)">⏮️ REST जिंकण्याआधी (2000 चे दशक)</b><p data-en="Every service invented its own remote-call style: SOAP envelopes, custom XML, RPC verbs like getStudentById in the URL. Caches could not help, every client needed a special library, and 'the API' was a 40-page PDF.">प्रत्येक service ने स्वतःची remote-call शैली शोधली: SOAP envelopes, custom XML, URL मध्ये getStudentById सारखी RPC क्रियापदे. Caches मदत करू शकत नव्हते, प्रत्येक client ला खास library लागायची, आणि 'API' म्हणजे 40 पानांचे PDF.</p></div>
@@ -224,47 +244,28 @@ W.style=(L)=>{const st=$('.stage',L),msg=$('.msg',L);const P={pub:['REST','nouns
 W.gate=(L)=>{const st=$('.stage',L),msg=$('.msg',L);const checks=['GET /v1/students → 200','GET /v1/students/2 → 200 + ETag','GET /v1/students/9 → 404','POST good form + key → 201','POST bad form → 400 + problems[]','POST no key → 401','POST wrong key → 403','PUT /v1/students/2 → 200','DELETE /v1/students/3 → 204','DELETE again → 404','same Idempotency-Key twice → 201 replay','21st slip in 10 s → 429 + Retry-After'];const F={none:[],404:[2],401:[5],429:[11]};
  L.onclick=e=>{const b=e.target.closest('button');if(!b)return;if(b.dataset.a==='trace'){st.innerHTML=term([['gateway   7f3c2a POST /v1/students 201 4 ms  key=app-web',Y],['students  7f3c2a auth ok · validate ok · stored id=6',Y],['students  7f3c2a 201 1 ms',Y],['db        7f3c2a INSERT students 0.3 ms',Y],'← one id, four lines, three services: grep it and the whole story is there']);msg.innerHTML='X-Request-Id is minted at the gate and copied onto every hop — the trace is the first thing you read at 3 a.m.';return}
  const bad=F[$('.bug',L).value];st.innerHTML='';const box=el('div','');checks.forEach((c,i)=>{const r=el('div','bucket');r.appendChild(cv(bad.includes(i)?'✗':'✓',bad.includes(i)?'dead':'ok'));r.appendChild(el('div','',c+(bad.includes(i)?' — <b style="color:#dc2626">wanted '+c.split('→')[1].trim().split(' ')[0]+', got '+(i===2?'200':i===5?'500':'200')+'</b>':'')));box.appendChild(r)});st.appendChild(box);msg.innerHTML=bad.length?'<b>12 checks, '+bad.length+' failed → exit 1</b> — the build goes red; the catalogue promised a stamp the counter no longer gives':'<b>12 checks 🎉 → exit 0</b> — every slip, every stamp, as printed in openapi.yaml'}};
+W.pct=(L)=>{const st=$('.stage',L),msg=$('.msg',L);const tbl=(cols,rows)=>'<table class="tb"><tr>'+cols.map(c=>'<th>'+c+'</th>').join('')+'</tr>'+rows.map(r=>'<tr>'+r.map(v=>'<td>'+v+'</td>').join('')+'</tr>').join('')+'</table>';
+ const pc=(v,p)=>{const a=[...v].sort((x,y)=>x-y),k=(a.length-1)*p/100,lo=Math.floor(k),hi=Math.ceil(k);return a[lo]+(a[hi]-a[lo])*(k-lo)};
+ let seed=17;const rnd=()=>{seed=(seed*16807)%2147483647;return seed/2147483647};
+ const draw=()=>{const f=+$('.f',L).value,sl=+$('.s',L).value,mix=$('.mix',L).checked,tool=$('.tool',L).value;$('.fv',L).textContent=f;$('.sv',L).textContent=sl;
+  seed=17;const rep=[];for(let i=0;i<100;i++)rep.push(i<f?sl*(0.95+rnd()*0.1):9+rnd()*2.5);
+  const all=mix?rep.concat(Array.from({length:300},()=>0.3+rnd()*0.9)):rep;const v=[...all].sort((a,b)=>a-b);
+  const P=[25,50,75,90,95,99],vals=P.map(p=>pc(v,p)),mean=v.reduce((a,b)=>a+b,0)/v.length,mx=Math.max(...v,20);
+  const W=620,H=150,bw=W/v.length;let bars='';v.forEach((x,i)=>{const h=Math.max(1.5,x/mx*(H-28));bars+=`<rect x="${(i*bw).toFixed(2)}" y="${(H-h).toFixed(1)}" width="${Math.max(bw-0.3,0.4).toFixed(2)}" height="${h.toFixed(1)}" fill="${x>100?'#dc2626':x>5?'#a78bfa':'#99f6e4'}"/>`});
+  const my=H-mean/mx*(H-28);bars+=`<line x1="0" x2="${W}" y1="${my}" y2="${my}" stroke="#16a34a" stroke-dasharray="5 4" stroke-width="1.5"/>`;
+  P.forEach((p,k)=>{const x=(v.length-1)*p/100*bw+bw/2;bars+=`<line x1="${x}" x2="${x}" y1="${k%2?16:4}" y2="${H}" stroke="#6d28d9" stroke-dasharray="3 3"/><text x="${x}" y="${k%2?26:13}" font-size="10" font-weight="700" fill="${p>=95?'#dc2626':'#6d28d9'}" text-anchor="${p>90?'end':'middle'}">p${p}</text>`});
+  const slo=vals[4]<100;
+  const alarm={cw:'aws cloudwatch put-metric-alarm --metric-name Latency --dimensions Name=Route,Value="GET /v1/reports/grades" --extended-statistic p95 --period 300 --evaluation-periods 3 --threshold 100 --comparison-operator GreaterThanThreshold',
+   dd:'percentile(last_15m):p95:school_api.request.duration{route:/v1/reports/grades} > 100',
+   pr:'histogram_quantile(0.95, sum by (le) (rate(school_api_request_duration_seconds_bucket{route="/v1/reports/grades"}[5m]))) > 0.1'}[tool];
+  st.innerHTML=`<div style="width:100%"><svg viewBox="0 0 ${W} ${H}" style="width:100%;height:auto;background:var(--card);border:1px solid var(--line);border-radius:8px">${bars}</svg>`+
+   tbl(['p25','p50','p75','p90','p95','p99','mean','max'],[vals.map(x=>x.toFixed(1)).concat([mean.toFixed(1),Math.max(...v).toFixed(1)])])+term([['🔔 '+alarm,'#fde68a'],[slo?'SLO p95 < 100 ms: OK':'SLO p95 < 100 ms: BREACHED → page on-call',slo?'#86efac':'#f87171']])+'</div>';
+  msg.innerHTML=(mix?'<b>mixed with 300 fast reads</b> — ':'')+(f===0?'no slow requests: every percentile is ~10 ms':vals[4]>100?`p95 <b>${vals[4].toFixed(0)} ms</b> catches the slow ${f}% · the mean (${mean.toFixed(1)} ms) still looks calm`:vals[5]>100?`the slow ones are rarer than 5% of these requests — p95 (${vals[4].toFixed(1)} ms) misses them, <b>only p99 sees them</b>`:`the slow ones are under 1% here — even p99 misses them; watch max, or measure per route`)};
+ L.oninput=draw;L.onchange=draw;draw()};
 document.querySelectorAll('.lab[data-w]').forEach(L=>{const f=W[L.dataset.w];if(f)try{f(L)}catch(e){console.error(e)}});
 })();
 </script>
-
-<script id="i18n-js">
-var I18N_INLINE={A:1,SPAN:1,CODE:1,B:1,I:1,EM:1,STRONG:1,BUTTON:1,LABEL:1,SUMMARY:1,SMALL:1,KBD:1};
-function schoolSetLang(l){
-  if(l!=='en'&&l!=='mr'&&l!=='both') l='both';
-  try{localStorage.setItem('school-lang2',l)}catch(e){}
-  document.documentElement.setAttribute('lang', l==='en' ? 'en' : 'mr');
-  document.querySelectorAll('[data-en]').forEach(function(el){
-    if(!el.hasAttribute('data-mr')) el.setAttribute('data-mr', el.innerHTML);
-    var en=el.getAttribute('data-en'), mr=el.getAttribute('data-mr');
-    var svg = el.namespaceURI && el.namespaceURI.indexOf('svg')>-1;
-    if(svg){
-      el.innerHTML = (l==='en') ? en : mr;
-      var t=el.querySelector('title'); if(t) t.remove();
-      if(l==='both'){ t=document.createElementNS('http://www.w3.org/2000/svg','title'); t.textContent=en.replace(/<[^>]+>/g,''); el.insertBefore(t, el.firstChild); }
-      return;
-    }
-    if(l==='en') el.innerHTML = en;
-    else if(l==='mr') el.innerHTML = mr;
-    else if(en.replace(/\s+/g,' ').trim()===mr.replace(/\s+/g,' ').trim()) el.innerHTML = mr;
-    else {
-      var e2=en.replace(/<span class="(ln|num|wk)">[\s\S]*?<\/span>\s*/g,'');
-      if(e2.charAt(0)!=='<' && mr.charAt(0)!=='<'){           /* drop the prefix both languages share, e.g. "01 · 🏢 " */
-        var i=0; while(i<e2.length&&i<mr.length&&e2.charAt(i)===mr.charAt(i)) i++;
-        var cut=e2.lastIndexOf(' ',i); if(cut>0 && cut<e2.length-1) e2=e2.slice(cut+1);
-      }
-      el.innerHTML = mr + '<span class="i18n-en'+(I18N_INLINE[el.tagName]?' i':'')+'">'+e2+'</span>';
-    }
-  });
-  document.querySelectorAll('[data-en-ph]').forEach(function(el){
-    if(!el.hasAttribute('data-mr-ph')) el.setAttribute('data-mr-ph', el.getAttribute('placeholder'));
-    el.setAttribute('placeholder', (l==='en') ? el.getAttribute('data-en-ph') : (l==='mr' ? el.getAttribute('data-mr-ph') : el.getAttribute('data-mr-ph')+' / '+el.getAttribute('data-en-ph')));
-  });
-  var p=document.getElementById('lang-pick'); if(p) p.value=l;
-}
-(function(){ var l='both'; try{ l=localStorage.getItem('school-lang2')||'both'; }catch(e){}
-  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',function(){schoolSetLang(l)}); else schoolSetLang(l); })();
-</script><div id="navfab-js"><script>
+<div id="navfab-js"><script>
 (function(){
 const PAGES=[["index.html", "🏠 Course home", "🏠 कोर्स मुख्य पान"], ["lesson-diagrams.html", "🖼️ All lesson diagrams", "🖼️ सर्व धड्यांच्या आकृत्या"], ["quiz.html", "🧪 Quiz", "🧪 प्रश्नमंजुषा"], ["study-plan.html", "🗓️ Study plan", "🗓️ अभ्यास योजना"], ["before-and-tradeoffs.html", "⚖️ Before & trade-offs", "⚖️ आधी आणि फायदे-तोटे"]], PORTAL="https://baluraut.github.io/school/", HERE=location.pathname.split('/').pop()||'index.html';
 const mr=()=> (document.documentElement.lang||'').startsWith('mr');
@@ -314,5 +315,42 @@ if('IntersectionObserver' in window){const io=new IntersectionObserver(es=>{es.f
  items().forEach(i=>{const t=document.getElementById(i.id);if(t)io.observe(t)})}
 })();
 </script></div><!--/navfab-js-->
-</body>
+
+<script id="i18n-js">
+var I18N_INLINE={A:1,SPAN:1,CODE:1,B:1,I:1,EM:1,STRONG:1,BUTTON:1,LABEL:1,SUMMARY:1,SMALL:1,KBD:1};
+function schoolSetLang(l){
+  if(l!=='en'&&l!=='mr'&&l!=='both') l='both';
+  try{localStorage.setItem('school-lang2',l)}catch(e){}
+  document.documentElement.setAttribute('lang', l==='en' ? 'en' : 'mr');
+  document.querySelectorAll('[data-en]').forEach(function(el){
+    if(!el.hasAttribute('data-mr')) el.setAttribute('data-mr', el.innerHTML);
+    var en=el.getAttribute('data-en'), mr=el.getAttribute('data-mr');
+    var svg = el.namespaceURI && el.namespaceURI.indexOf('svg')>-1;
+    if(svg){
+      el.innerHTML = (l==='en') ? en : mr;
+      var t=el.querySelector('title'); if(t) t.remove();
+      if(l==='both'){ t=document.createElementNS('http://www.w3.org/2000/svg','title'); t.textContent=en.replace(/<[^>]+>/g,''); el.insertBefore(t, el.firstChild); }
+      return;
+    }
+    if(l==='en') el.innerHTML = en;
+    else if(l==='mr') el.innerHTML = mr;
+    else if(en.replace(/\s+/g,' ').trim()===mr.replace(/\s+/g,' ').trim()) el.innerHTML = mr;
+    else {
+      var e2=en.replace(/<span class="(ln|num|wk)">[\s\S]*?<\/span>\s*/g,'');
+      if(e2.charAt(0)!=='<' && mr.charAt(0)!=='<'){           /* drop the prefix both languages share, e.g. "01 · 🏢 " */
+        var i=0; while(i<e2.length&&i<mr.length&&e2.charAt(i)===mr.charAt(i)) i++;
+        var cut=e2.lastIndexOf(' ',i); if(cut>0 && cut<e2.length-1) e2=e2.slice(cut+1);
+      }
+      el.innerHTML = mr + '<span class="i18n-en'+(I18N_INLINE[el.tagName]?' i':'')+'">'+e2+'</span>';
+    }
+  });
+  document.querySelectorAll('[data-en-ph]').forEach(function(el){
+    if(!el.hasAttribute('data-mr-ph')) el.setAttribute('data-mr-ph', el.getAttribute('placeholder'));
+    el.setAttribute('placeholder', (l==='en') ? el.getAttribute('data-en-ph') : (l==='mr' ? el.getAttribute('data-mr-ph') : el.getAttribute('data-mr-ph')+' / '+el.getAttribute('data-en-ph')));
+  });
+  var p=document.getElementById('lang-pick'); if(p) p.value=l;
+}
+(function(){ var l='both'; try{ l=localStorage.getItem('school-lang2')||'both'; }catch(e){}
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',function(){schoolSetLang(l)}); else schoolSetLang(l); })();
+</script></body>
 </html>

@@ -1,20 +1,25 @@
-"""The school's front office — a REAL HTTP/JSON API in pure Python. (Lessons 02–10)
+"""The school's front office — a REAL HTTP/JSON API in pure Python. (Lessons 02–10, 17)
 
 Zero dependencies: the standard library's http.server. Every idea in the course is a
 few readable lines here: routes, status codes, validation, API keys, idempotency keys,
 pagination, ETags, rate limits, versioning, request logs — and all seven REST methods
 (GET, HEAD, OPTIONS, POST, PUT, PATCH, DELETE; see docs/rest-methods.html).
+Lesson 17 adds measurement: GET /metrics (Prometheus), and optional CloudWatch EMF log
+lines (METRICS_EMF=1) and Datadog DogStatsD packets (DOGSTATSD=127.0.0.1:8125).
 
     python3 api/school_api.py            # serves http://127.0.0.1:8080/v1/...
     bash api/smoke_test.sh               # the whole course, in curl
 """
-import json, os, sys, time, hashlib, uuid, urllib.request
+import json, os, sys, time, hashlib, uuid, urllib.request, threading, socket, re
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from urllib.parse import urlparse, parse_qs
 
 API_KEY = os.environ.get("SCHOOL_API_KEY", "hall-pass-123")   # lesson 06: the hall pass for WRITES
 RATE_LIMIT = int(os.environ.get("RATE_LIMIT", "20"))         # lesson 10: requests per 10 s, per client
 VERSION = "v1"
+LOG_REQUESTS = os.environ.get("LOG_REQUESTS", "1") != "0"    # the one-line request log (lesson 12)
+METRICS_EMF = os.environ.get("METRICS_EMF") == "1"            # lesson 17: CloudWatch Embedded Metric Format lines
+DOGSTATSD = os.environ.get("DOGSTATSD")                       # lesson 17: "host:port" of a Datadog agent (UDP)
 
 # ---- the record room (in memory — the Database school's job to make this durable) ----
 STUDENTS = {
@@ -29,6 +34,56 @@ IDEMPOTENCY = {}          # lesson 07: Idempotency-Key → the response we alrea
 WEBHOOKS = []             # lesson 11: URLs to call back when a student is created
 BUCKETS = {}              # lesson 10: client → [count, window_start]
 CLASSES = {"3A", "3B"}
+
+# ---- lesson 17: the stopwatch at the counter ----------------------------------------
+BUCKETS_S = (0.005, 0.01, 0.025, 0.05, 0.1, 0.25, 0.5, 1.0)   # histogram edges, in seconds (Prometheus style)
+METRICS = {}                                                  # (method, route, status) → [count, sum_s, [bucket counts]]
+METRICS_LOCK = threading.Lock()
+REPORT_CALLS = [0]
+REPORT_CACHE_MISS_EVERY = 15   # SIMULATED slow path: 1 report in 15 "misses the cache" and takes ~150 ms, so the tail is visible
+
+def route_template(path):
+    """/v1/students/7 → /v1/students/{id}: one metric per ROUTE, not per URL (unbounded label values sink monitoring bills)."""
+    p = urlparse(path).path
+    if not p.startswith(f"/{VERSION}/"): return "(unmatched)"
+    return re.sub(r"/\d+(?=/|$)", "/{id}", p)
+
+def record(method, route, status, seconds):
+    with METRICS_LOCK:
+        m = METRICS.setdefault((method, route, status), [0, 0.0, [0] * len(BUCKETS_S)])
+        m[0] += 1; m[1] += seconds
+        for i, edge in enumerate(BUCKETS_S):
+            if seconds <= edge: m[2][i] += 1
+    if METRICS_EMF: print(emf_line(method, route, status, seconds), flush=True)
+    if DOGSTATSD:
+        host, port = DOGSTATSD.rsplit(":", 1)
+        try: socket.socket(socket.AF_INET, socket.SOCK_DGRAM).sendto(dogstatsd_line(method, route, status, seconds).encode(), (host, int(port)))
+        except OSError: pass                        # monitoring must never break the counter
+
+def emf_line(method, route, status, seconds, request_id="-"):
+    """CloudWatch Embedded Metric Format: a JSON log line that CloudWatch turns into a metric (Lambda, ECS, the agent)."""
+    return json.dumps({"_aws": {"Timestamp": int(time.time() * 1000), "CloudWatchMetrics": [{"Namespace": "SchoolAPI",
+            "Dimensions": [["Route"]], "Metrics": [{"Name": "Latency", "Unit": "Milliseconds"}]}]},
+            "Route": f"{method} {route}", "StatusCode": status, "RequestId": request_id, "Latency": round(seconds * 1000, 2)})
+
+def dogstatsd_line(method, route, status, seconds):
+    """Datadog DogStatsD over UDP: a distribution ("d"), so Datadog can compute p50/p95/p99 across every server."""
+    tag = route.replace("{", "").replace("}", "")
+    return f"school_api.request.duration:{seconds * 1000:.2f}|d|#method:{method},route:{tag},status:{status}"
+
+def prometheus_text():
+    """GET /metrics — the Prometheus exposition format: counters + a latency histogram per route."""
+    out = ["# HELP school_api_request_duration_seconds Time from the first byte of the request to the response.",
+           "# TYPE school_api_request_duration_seconds histogram"]
+    with METRICS_LOCK:
+        for (method, route, status), (count, total, buckets) in sorted(METRICS.items()):
+            labels = f'method="{method}",route="{route}",status="{status}"'
+            for edge, n in zip(BUCKETS_S, buckets):
+                out.append(f'school_api_request_duration_seconds_bucket{{{labels},le="{edge}"}} {n}')
+            out.append(f'school_api_request_duration_seconds_bucket{{{labels},le="+Inf"}} {count}')
+            out.append(f"school_api_request_duration_seconds_sum{{{labels}}} {total:.6f}")
+            out.append(f"school_api_request_duration_seconds_count{{{labels}}} {count}")
+    return "\n".join(out) + "\n"
 
 def etag_of(obj):
     return '"' + hashlib.sha1(json.dumps(obj, sort_keys=True).encode()).hexdigest()[:16] + '"'
@@ -74,7 +129,9 @@ class Handler(BaseHTTPRequestHandler):
 
     def log_line(self, status):
         ms = int((time.time() - self.t0) * 1000)
-        print(f"{self.command} {self.path} → {status} · {ms} ms · {self.request_id}", file=sys.stderr, flush=True)
+        record(self.command, route_template(self.path), status, time.perf_counter() - self.t0p)   # lesson 17
+        if LOG_REQUESTS:
+            print(f"{self.command} {self.path} → {status} · {ms} ms · {self.request_id}", file=sys.stderr, flush=True)
 
     def log_message(self, *a):   # silence the default noisy log; we print our own line
         pass
@@ -117,7 +174,7 @@ class Handler(BaseHTTPRequestHandler):
 
     # ---- routing: nouns and ids (lesson 03) ------------------------------------------
     def route(self):
-        self.t0 = time.time(); self.request_id = uuid.uuid4().hex[:8]
+        self.t0 = time.time(); self.t0p = time.perf_counter(); self.request_id = uuid.uuid4().hex[:8]
         u = urlparse(self.path); parts = [p for p in u.path.split("/") if p]
         self.q = parse_qs(u.query)
         if self.rate_limited():
@@ -128,6 +185,11 @@ class Handler(BaseHTTPRequestHandler):
         return parts[1:]
 
     def do_GET(self):
+        if urlparse(self.path).path == "/metrics":             # lesson 17: scraped by Prometheus; not counted, not rate-limited
+            data = prometheus_text().encode()
+            self.send_response(200); self.send_header("Content-Type", "text/plain; version=0.0.4")
+            self.send_header("Content-Length", str(len(data))); self.end_headers(); self.wfile.write(data)
+            return
         p = self.route()
         if p is None: return
         if p == ["health"]:
@@ -142,6 +204,12 @@ class Handler(BaseHTTPRequestHandler):
             if self.headers.get("If-None-Match") == tag:
                 return self.send(304, None, {"ETag": tag})
             return self.send(200, s, {"ETag": tag, "Cache-Control": "private, max-age=30"})
+        if p == ["reports", "grades"]:                        # lesson 17: a heavier read, with a SIMULATED cache-miss tail
+            REPORT_CALLS[0] += 1
+            time.sleep(0.150 if REPORT_CALLS[0] % REPORT_CACHE_MISS_EVERY == 0 else 0.008)
+            counts = {}
+            for s in STUDENTS.values(): counts.setdefault(s["class"], {}).setdefault(s["grade"], 0); counts[s["class"]][s["grade"]] += 1
+            return self.send(200, {"grades_by_class": counts})
         if len(p) == 3 and p[0] == "classes" and p[2] == "students":
             rows = [s for s in STUDENTS.values() if s["class"] == p[1]]
             return self.send(200, {"items": rows, "count": len(rows)})

@@ -1,14 +1,14 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1160" font-family="-apple-system, 'Segoe UI', Helvetica, Arial, sans-serif">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1230" font-family="-apple-system, 'Segoe UI', Helvetica, Arial, sans-serif">
   <defs><marker id="arw" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#64748b"/></marker></defs>
   <style>
-    .band1 { fill: #fff; stroke: #0e7490; stroke-width: 3; } .band2 { fill: #fff; stroke: #c2410c; stroke-width: 3; } .band3 { fill: #f0fdfa; stroke: #0f766e; stroke-width: 3; } .bandt3 { font-size: 22px; font-weight: 800; fill: #0f766e; }
+    .band1 { fill: #fff; stroke: #0e7490; stroke-width: 3; } .band2 { fill: #fff; stroke: #c2410c; stroke-width: 3; } .band3 { fill: #f0fdfa; stroke: #0f766e; stroke-width: 3; } .bandt3 { font-size: 22px; font-weight: 800; fill: #0f766e; } .band4 { fill: #f5f3ff; stroke: #6d28d9; stroke-width: 3; } .bandt4 { font-size: 22px; font-weight: 800; fill: #6d28d9; }
     .bx { fill: #f8fafc; stroke: #94a3b8; stroke-width: 2; } .bxp { fill: #fff; stroke: #0e7490; stroke-width: 2.5; } .bxo { fill: #fff; stroke: #c2410c; stroke-width: 2.5; }
     .warn { fill: #fef2f2; stroke: #dc2626; stroke-width: 1.5; stroke-dasharray: 7 6; } .tip { fill: #ecfeff; stroke: #0e7490; stroke-width: 1.5; } .win { fill: #fff7ed; stroke: #c2410c; stroke-width: 1.5; }
     .title { font-size: 36px; font-weight: 800; fill: #0f172a; } .bandt { font-size: 26px; font-weight: 800; }
     .t { font-size: 19px; font-weight: 600; fill: #0f172a; } .s { font-size: 15px; fill: #475569; } .m { text-anchor: middle; }
     .arr { stroke: #64748b; stroke-width: 2.5; fill: none; marker-end: url(#arw); } .ntb { font-size: 15px; font-weight: 700; fill: #fff; text-anchor: middle; }
   </style>
-  <rect x="0" y="0" width="1920" height="1160" fill="#ffffff"/>
+  <rect x="0" y="0" width="1920" height="1230" fill="#ffffff"/>
   <text class="title m" x="960" y="52">The Big Picture — APIs: the front office · the counter is in the repo</text>
 
   <rect class="band1" x="40" y="80" width="1840" height="470" rx="20"/>
@@ -43,7 +43,7 @@
   <g transform="translate(1380,170)"><circle r="13" fill="#0e7490"/><text class="ntb" dy="5">4</text></g>
 
   <rect class="tip" x="70" y="400" width="880" height="110" rx="14"/>
-  <text class="t m" x="510" y="438">🔬 api/school_api.py — ~235 lines, zero dependencies</text>
+  <text class="t m" x="510" y="438">🔬 api/school_api.py — ~340 lines, zero dependencies</text>
   <text class="s m" x="510" y="466">routes (nouns → handlers) · validation + auth · storage (a dict) · plumbing (status, headers, request id, log line)</text>
   <text class="s m" x="510" y="490">frameworks automate exactly these four parts — read the parts first</text>
 
@@ -100,4 +100,6 @@
 
   <rect class="band3" x="40" y="1098" width="1840" height="54" rx="14"/>
   <text class="bandt3" x="70" y="1133">🗺️ PART 3 — THE FULL MAPS (lessons 13–16): every REST method 🔧 · every authentication method 🪪 · every API type 🔀 · every kind of API test 🧪</text>
+  <rect class="band4" x="40" y="1164" width="1840" height="54" rx="14"/>
+  <text class="bandt4" x="70" y="1199">📈 PART 4 — production APIs (17): the stopwatch — p25 · p50 · p75 · p90 · p95 · p99 per route · RED · Prometheus /metrics · Datadog · CloudWatch · alarm on the SLO</text>
 </svg>
